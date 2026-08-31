@@ -621,6 +621,462 @@ export const EXERCISES = [
     code: 'string nomRecherche = Console.ReadLine();\nstring requete = "SELECT * FROM client WHERE nom = \'" + nomRecherche + "\'";\nSqlCommand commande = new SqlCommand(requete, connexion);',
     ligneErreur: 2,
     explication: 'Ligne 2 : la valeur saisie par l\'utilisateur est directement collée dans le texte SQL — une faille d\'injection SQL classique. Il fallait utiliser une requête paramétrée avec un SqlParameter plutôt qu\'une concaténation.'
+  },
+
+  // ---------------------------------------------------------------- CEJM
+  {
+    id: 'ex-cejm-agents-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-theme1-agents-economiques', competence: 'cejm.agents-economiques',
+    langage: null, difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Lequel de ces éléments N\'EST PAS un agent économique ?',
+    options: [
+      { id: 'a', texte: 'Les ménages' }, { id: 'b', texte: 'Les entreprises' },
+      { id: 'c', texte: 'Un produit fini' }, { id: 'd', texte: 'L\'État' }
+    ],
+    correctes: ['c'],
+    explication: 'Un produit fini est un bien, pas un acteur économique. Les agents économiques sont des ACTEURS qui interagissent (ménages, entreprises, État, banques).'
+  },
+  {
+    id: 'ex-cejm-agents-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-theme1-agents-economiques', competence: 'cejm.agents-economiques',
+    langage: null, difficulte: 'facile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans une entreprise individuelle, le patrimoine personnel de l\'entrepreneur peut être engagé en cas de dettes professionnelles.',
+    correct: true,
+    explication: 'Contrairement à une société, l\'entreprise individuelle ne crée pas de personne morale distincte : l\'entrepreneur reste responsable sur son patrimoine (la résidence principale bénéficiant toutefois d\'une protection).'
+  },
+  {
+    id: 'ex-cejm-rgpd-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-theme4-rgpd', competence: 'cejm.rgpd',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que garantit le droit à l\'effacement prévu par le RGPD ?',
+    options: [
+      { id: 'a', texte: 'Le droit de consulter ses données' },
+      { id: 'b', texte: 'Le droit de faire supprimer ses données personnelles' },
+      { id: 'c', texte: 'Le droit de vendre ses données' },
+      { id: 'd', texte: 'Le droit d\'obtenir une compensation financière' }
+    ],
+    correctes: ['b'],
+    explication: 'Le droit à l\'effacement ("droit à l\'oubli") permet à une personne de demander la suppression de ses données personnelles auprès d\'une organisation qui les détient.'
+  },
+  {
+    id: 'ex-cejm-rgpd-reponse-1',
+    matiere: 'cejm', chapitre: 'cejm-theme4-rgpd', competence: 'cejm.rgpd',
+    langage: null, difficulte: 'moyen', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Sous combien d\'heures une entreprise doit-elle signaler à la CNIL une violation de données personnelles ?',
+    reponsesAcceptees: ['72', '72h', '72 heures'],
+    explication: 'Le RGPD impose un délai de 72 heures pour notifier une violation de données à l\'autorité de contrôle compétente (la CNIL en France).'
+  },
+
+  // -------------------------------------------------------------- Maths
+  {
+    id: 'ex-maths-numeration-qcm-1',
+    matiere: 'maths', chapitre: 'maths-numeration', competence: 'maths.numeration',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Combien de bits faut-il pour représenter exactement 1 chiffre hexadécimal ?',
+    options: [
+      { id: 'a', texte: '1' }, { id: 'b', texte: '2' },
+      { id: 'c', texte: '4' }, { id: 'd', texte: '8' }
+    ],
+    correctes: ['c'],
+    explication: 'Un chiffre hexadécimal (0-9, A-F, soit 16 valeurs possibles) correspond exactement à 4 bits (2⁴ = 16 combinaisons possibles).'
+  },
+  {
+    id: 'ex-maths-numeration-reponse-1',
+    matiere: 'maths', chapitre: 'maths-numeration', competence: 'maths.numeration',
+    langage: null, difficulte: 'moyen', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Convertis le nombre binaire 1010 en décimal.',
+    reponsesAcceptees: ['10'],
+    explication: '1010 = 1×2³ + 0×2² + 1×2¹ + 0×2⁰ = 8 + 0 + 2 + 0 = 10.'
+  },
+  {
+    id: 'ex-maths-numeration-completer-1',
+    matiere: 'maths', chapitre: 'maths-numeration', competence: 'maths.numeration',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette conversion de 13 en binaire.',
+    template: '13 en binaire :\n13 / 2 = 6 reste {{1}}\n6  / 2 = 3 reste {{2}}\n3  / 2 = 1 reste {{3}}\n1  / 2 = 0 reste {{4}}\n\nRésultat (restes de bas en haut) : {{5}}',
+    trous: [
+      { id: 1, accepte: ['1'] }, { id: 2, accepte: ['0'] },
+      { id: 3, accepte: ['1'] }, { id: 4, accepte: ['1'] },
+      { id: 5, accepte: ['1101'] }
+    ],
+    explication: 'En lisant les restes de bas en haut (1, 1, 0, 1) on obtient 1101, qui est bien l\'écriture binaire de 13 (8 + 4 + 0 + 1 = 13).'
+  },
+  {
+    id: 'ex-maths-bool-qcm-1',
+    matiere: 'maths', chapitre: 'maths-booleen', competence: 'maths.booleen',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que vaut A OU B si A = 0 et B = 0 ?',
+    options: [
+      { id: 'a', texte: '0' }, { id: 'b', texte: '1' },
+      { id: 'c', texte: 'Indéterminé' }, { id: 'd', texte: 'Cela dépend d\'une autre variable' }
+    ],
+    correctes: ['a'],
+    explication: 'OU n\'est vrai que si au moins une des deux valeurs vaut 1. Ici, A et B valent tous les deux 0, donc A OU B = 0.'
+  },
+  {
+    id: 'ex-maths-bool-completer-1',
+    matiere: 'maths', chapitre: 'maths-booleen', competence: 'maths.booleen',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette table de vérité de A OU B.',
+    template: 'A | B | A OU B\n0 | 0 |   {{1}}\n0 | 1 |   {{2}}\n1 | 0 |   {{3}}\n1 | 1 |   {{4}}',
+    trous: [
+      { id: 1, accepte: ['0'] }, { id: 2, accepte: ['1'] },
+      { id: 3, accepte: ['1'] }, { id: 4, accepte: ['1'] }
+    ],
+    explication: 'OU est vrai (1) dès qu\'AU MOINS une des deux entrées vaut 1 : seule la première ligne (0 et 0) donne un résultat à 0.'
+  },
+
+  // ------------------------------------------------------------ Anglais
+  {
+    id: 'ex-anglais-vocab-qcm-1',
+    matiere: 'anglais', chapitre: 'anglais-vocabulaire-it', competence: 'anglais.vocabulaire-it',
+    langage: null, difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que signifie "to deploy" dans un contexte informatique ?',
+    options: [
+      { id: 'a', texte: 'Corriger un bogue' },
+      { id: 'b', texte: 'Mettre en production / déployer une application' },
+      { id: 'c', texte: 'Tester une fonctionnalité' },
+      { id: 'd', texte: 'Écrire de la documentation' }
+    ],
+    correctes: ['b'],
+    explication: '"To deploy" signifie déployer, c\'est-à-dire mettre une application ou une mise à jour en service sur un serveur ou un environnement de production.'
+  },
+  {
+    id: 'ex-anglais-vocab-vf-1',
+    matiere: 'anglais', chapitre: 'anglais-vocabulaire-it', competence: 'anglais.vocabulaire-it',
+    langage: null, difficulte: 'facile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le mot anglais "eventually" se traduit par "éventuellement" en français.',
+    correct: false,
+    explication: 'C\'est un faux-ami classique : "eventually" signifie "finalement", "à terme" — pas "peut-être", "éventuellement".'
+  },
+  {
+    id: 'ex-anglais-present-qcm-1',
+    matiere: 'anglais', chapitre: 'anglais-present-tenses', competence: 'anglais.present',
+    langage: null, difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle phrase est correcte pour décrire une action en train de se dérouler MAINTENANT ?',
+    options: [
+      { id: 'a', texte: 'She work on the bug now.' },
+      { id: 'b', texte: 'She is working on the bug now.' },
+      { id: 'c', texte: 'She works on the bug now.' },
+      { id: 'd', texte: 'She working on the bug now.' }
+    ],
+    correctes: ['b'],
+    explication: 'Une action en cours au moment où l\'on parle utilise le present continuous : be (is) + verbe-ing ("is working").'
+  },
+  {
+    id: 'ex-anglais-present-completer-1',
+    matiere: 'anglais', chapitre: 'anglais-present-tenses', competence: 'anglais.present',
+    langage: null, difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète avec la forme correcte du verbe entre parenthèses.',
+    template: 'Usually, he {{1}} (test) his code every morning. Right now, he {{2}} (fix) a critical bug.',
+    trous: [
+      { id: 1, accepte: ['tests'] },
+      { id: 2, accepte: ['is fixing'] }
+    ],
+    explication: '"Usually... every morning" appelle le present simple avec un \'s\' à la 3e personne ("tests"). "Right now" appelle le present continuous ("is fixing").'
+  },
+
+  // --------------------------------------------------- Culture générale
+  {
+    id: 'ex-cg-synthese-qcm-1',
+    matiere: 'culture-generale', chapitre: 'cg-synthese', competence: 'cg.synthese',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que doit éviter absolument l\'auteur d\'une synthèse de documents ?',
+    options: [
+      { id: 'a', texte: 'Reformuler les idées avec ses propres mots' },
+      { id: 'b', texte: 'Donner son avis personnel sur le sujet' },
+      { id: 'c', texte: 'Organiser son plan par thème' },
+      { id: 'd', texte: 'Confronter les documents entre eux' }
+    ],
+    correctes: ['b'],
+    explication: 'La synthèse est un exercice de neutralité : elle ne doit jamais contenir l\'opinion personnelle du candidat, contrairement à l\'écriture personnelle qui suit dans l\'épreuve.'
+  },
+  {
+    id: 'ex-cg-synthese-vf-1',
+    matiere: 'culture-generale', chapitre: 'cg-synthese', competence: 'cg.synthese',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un bon plan de synthèse traite les documents un par un, dans l\'ordre où ils sont présentés dans le dossier.',
+    correct: false,
+    explication: 'C\'est l\'erreur la plus fréquente : un bon plan est THÉMATIQUE, il croise les idées de plusieurs documents autour d\'un même thème plutôt que de les résumer séparément.'
+  },
+
+  // --------------------------------------------------- Culture générale — écriture personnelle
+  {
+    id: 'ex-cg-ecriture-qcm-1',
+    matiere: 'culture-generale', chapitre: 'cg-ecriture-personnelle', competence: 'cg.ecriture-personnelle',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle est la principale différence entre la synthèse et l\'écriture personnelle ?',
+    options: [
+      { id: 'a', texte: 'La synthèse est plus longue' },
+      { id: 'b', texte: 'L\'écriture personnelle demande l\'avis argumenté du candidat, contrairement à la synthèse qui doit rester neutre' },
+      { id: 'c', texte: 'L\'écriture personnelle ne porte pas sur le même sujet' },
+      { id: 'd', texte: 'Il n\'y a aucune différence' }
+    ],
+    correctes: ['b'],
+    explication: 'La synthèse exige la neutralité totale ; l\'écriture personnelle demande au contraire un avis personnel argumenté sur une question liée au dossier.'
+  },
+  {
+    id: 'ex-cg-ecriture-vf-1',
+    matiere: 'culture-generale', chapitre: 'cg-ecriture-personnelle', competence: 'cg.ecriture-personnelle',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un bon paragraphe argumenté doit développer plusieurs idées différentes à la fois pour être complet.',
+    correct: false,
+    explication: 'Au contraire, un bon paragraphe développe UNE seule idée principale, clairement illustrée par un exemple précis.'
+  },
+
+  // ---------------------------------------------------------- CEJM — régulation
+  {
+    id: 'ex-cejm-regulation-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-theme2-regulation', competence: 'cejm.regulation',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Qu\'est-ce qu\'une entente illicite entre entreprises ?',
+    options: [
+      { id: 'a', texte: 'Une fusion validée par l\'État' },
+      { id: 'b', texte: 'Un accord entre concurrents pour fausser le jeu de la concurrence' },
+      { id: 'c', texte: 'Un contrat de travail collectif' },
+      { id: 'd', texte: 'Une aide financière de l\'État' }
+    ],
+    correctes: ['b'],
+    explication: 'Une entente illicite est un accord (souvent secret) entre entreprises concurrentes visant à fausser la concurrence, par exemple en fixant des prix communs.'
+  },
+  {
+    id: 'ex-cejm-regulation-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-theme2-regulation', competence: 'cejm.regulation',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Détenir une position dominante sur un marché est en soi interdit par le droit de la concurrence.',
+    correct: false,
+    explication: 'La position dominante n\'est pas interdite en elle-même ; seul son ABUS (évincer des concurrents en en profitant) est sanctionné.'
+  },
+
+  // --------------------------------------------------------- CEJM — organisation
+  {
+    id: 'ex-cejm-organisation-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-theme3-organisation', competence: 'cejm.organisation',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Qu\'appelle-t-on l\'externalisation d\'une activité ?',
+    options: [
+      { id: 'a', texte: 'La confier à un prestataire extérieur' },
+      { id: 'b', texte: 'La réaliser en interne avec ses propres salariés' },
+      { id: 'c', texte: 'L\'arrêter définitivement' },
+      { id: 'd', texte: 'La breveter' }
+    ],
+    correctes: ['a'],
+    explication: 'Externaliser consiste à confier une activité à un prestataire extérieur plutôt que de la réaliser soi-même (internalisation).'
+  },
+  {
+    id: 'ex-cejm-organisation-reponse-1',
+    matiere: 'cejm', chapitre: 'cejm-theme3-organisation', competence: 'cejm.organisation',
+    langage: null, difficulte: 'moyen', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quels sont les deux grands facteurs de production ?',
+    reponsesAcceptees: ['travail et capital', 'le travail et le capital', 'capital et travail', 'le capital et le travail'],
+    explication: 'Le travail (les salariés) et le capital (machines, locaux, outils) sont les deux grands facteurs combinés pour produire.'
+  },
+
+  // -------------------------------------------------------------- CEJM — travail
+  {
+    id: 'ex-cejm-travail-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-theme5-travail', competence: 'cejm.travail',
+    langage: null, difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle est la forme normale et générale du contrat de travail en France ?',
+    options: [
+      { id: 'a', texte: 'CDD' }, { id: 'b', texte: 'CDI' },
+      { id: 'c', texte: 'Stage' }, { id: 'd', texte: 'Auto-entreprise' }
+    ],
+    correctes: ['b'],
+    explication: 'Le CDI (contrat à durée indéterminée) est la forme normale et générale ; le CDD est réservé à des cas précis prévus par la loi.'
+  },
+  {
+    id: 'ex-cejm-travail-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-theme5-travail', competence: 'cejm.travail',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le lien de subordination est ce qui distingue juridiquement un salarié d\'un travailleur indépendant.',
+    correct: true,
+    explication: 'Un salarié reçoit des directives de son employeur et peut être sanctionné en cas de non-respect ; un indépendant ne dépend pas hiérarchiquement d\'un donneur d\'ordre de la même façon.'
+  },
+
+  // ------------------------------------------------------------ CEJM — stratégie
+  {
+    id: 'ex-cejm-strategie-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-theme6-strategie', competence: 'cejm.strategie',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une entreprise qui rachète un concurrent pratique une croissance...',
+    options: [
+      { id: 'a', texte: 'interne' }, { id: 'b', texte: 'externe' },
+      { id: 'c', texte: 'nulle' }, { id: 'd', texte: 'négative' }
+    ],
+    correctes: ['b'],
+    explication: 'Racheter ou fusionner avec une autre entreprise est une croissance EXTERNE, par opposition à la croissance interne qui repose sur le développement de ses propres ressources.'
+  },
+  {
+    id: 'ex-cejm-strategie-reponse-1',
+    matiere: 'cejm', chapitre: 'cejm-theme6-strategie', competence: 'cejm.strategie',
+    langage: null, difficulte: 'difficile', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel sigle désigne la prise en compte par l\'entreprise d\'intérêts au-delà des seuls actionnaires (salariés, environnement, société) ?',
+    reponsesAcceptees: ['rse', 'la rse'],
+    explication: 'RSE = Responsabilité Sociétale des Entreprises.'
+  },
+
+  // -------------------------------------------------------------- Maths — suites
+  {
+    id: 'ex-maths-suites-qcm-1',
+    matiere: 'maths', chapitre: 'maths-suites', competence: 'maths.suites',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Comment reconnaît-on qu\'une suite est arithmétique ?',
+    options: [
+      { id: 'a', texte: 'Le quotient entre deux termes consécutifs est constant' },
+      { id: 'b', texte: 'La différence entre deux termes consécutifs est constante' },
+      { id: 'c', texte: 'Tous les termes sont positifs' },
+      { id: 'd', texte: 'La suite est croissante' }
+    ],
+    correctes: ['b'],
+    explication: 'Une suite arithmétique a une différence constante entre deux termes consécutifs (la raison r) ; un quotient constant caractérise une suite géométrique.'
+  },
+  {
+    id: 'ex-maths-suites-reponse-1',
+    matiere: 'maths', chapitre: 'maths-suites', competence: 'maths.suites',
+    langage: null, difficulte: 'moyen', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une suite géométrique a pour premier terme u0 = 2 et pour raison q = 3. Quelle est la valeur de u1 ?',
+    reponsesAcceptees: ['6'],
+    explication: 'u1 = u0 × q = 2 × 3 = 6.'
+  },
+
+  // ------------------------------------------------------------- Maths — graphes
+  {
+    id: 'ex-maths-graphes-qcm-1',
+    matiere: 'maths', chapitre: 'maths-graphes', competence: 'maths.graphes',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans une méthode d\'ordonnancement de tâches, qu\'est-ce que le chemin critique ?',
+    options: [
+      { id: 'a', texte: 'Le chemin le plus court en durée' },
+      { id: 'b', texte: 'Le chemin le plus long en durée, qui détermine la durée totale du projet' },
+      { id: 'c', texte: 'Le premier chemin trouvé' },
+      { id: 'd', texte: 'Un chemin sans aucune tâche' }
+    ],
+    correctes: ['b'],
+    explication: 'Le chemin critique est le chemin le plus LONG en durée entre le début et la fin du projet : c\'est lui qui fixe la durée minimale totale.'
+  },
+  {
+    id: 'ex-maths-graphes-reponse-1',
+    matiere: 'maths', chapitre: 'maths-graphes', competence: 'maths.graphes',
+    langage: null, difficulte: 'difficile', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans un graphe orienté représentant des dépendances entre tâches, comment appelle-t-on les liaisons entre les sommets ?',
+    reponsesAcceptees: ['arcs', 'des arcs'],
+    explication: 'Dans un graphe ORIENTÉ, les liaisons entre sommets sont appelées des arcs (par opposition aux arêtes d\'un graphe non orienté, qui n\'ont pas de sens privilégié).'
+  },
+
+  // ------------------------------------------------------------ Maths — matrices
+  {
+    id: 'ex-maths-matrices-qcm-1',
+    matiere: 'maths', chapitre: 'maths-matrices', competence: 'maths.matrices',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Peut-on multiplier une matrice de taille 2×3 par une matrice de taille 3×4 ?',
+    options: [
+      { id: 'a', texte: 'Oui, le résultat sera de taille 2×4' },
+      { id: 'b', texte: 'Non, les tailles ne sont jamais compatibles' },
+      { id: 'c', texte: 'Oui, mais seulement si toutes les valeurs sont positives' },
+      { id: 'd', texte: 'Non, il faudrait deux matrices carrées' }
+    ],
+    correctes: ['a'],
+    explication: 'La multiplication est possible car le nombre de colonnes de la première (3) est égal au nombre de lignes de la seconde (3). Le résultat a la taille des deux nombres extérieurs : 2×4.'
+  },
+  {
+    id: 'ex-maths-matrices-vf-1',
+    matiere: 'maths', chapitre: 'maths-matrices', competence: 'maths.matrices',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Pour deux matrices A et B, A×B est toujours égal à B×A.',
+    correct: false,
+    explication: 'Contrairement à la multiplication de nombres, la multiplication matricielle n\'est en général PAS commutative : l\'ordre compte.'
+  },
+
+  // ----------------------------------------------------------- Maths — ensembles
+  {
+    id: 'ex-maths-ensembles-qcm-1',
+    matiere: 'maths', chapitre: 'maths-ensembles', competence: 'maths.ensembles',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que contient l\'intersection A ∩ B de deux ensembles A et B ?',
+    options: [
+      { id: 'a', texte: 'Tous les éléments de A et tous ceux de B réunis' },
+      { id: 'b', texte: 'Seulement les éléments présents à la fois dans A et dans B' },
+      { id: 'c', texte: 'Seulement les éléments de A absents de B' },
+      { id: 'd', texte: 'Un ensemble toujours vide' }
+    ],
+    correctes: ['b'],
+    explication: 'L\'intersection ne garde que les éléments COMMUNS aux deux ensembles, contrairement à l\'union qui les réunit tous.'
+  },
+  {
+    id: 'ex-maths-ensembles-completer-1',
+    matiere: 'maths', chapitre: 'maths-ensembles', competence: 'maths.ensembles',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète l\'union et l\'intersection de ces deux ensembles.',
+    template: 'A = {2, 4, 6}\nB = {4, 6, 8}\n\nA ∪ B = {{1}}\nA ∩ B = {{2}}',
+    trous: [
+      { id: 1, accepte: ['{2, 4, 6, 8}', '2, 4, 6, 8', '{2,4,6,8}', '2,4,6,8'] },
+      { id: 2, accepte: ['{4, 6}', '4, 6', '{4,6}', '4,6'] }
+    ],
+    explication: 'L\'union rassemble tous les éléments des deux ensembles sans répétition (2, 4, 6, 8) ; l\'intersection ne garde que les éléments communs (4 et 6).'
+  },
+
+  // ----------------------------------------------------------- Anglais — oral
+  {
+    id: 'ex-anglais-oral-qcm-1',
+    matiere: 'anglais', chapitre: 'anglais-oral', competence: 'anglais.oral',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle question revient presque systématiquement en entretien d\'embauche en anglais ?',
+    options: [
+      { id: 'a', texte: 'What\'s your favorite color?' },
+      { id: 'b', texte: 'What are your strengths and weaknesses?' },
+      { id: 'c', texte: 'Do you like pizza?' },
+      { id: 'd', texte: 'What time is it?' }
+    ],
+    correctes: ['b'],
+    explication: '"What are your strengths and weaknesses?" est une question classique et quasi systématique en entretien, à préparer à l\'avance.'
+  },
+  {
+    id: 'ex-anglais-oral-completer-1',
+    matiere: 'anglais', chapitre: 'anglais-oral', competence: 'anglais.oral',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète avec la forme correcte du verbe entre parenthèses.',
+    template: 'Last year, I {{1}} (do) a two-week internship. I {{2}} (work) on several projects since then.',
+    trous: [
+      { id: 1, accepte: ['did'] },
+      { id: 2, accepte: ['have worked'] }
+    ],
+    explication: '"Last year" précise un moment : past simple ("did"). "Since then" évoque une période qui continue jusqu\'à maintenant : present perfect ("have worked").'
   }
 ];
 

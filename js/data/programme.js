@@ -145,6 +145,55 @@ export const PARCOURS = [
       { n: 3, nom: 'Agréger et filtrer' },
       { n: 4, nom: 'Modifier les données' }
     ]
+  },
+  {
+    id: 'cejm',
+    nom: '💼 CEJM',
+    matiereId: 'cejm',
+    description: "Culture économique, juridique et managériale — 6 thèmes nationaux communs à plusieurs BTS tertiaires.",
+    niveaux: [
+      { n: 1, nom: "Thème 1 — L'intégration de l'entreprise dans son environnement" },
+      { n: 2, nom: "Thème 2 — La régulation de l'activité économique" },
+      { n: 3, nom: "Thème 3 — L'organisation de l'entreprise" },
+      { n: 4, nom: "Thème 4 — L'impact du numérique" },
+      { n: 5, nom: "Thème 5 — Les mutations du travail" },
+      { n: 6, nom: "Thème 6 — Les choix stratégiques" }
+    ]
+  },
+  {
+    id: 'maths',
+    nom: "📐 Mathématiques pour l'informatique",
+    matiereId: 'maths',
+    description: "Les modules de l'unité U21, en priorisant ceux qui reviennent le plus souvent à l'épreuve (logique booléenne, numération).",
+    niveaux: [
+      { n: 1, nom: 'Systèmes de numération (bases)' },
+      { n: 2, nom: 'Calcul booléen et logique' },
+      { n: 3, nom: 'Suites numériques' },
+      { n: 4, nom: 'Graphes et ordonnancement' },
+      { n: 5, nom: 'Calcul matriciel' },
+      { n: 6, nom: 'Éléments de la théorie des ensembles' }
+    ]
+  },
+  {
+    id: 'anglais',
+    nom: '🇬🇧 Anglais',
+    matiereId: 'anglais',
+    description: "Vocabulaire professionnel de l'informatique et bases grammaticales utiles pour lire la documentation technique et communiquer à l'écrit/l'oral.",
+    niveaux: [
+      { n: 1, nom: "Vocabulaire professionnel de l'informatique" },
+      { n: 2, nom: 'Grammaire : les temps essentiels' },
+      { n: 3, nom: "S'exprimer à l'oral (entretien, présentation)" }
+    ]
+  },
+  {
+    id: 'culture-generale',
+    nom: '📖 Culture générale et expression',
+    matiereId: 'culture-generale',
+    description: "Méthodologie de la synthèse de documents et de l'écriture personnelle — les thèmes changent chaque année, la méthode reste.",
+    niveaux: [
+      { n: 1, nom: 'La synthèse de documents' },
+      { n: 2, nom: "L'écriture personnelle (essai argumenté)" }
+    ]
   }
 ];
 

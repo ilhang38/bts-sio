@@ -175,14 +175,14 @@ function renderLeconsListe(container) {
   }).join('');
 
   const autresMatieres = MATIERES.filter(m => !PARCOURS.some(p => p.matiereId === m.id));
-  const autresHtml = `<section class="parcours-section">
+  const autresHtml = autresMatieres.length ? `<section class="parcours-section">
     <h2>Autres matières du référentiel</h2>
     <div class="lesson-cards">${autresMatieres.map(m => `
       <div class="lesson-card lesson-card--empty">
         <div class="lesson-card__title">${escapeHtml(m.nom)}</div>
         <div class="lesson-card__meta"><span class="lesson-card__new">Contenu à venir</span></div>
       </div>`).join('')}</div>
-  </section>`;
+  </section>` : '';
 
   container.innerHTML = `
     <section class="page page--lecons">

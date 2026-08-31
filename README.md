@@ -22,9 +22,34 @@ sous-ensemble représentatif :
   (ex. `ex-csharp-methode-prog-bts-1`).
 - **Parcours 🗄️ Apprendre SQL** : complet, les 4 niveaux prévus (SELECT,
   JOIN, GROUP BY/agrégats, INSERT/UPDATE/DELETE).
-- **46 exercices** couvrant les 8 types demandés (QCM simple/multiple,
+- **CEJM** : les 6 thèmes officiels sont couverts (un point d'entrée par
+  thème) : intégration de l'entreprise, régulation/concurrence, organisation
+  et production, impact du numérique (RGPD), mutations du travail, choix
+  stratégiques. Référentiel vérifié avant rédaction (6 thèmes nationaux
+  communs à plusieurs BTS tertiaires).
+- **Mathématiques pour l'informatique** : les 6 modules de l'unité U21 sont
+  couverts (un point d'entrée par module) : numération (bases 2/10/16),
+  calcul booléen, suites numériques, graphes et ordonnancement, calcul
+  matriciel, théorie des ensembles.
+- **Anglais** : vocabulaire professionnel de l'informatique (faux-amis
+  inclus), present simple/continuous, expression orale (entretien
+  professionnel).
+- **Culture générale et expression** : méthodologie de la synthèse de
+  documents ET de l'écriture personnelle (les thèmes annuels changeant
+  chaque année, les leçons restent volontairement centrées sur la méthode).
+- **81 exercices** couvrant les 8 types demandés (QCM simple/multiple,
   vrai/faux, réponse courte, trouver l'erreur, corriger le code, compléter le
   code, lire le code, programmation), à plusieurs niveaux de difficulté.
+  Pour les matières générales, seuls QCM / vrai-faux / réponse-courte /
+  compléter-le-code sont utilisés (les types "corriger le code" et
+  "programmation" n'ont pas de sens hors contexte de code).
+
+**Important à comprendre sur ce qui reste** : chaque thème/module ci-dessus
+n'a qu'UN SEUL point d'entrée (une leçon), pas une couverture exhaustive du
+thème entier — un vrai thème CEJM ou un module de maths complet représente
+plusieurs semaines de cours en réalité. C'est un socle solide et réel sur
+chaque sujet officiel, pas un remplissage, mais approfondir chaque thème
+reste un chantier à part entière.
 - **Tous les moteurs fonctionnent réellement** sur ces données : suivi des
   erreurs, calcul de maîtrise par compétence, répétition espacée (façon
   Leitner), recommandations adaptatives, révision du jour, statistiques,
