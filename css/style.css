@@ -88,10 +88,16 @@
 /* ===================================================================== RESET */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; }
 h1, h2, h3, p, ul { margin: 0; }
 ul { padding: 0; }
 button, input, select, textarea { font: inherit; color: inherit; }
 a { text-decoration: none; }
+a, button, .btn, .qcm-option, .sidebar a, .lesson-card, .exercise-card {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
 
 /* ==================================================================== GLOBAL */
 html, body {
@@ -710,7 +716,10 @@ select:focus, .input-text:focus { outline: none; border-color: var(--green); box
 
 /* ============================================================== RESPONSIVE */
 @media (max-width: 900px) {
-  .topbar__menu-btn { display: block; }
+  .topbar__menu-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; margin: -8px -6px -8px 0;
+  }
   .sidebar {
     position: fixed; top: 58px; left: -260px; bottom: 0; z-index: 40;
     width: 240px; background: rgba(9,13,20,0.92); backdrop-filter: blur(16px);
@@ -727,6 +736,31 @@ select:focus, .input-text:focus { outline: none; border-color: var(--green); box
   .difficulte-row { grid-template-columns: 1fr; }
   .difficulte-row__score { justify-self: start; }
   .revision-block { grid-template-columns: 1fr; }
+
+  /* Empêche le zoom automatique de Safari iOS quand on touche un champ
+     (il se déclenche dès qu'un champ affiche moins de 16px). */
+  .input-text, select, .blank-input, .editor__textarea, .editor__highlight,
+  #exam-timer-minutes {
+    font-size: 16px;
+  }
+  .editor { height: 190px; }
+
+  .exercices-filters { flex-direction: column; align-items: stretch; }
+  .exercices-filters select { width: 100%; }
+
+  .exercise__header, .session__top { flex-wrap: wrap; }
+
+  /* Le fond fixe multi-couches est coûteux au scroll sur mobile (Safari
+     en particulier) : on le simplifie et on le détache du viewport. */
+  body {
+    background-attachment: scroll, scroll, scroll, scroll;
+    background-image:
+      radial-gradient(ellipse 500px 320px at 15% -5%, rgba(57, 255, 136, 0.06), transparent 60%),
+      radial-gradient(ellipse 450px 300px at 100% 4%, rgba(63, 224, 232, 0.045), transparent 60%),
+      linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: auto, auto, 36px 36px, 36px 36px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -735,6 +769,12 @@ select:focus, .input-text:focus { outline: none; border-color: var(--green); box
   .lesson-card { flex-wrap: wrap; row-gap: 6px; }
   /* Le flou coûte cher sur mobile : on l'allège pour rester fluide. */
   .card, .exercise, .examen-form { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--bg-card-solid); }
+  .btn { padding: 10px 16px; }
+}
+
+@media (max-width: 380px) {
+  .topbar__xp-bar { display: none; }
+  .topbar { gap: 10px; padding: 0 12px; }
 }
 
 /* ============================================================ ACCESSIBILITY */
