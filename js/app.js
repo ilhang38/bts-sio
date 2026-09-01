@@ -322,14 +322,8 @@ function renderExercicesListe(container, initialParams) {
     return true;
   }
 
-  function renderResults() {
-    const filtered = EXERCISES.filter(matches);
-    countEl.textContent = `${filtered.length} exercice${filtered.length !== 1 ? 's' : ''}`;
-    if (!filtered.length) {
-      resultsEl.innerHTML = `<p class="card__empty">Aucun exercice ne correspond à ces critères. Essaie d'élargir ta recherche.</p>`;
-      return;
-    }
-    resultsEl.innerHTML = filtered.map(e => `
+  function exerciseCardHtml(e) {
+    return `
       <div class="exercise-card" data-id="${e.id}">
         <div class="exercise-card__meta">
           <span class="badge badge--${e.difficulte}">${DIFFICULTE_LABELS[e.difficulte]}</span>
@@ -339,7 +333,27 @@ function renderExercicesListe(container, initialParams) {
         <div class="exercise-card__enonce">${mdInline(e.enonce)}</div>
         <button class="btn btn--outline exercise-card__toggle">Faire l'exercice</button>
         <div class="exercise-card__panel"></div>
-      </div>`).join('');
+      </div>`;
+  }
+
+  function renderResults() {
+    const filtered = EXERCISES.filter(matches);
+    countEl.textContent = `${filtered.length} exercice${filtered.length !== 1 ? 's' : ''}`;
+    if (!filtered.length) {
+      resultsEl.innerHTML = `<p class="card__empty">Aucun exercice ne correspond à ces critères. Essaie d'élargir ta recherche.</p>`;
+      return;
+    }
+
+    // Classés par matière (dans l'ordre du référentiel), plus jamais pêle-mêle
+    const groupes = MATIERES
+      .map(m => ({ matiere: m, exercices: filtered.filter(e => e.matiere === m.id) }))
+      .filter(g => g.exercices.length > 0);
+
+    resultsEl.innerHTML = groupes.map(g => `
+      <section class="exercices-groupe">
+        <h2 class="section-title">${escapeHtml(g.matiere.nom)} — ${g.exercices.length} exercice${g.exercices.length > 1 ? 's' : ''}</h2>
+        <div class="exercices-results">${g.exercices.map(exerciseCardHtml).join('')}</div>
+      </section>`).join('');
 
     resultsEl.querySelectorAll('.exercise-card').forEach(card => {
       const btn = card.querySelector('.exercise-card__toggle');
