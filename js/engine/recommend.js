@@ -99,5 +99,5 @@ export function getRevisionDuJour() {
 }
 
 export function getDashboardRecommandation() {
-  return getDifficultes()[0] || null;
+  return getDifficultes().find(d => d.seen) || null;
 }
