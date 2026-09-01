@@ -140,12 +140,13 @@ function lessonCard(l, s) {
   const done = !!s.lessonsRead[l.id];
   const m = s.mastery[l.competence];
   const score = m ? m.score : 0;
-  return `<a class="lesson-card ${done ? 'lesson-card--done' : ''}" href="#/lecons/${l.id}">
-    <div class="lesson-card__title">${escapeHtml(l.titre)}</div>
-    <div class="lesson-card__meta">
+  return `<a class="lesson-card ${done ? 'lesson-card--done' : ''}" href="#/lecons/${l.id}?jump=exercices">
+    <span class="lesson-card__title">${escapeHtml(l.titre)}</span>
+    <span class="lesson-card__meta">
       <span class="badge badge--${l.difficulte}">${DIFFICULTE_LABELS[l.difficulte]}</span>
       ${done ? `<span class="lesson-card__score">${score}%</span>` : '<span class="lesson-card__new">Non lu</span>'}
-    </div>
+      <span class="lesson-card__arrow">→</span>
+    </span>
   </a>`;
 }
 
@@ -200,7 +201,7 @@ function renderLeconsListe(container) {
   });
 }
 
-function renderLeconDetail(container, lessonId) {
+function renderLeconDetail(container, lessonId, params) {
   const lesson = getLesson(lessonId);
   if (!lesson) { container.innerHTML = notFound('Leçon introuvable.', '#/lecons', 'Retour aux leçons'); return; }
   markLessonRead(lesson.id);
@@ -273,6 +274,10 @@ function renderLeconDetail(container, lessonId) {
     exWrap.appendChild(div);
     renderExercise(exo, div, {});
   });
+
+  if (params && params.get('jump') === 'exercices') {
+    exWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 // -------------------------------------------------------------- Exercices --
@@ -736,7 +741,7 @@ function router() {
 
   if (path === '/') return renderDashboard(view);
   if (path === '/lecons') return renderLeconsListe(view);
-  if (path.startsWith('/lecons/')) return renderLeconDetail(view, decodeURIComponent(path.slice('/lecons/'.length)));
+  if (path.startsWith('/lecons/')) return renderLeconDetail(view, decodeURIComponent(path.slice('/lecons/'.length)), params);
   if (path === '/exercices') return renderExercicesListe(view, params);
   if (path === '/difficultes') return renderDifficultes(view);
   if (path === '/revision') return renderRevisionDuJour(view);
