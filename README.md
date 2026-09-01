@@ -37,7 +37,7 @@ sous-ensemble représentatif :
 - **Culture générale et expression** : méthodologie de la synthèse de
   documents ET de l'écriture personnelle (les thèmes annuels changeant
   chaque année, les leçons restent volontairement centrées sur la méthode).
-- **81 exercices** couvrant les 8 types demandés (QCM simple/multiple,
+- **100 exercices** couvrant les 8 types demandés (QCM simple/multiple,
   vrai/faux, réponse courte, trouver l'erreur, corriger le code, compléter le
   code, lire le code, programmation), à plusieurs niveaux de difficulté.
   Pour les matières générales, seuls QCM / vrai-faux / réponse-courte /

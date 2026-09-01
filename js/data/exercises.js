@@ -1077,6 +1077,262 @@ export const EXERCISES = [
       { id: 2, accepte: ['have worked'] }
     ],
     explication: '"Last year" précise un moment : past simple ("did"). "Since then" évoque une période qui continue jusqu\'à maintenant : present perfect ("have worked").'
+  },
+
+  // ==================================================================
+  // Renforts supplémentaires — compétences les plus légères et types
+  // sous-représentés (corriger-code, niveau BTS), pour arriver à 100.
+  // ==================================================================
+
+  // ------------------------------------------------------- C# — while
+  {
+    id: 'ex-csharp-while-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n2-while', competence: 'csharp.boucles.while',
+    langage: 'csharp', difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette boucle qui doit afficher les nombres de 0 à 4.',
+    template: 'int compteur = 0;\n{{1}} (compteur < 5)\n{\n    Console.WriteLine(compteur);\n    compteur{{2}};\n}',
+    trous: [
+      { id: 1, accepte: ['while'] },
+      { id: 2, accepte: ['++'] }
+    ],
+    explication: '`while` répète tant que la condition est vraie. Sans `compteur++`, la boucle ne s\'arrêterait jamais (boucle infinie).'
+  },
+  {
+    id: 'ex-csharp-while-prog-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n2-while', competence: 'csharp.boucles.while',
+    langage: 'csharp', difficulte: 'moyen', type: 'programmation',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Écris une méthode `CompterJusqua` qui affiche (avec Console.WriteLine) les nombres de 1 à n, en utilisant une boucle while (pas for).',
+    codeDepart: 'static void CompterJusqua(int n)\n{\n    // ton code ici\n}',
+    criteres: [
+      { regex: /while\s*\(/, label: 'utilise une boucle while' },
+      { regex: /Console\.WriteLine/, label: 'affiche les valeurs' }
+    ],
+    solution: 'static void CompterJusqua(int n)\n{\n    int i = 1;\n    while (i <= n)\n    {\n        Console.WriteLine(i);\n        i++;\n    }\n}',
+    explication: 'On initialise `i` avant la boucle, on affiche puis on incrémente à chaque tour, jusqu\'à ce que `i` dépasse `n`.'
+  },
+
+  // -------------------------------------------------- C# — Dictionary
+  {
+    id: 'ex-csharp-dict-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n4-dictionary', competence: 'csharp.dictionary',
+    langage: 'csharp', difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette méthode qui lit une valeur sans risquer d\'erreur si la clé n\'existe pas.',
+    template: 'Dictionary<string, int> ages = new Dictionary<string, int>();\nages["Ilhan"] = 19;\n\nif (ages.{{1}}("Ilhan", out int age))\n{\n    Console.WriteLine(age);\n}',
+    trous: [{ id: 1, accepte: ['TryGetValue'] }],
+    explication: '`TryGetValue` recherche une clé de façon sûre : elle renvoie vrai/faux selon que la clé existe, sans jamais planter.'
+  },
+  {
+    id: 'ex-csharp-dict-prog-bts-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n4-dictionary', competence: 'csharp.dictionary',
+    langage: 'csharp', difficulte: 'bts', type: 'programmation',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Niveau BTS — Écris une méthode `CompterOccurrences` qui reçoit une `List<string> mots` et renvoie un `Dictionary<string, int>` associant chaque mot au nombre de fois où il apparaît dans la liste.',
+    codeDepart: 'static Dictionary<string, int> CompterOccurrences(List<string> mots)\n{\n    // ton code ici\n}',
+    criteres: [
+      { regex: /foreach\s*\(|for\s*\(/, label: 'parcourt la liste' },
+      { regex: /return/, label: 'renvoie un résultat' },
+      { regex: /ContainsKey|TryGetValue/, label: 'vérifie si le mot est déjà compté' }
+    ],
+    solution: 'static Dictionary<string, int> CompterOccurrences(List<string> mots)\n{\n    Dictionary<string, int> compteur = new Dictionary<string, int>();\n    foreach (string mot in mots)\n    {\n        if (compteur.ContainsKey(mot))\n        {\n            compteur[mot]++;\n        }\n        else\n        {\n            compteur[mot] = 1;\n        }\n    }\n    return compteur;\n}',
+    explication: 'Pour chaque mot, on vérifie s\'il est déjà une clé du dictionnaire : si oui on incrémente son compteur, sinon on l\'ajoute avec la valeur 1.'
+  },
+
+  // -------------------------------------------------- C# — exceptions
+  {
+    id: 'ex-csharp-except-erreur-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-exceptions', competence: 'csharp.exceptions',
+    langage: 'csharp', difficulte: 'moyen', type: 'trouver-erreur',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Ce programme plante quand même malgré le try/catch. Trouve la ligne fautive.',
+    code: 'try\n{\n    int[] notes = { 10, 12 };\n    Console.WriteLine(notes[5]);\n}\ncatch (FormatException)\n{\n    Console.WriteLine("Erreur de format");\n}',
+    ligneErreur: 6,
+    explication: 'Ligne 6 : l\'erreur provoquée par `notes[5]` (indice hors limites) est une `IndexOutOfRangeException`, pas une `FormatException`. Ce catch ne l\'attrapera donc jamais : le programme plantera quand même.'
+  },
+  {
+    id: 'ex-csharp-except-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-exceptions', competence: 'csharp.exceptions',
+    langage: 'csharp', difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette gestion d\'exception.',
+    template: '{{1}}\n{\n    int resultat = 10 / diviseur;\n    Console.WriteLine(resultat);\n}\n{{2}} (DivideByZeroException)\n{\n    Console.WriteLine("Division impossible par zéro");\n}',
+    trous: [
+      { id: 1, accepte: ['try'] },
+      { id: 2, accepte: ['catch'] }
+    ],
+    explication: '`try` entoure le code risqué, `catch` définit ce qu\'il faut faire si l\'exception précisée se produit.'
+  },
+
+  // -------------------------------------------------------- C# — BDD
+  {
+    id: 'ex-csharp-bdd-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n7-bdd', competence: 'csharp.bdd',
+    langage: 'csharp', difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette requête paramétrée.',
+    template: 'string requete = "SELECT nom FROM client WHERE id_client = @id";\nSqlCommand commande = new SqlCommand(requete, connexion);\ncommande.{{1}}.AddWithValue("@id", idRecherche);',
+    trous: [{ id: 1, accepte: ['Parameters'] }],
+    explication: '`Parameters.AddWithValue` fournit la vraie valeur du paramètre nommé `@id` de façon sécurisée.'
+  },
+  {
+    id: 'ex-csharp-bdd-corriger-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n7-bdd', competence: 'csharp.bdd',
+    langage: 'csharp', difficulte: 'difficile', type: 'corriger-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Ce code est vulnérable à l\'injection SQL. Corrige-le en utilisant une requête paramétrée.',
+    codeInitial: 'string requete = "SELECT * FROM client WHERE email = \'" + emailSaisi + "\'";\nSqlCommand commande = new SqlCommand(requete, connexion);',
+    verif: [
+      { regex: /@\w+/, label: 'utilise un paramètre nommé (@...)' },
+      { regex: /Parameters/, label: 'utilise Parameters.AddWithValue' }
+    ],
+    solution: 'string requete = "SELECT * FROM client WHERE email = @email";\nSqlCommand commande = new SqlCommand(requete, connexion);\ncommande.Parameters.AddWithValue("@email", emailSaisi);',
+    explication: 'La concaténation directe de `emailSaisi` dans la requête permet une injection SQL. Il faut un paramètre nommé (`@email`) et `Parameters.AddWithValue` pour fournir la valeur séparément.'
+  },
+
+  // ---------------------------------------------------- SQL — GROUP BY
+  {
+    id: 'ex-sql-groupby-lire-1',
+    matiere: 'slam-bdd', chapitre: 'sql-n3-agregats', competence: 'sql.groupby',
+    langage: 'sql', difficulte: 'moyen', type: 'lire-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Table `commande` (id_commande, id_client, montant) :\n1, 10, 50\n2, 10, 30\n3, 20, 100',
+    code: 'SELECT id_client, COUNT(*) AS nb\nFROM commande\nGROUP BY id_client;',
+    question: 'Combien de lignes ce résultat contiendra-t-il ?',
+    reponsesAcceptees: ['2', '2 lignes'],
+    explication: 'Il y a deux clients distincts (10 et 20) : GROUP BY id_client produit un groupe par client, donc 2 lignes de résultat.'
+  },
+  {
+    id: 'ex-sql-groupby-reponse-1',
+    matiere: 'slam-bdd', chapitre: 'sql-n3-agregats', competence: 'sql.groupby',
+    langage: 'sql', difficulte: 'facile', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle fonction d\'agrégation permet de calculer une moyenne en SQL ?',
+    reponsesAcceptees: ['avg', 'avg()'],
+    explication: '`AVG(colonne)` calcule la moyenne des valeurs de cette colonne.'
+  },
+
+  // -------------------------------------------------- SQL — INSERT/UPDATE/DELETE
+  {
+    id: 'ex-sql-dml-completer-1',
+    matiere: 'slam-bdd', chapitre: 'sql-n4-modification', competence: 'sql.dml',
+    langage: 'sql', difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette requête d\'ajout d\'un client.',
+    template: '{{1}} INTO client (nom, ville)\n{{2}} (\'Petit\', \'Nantes\');',
+    trous: [
+      { id: 1, accepte: ['INSERT', 'insert'] },
+      { id: 2, accepte: ['VALUES', 'values'] }
+    ],
+    explication: '`INSERT INTO table (colonnes)` suivi de `VALUES (valeurs)` ajoute une nouvelle ligne.'
+  },
+  {
+    id: 'ex-sql-dml-corriger-1',
+    matiere: 'slam-bdd', chapitre: 'sql-n4-modification', competence: 'sql.dml',
+    langage: 'sql', difficulte: 'difficile', type: 'corriger-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Cette requête va supprimer TOUS les clients. Corrige-la pour ne supprimer que le client d\'identifiant 7.',
+    codeInitial: 'DELETE FROM client;',
+    verif: [{ regex: /WHERE\s+id_client\s*=\s*7/i, label: 'ajoute WHERE id_client = 7' }],
+    solution: 'DELETE FROM client WHERE id_client = 7;',
+    explication: 'Sans clause WHERE, un DELETE supprime toutes les lignes de la table. Ajouter `WHERE id_client = 7` limite la suppression à un seul client.'
+  },
+
+  // --------------------------------------------------------- SQL — JOIN
+  {
+    id: 'ex-sql-join-prog-1',
+    matiere: 'slam-bdd', chapitre: 'sql-n2-jointures', competence: 'sql.join',
+    langage: 'sql', difficulte: 'bts', type: 'programmation',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Niveau BTS — Écris une requête qui affiche le nom du client et le montant de chacune de ses commandes, uniquement pour les commandes de plus de 100, triées par montant décroissant.',
+    codeDepart: '-- ta requête ici\n',
+    criteres: [
+      { regex: /JOIN/i, label: 'utilise une jointure' },
+      { regex: /WHERE/i, label: 'filtre avec WHERE' },
+      { regex: /ORDER BY/i, label: 'trie avec ORDER BY' },
+      { regex: /DESC/i, label: 'trie en ordre décroissant' }
+    ],
+    solution: 'SELECT client.nom, commande.montant\nFROM client\nINNER JOIN commande ON client.id_client = commande.id_client\nWHERE commande.montant > 100\nORDER BY commande.montant DESC;',
+    explication: 'On combine client et commande avec une jointure, on filtre les commandes de plus de 100, puis on trie par montant décroissant.'
+  },
+
+  // ------------------------------------------------------- SQL — SELECT
+  {
+    id: 'ex-sql-select-corriger-1',
+    matiere: 'slam-bdd', chapitre: 'sql-n1-select', competence: 'sql.select',
+    langage: 'sql', difficulte: 'moyen', type: 'corriger-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Cette requête ne s\'exécute pas. Corrige l\'erreur de syntaxe.',
+    codeInitial: 'SELECT nom, prenom\nFROM client\nWHERE ville = Paris;',
+    verif: [{ regex: /'Paris'/, label: 'la valeur texte \'Paris\' est entre guillemets simples' }],
+    solution: 'SELECT nom, prenom\nFROM client\nWHERE ville = \'Paris\';',
+    explication: 'Une valeur texte doit être entourée de guillemets simples en SQL : `\'Paris\'`, pas `Paris` seul.'
+  },
+
+  // --------------------------------------------------------- C# — POO
+  {
+    id: 'ex-csharp-classes-prog-bts-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-classes', competence: 'csharp.poo.classes',
+    langage: 'csharp', difficulte: 'bts', type: 'programmation',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Niveau BTS — Complète la classe `CompteBancaire` : le constructeur initialise le solde, `Deposer` ajoute au solde, `Retirer` ne retire QUE si le solde est suffisant (sinon elle ne fait rien).',
+    codeDepart: 'class CompteBancaire\n{\n    private double solde;\n\n    public CompteBancaire(double soldeInitial)\n    {\n        // ton code ici\n    }\n\n    public void Deposer(double montant)\n    {\n        // ton code ici\n    }\n\n    public void Retirer(double montant)\n    {\n        // ton code ici\n    }\n}',
+    criteres: [
+      { regex: /this\.solde\s*=\s*soldeInitial/, label: 'le constructeur initialise bien le solde' },
+      { regex: /solde\s*\+=\s*montant|solde\s*=\s*solde\s*\+\s*montant/, label: 'Deposer augmente le solde' },
+      { regex: /if\s*\(\s*solde\s*>=\s*montant\s*\)/, label: 'Retirer vérifie que le solde est suffisant' }
+    ],
+    solution: 'class CompteBancaire\n{\n    private double solde;\n\n    public CompteBancaire(double soldeInitial)\n    {\n        this.solde = soldeInitial;\n    }\n\n    public void Deposer(double montant)\n    {\n        solde += montant;\n    }\n\n    public void Retirer(double montant)\n    {\n        if (solde >= montant)\n        {\n            solde -= montant;\n        }\n    }\n}',
+    explication: 'Le constructeur initialise l\'attribut avec `this.solde = soldeInitial;`. `Deposer` ajoute simplement au solde. `Retirer` vérifie d\'abord que le solde est suffisant avant de retirer, pour éviter un solde négatif.'
+  },
+
+  // ---------------------------------------------------------- CEJM
+  {
+    id: 'ex-cejm-agents-reponse-1',
+    matiere: 'cejm', chapitre: 'cejm-theme1-agents-economiques', competence: 'cejm.agents-economiques',
+    langage: null, difficulte: 'facile', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Sur un marché, comment appelle-t-on ce qui résulte en théorie de la rencontre entre l\'offre et la demande ?',
+    reponsesAcceptees: ['le prix', 'prix'],
+    explication: 'Le prix résulte en théorie de l\'équilibre entre l\'offre (ce que proposent les entreprises) et la demande (ce que veulent les ménages et autres agents).'
+  },
+
+  // -------------------------------------------------------------- Maths
+  {
+    id: 'ex-maths-bool-reponse-1',
+    matiere: 'maths', chapitre: 'maths-booleen', competence: 'maths.booleen',
+    langage: null, difficulte: 'moyen', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que vaut NON(1) en calcul booléen ?',
+    reponsesAcceptees: ['0'],
+    explication: 'NON inverse la valeur : NON(1) = 0, et NON(0) = 1.'
+  },
+
+  // ------------------------------------------------------------ Anglais
+  {
+    id: 'ex-anglais-vocab-completer-1',
+    matiere: 'anglais', chapitre: 'anglais-vocabulaire-it', competence: 'anglais.vocabulaire-it',
+    langage: null, difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète avec le mot anglais qui convient.',
+    template: 'The application crashed because of a critical {{1}}. The developer had to {{2}} it quickly before the next release.',
+    trous: [
+      { id: 1, accepte: ['bug'] },
+      { id: 2, accepte: ['fix'] }
+    ],
+    explication: '"Bug" désigne l\'erreur logicielle, "fix" (corriger) est l\'action de la résoudre.'
+  },
+
+  // --------------------------------------------------- Culture générale
+  {
+    id: 'ex-cg-ecriture-reponse-1',
+    matiere: 'culture-generale', chapitre: 'cg-ecriture-personnelle', competence: 'cg.ecriture-personnelle',
+    langage: null, difficulte: 'moyen', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Comment appelle-t-on la formulation qui reconnaît un point de vue opposé avant de le nuancer (ex : "certes... cependant...") ?',
+    reponsesAcceptees: ['concession', 'une concession', 'la concession'],
+    explication: 'Cette figure, qui reconnaît un point avant de le nuancer, s\'appelle une concession — elle montre une réflexion plus nuancée qu\'une position uniquement tranchée.'
   }
 ];
 
