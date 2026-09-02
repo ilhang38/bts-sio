@@ -19,6 +19,7 @@ import {
   setProgrammeVersion, BADGES
 } from './store.js';
 import { escapeHtml, renderCodeBlock } from './components/codeEditor.js';
+import { AI_PROXY_URL } from './aiConfig.js';
 
 const DIFFICULTE_LABELS = { facile: 'Facile', moyen: 'Moyen', difficile: 'Difficile', bts: 'Niveau BTS' };
 const TYPE_LABELS = {
@@ -718,6 +719,146 @@ function renderSession(container, params) {
   showCurrent();
 }
 
+// ------------------------------------------------------------------- Nova --
+function renderNova(container) {
+  if (!AI_PROXY_URL) {
+    container.innerHTML = notFound(
+      "Nova n'est pas encore configurée. Déploie le proxy IA (voir ai-proxy/README-DEPLOIEMENT.md) et renseigne AI_PROXY_URL dans js/aiConfig.js pour l'activer.",
+      '#/', "Retour à l'accueil"
+    );
+    return;
+  }
+
+  container.innerHTML = `
+    <section class="page page--nova">
+      <h1 class="page__title">Nova</h1>
+      <p class="page__subtitle">Pose une question sur le programme, ou demande un cours rapide sur une notion précise.</p>
+
+      <div class="nova-tabs">
+        <button class="btn btn--outline nova-tab is-active" data-tab="question">💬 Poser une question</button>
+        <button class="btn btn--outline nova-tab" data-tab="cours">⚡ Générer un cours rapide</button>
+      </div>
+
+      <div class="nova-panel" id="nova-panel-question">
+        <div class="nova-chat" id="nova-chat"></div>
+        <div class="nova-input-row">
+          <input type="text" class="input-text" id="nova-question-input" placeholder="Ex : quelle différence entre List et Dictionary en C# ?">
+          <button class="btn btn--primary" id="nova-question-send">Envoyer</button>
+        </div>
+        <p class="nova-note">Nova ne se souvient de cette conversation que tant que tu restes sur cette page.</p>
+      </div>
+
+      <div class="nova-panel" id="nova-panel-cours" style="display:none;">
+        <div class="nova-input-row">
+          <input type="text" class="input-text" id="nova-cours-input" placeholder="Ex : les tuples en C#">
+          <button class="btn btn--primary" id="nova-cours-send">Générer</button>
+        </div>
+        <div id="nova-cours-result"></div>
+      </div>
+    </section>`;
+
+  // Bascule d'onglet
+  const tabs = container.querySelectorAll('.nova-tab');
+  const panelQuestion = container.querySelector('#nova-panel-question');
+  const panelCours = container.querySelector('#nova-panel-cours');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('is-active'));
+    tab.classList.add('is-active');
+    const isQuestion = tab.dataset.tab === 'question';
+    panelQuestion.style.display = isQuestion ? '' : 'none';
+    panelCours.style.display = isQuestion ? 'none' : '';
+  }));
+
+  // --- Mode question (chat) ---
+  const chatEl = container.querySelector('#nova-chat');
+  const inputEl = container.querySelector('#nova-question-input');
+  const sendBtn = container.querySelector('#nova-question-send');
+  const historique = [];
+
+  function ajouterMessage(role, texte) {
+    const div = document.createElement('div');
+    div.className = 'nova-message nova-message--' + role;
+    div.innerHTML = `<strong>${role === 'user' ? 'Toi' : 'Nova'}</strong><p>${escapeHtml(texte)}</p>`;
+    chatEl.appendChild(div);
+    chatEl.scrollTop = chatEl.scrollHeight;
+  }
+
+  async function envoyerQuestion() {
+    const texte = inputEl.value.trim();
+    if (!texte) return;
+    ajouterMessage('user', texte);
+    inputEl.value = '';
+    sendBtn.disabled = true;
+    const attente = document.createElement('div');
+    attente.className = 'nova-message nova-message--assistant nova-message--loading';
+    attente.innerHTML = `<strong>Nova</strong><p>…</p>`;
+    chatEl.appendChild(attente);
+    chatEl.scrollTop = chatEl.scrollHeight;
+    try {
+      const res = await fetch(AI_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ novaMode: 'question', message: texte, historique })
+      });
+      const data = await res.json();
+      attente.remove();
+      if (!res.ok) throw new Error(data.error || 'Erreur inconnue');
+      ajouterMessage('assistant', data.reponse);
+      historique.push({ role: 'user', content: texte }, { role: 'assistant', content: data.reponse });
+    } catch (e) {
+      attente.remove();
+      ajouterMessage('assistant', "Je n'ai pas pu répondre (" + e.message + ").");
+    } finally {
+      sendBtn.disabled = false;
+      inputEl.focus();
+    }
+  }
+  sendBtn.addEventListener('click', envoyerQuestion);
+  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') envoyerQuestion(); });
+
+  // --- Mode cours rapide ---
+  const coursInput = container.querySelector('#nova-cours-input');
+  const coursSend = container.querySelector('#nova-cours-send');
+  const coursResult = container.querySelector('#nova-cours-result');
+
+  async function genererCours() {
+    const sujet = coursInput.value.trim();
+    if (!sujet) return;
+    coursSend.disabled = true;
+    coursResult.innerHTML = `<p class="nova-note">Génération en cours…</p>`;
+    try {
+      const res = await fetch(AI_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ novaMode: 'cours', message: sujet })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Erreur inconnue');
+      if (data.structured) {
+        const c = data.cours;
+        coursResult.innerHTML = `
+          <article class="lecon-section-nova">
+            <h2>${escapeHtml(c.titre || sujet)}</h2>
+            <p class="nova-generated-tag">⚡ Cours généré par Nova — à vérifier, contrairement aux leçons du site qui sont écrites et vérifiées.</p>
+            <h3>🎯 Objectif</h3><p>${escapeHtml(c.objectif || '')}</p>
+            <h3>💡 Explication</h3>${(c.explication || []).map(p => `<p>${escapeHtml(p)}</p>`).join('')}
+            <h3>📌 À retenir</h3><ul>${(c.aRetenir || []).map(p => `<li>${escapeHtml(p)}</li>`).join('')}</ul>
+            <h3>💻 Exemple</h3><p>${escapeHtml(c.exemple || '')}</p>
+            <h3>🧠 Astuce</h3><p>${escapeHtml(c.astuce || '')}</p>
+          </article>`;
+      } else {
+        coursResult.innerHTML = `<div class="nova-message nova-message--assistant"><p>${escapeHtml(data.reponse)}</p></div>`;
+      }
+    } catch (e) {
+      coursResult.innerHTML = `<p class="inline-msg">Nova n'a pas pu générer ce cours (${escapeHtml(e.message)}).</p>`;
+    } finally {
+      coursSend.disabled = false;
+    }
+  }
+  coursSend.addEventListener('click', genererCours);
+  coursInput.addEventListener('keydown', e => { if (e.key === 'Enter') genererCours(); });
+}
+
 // ------------------------------------------------------------- Shell / routeur --
 function updateNavActive(path) {
   document.querySelectorAll('#sidebar a[data-route]').forEach(a => {
@@ -763,6 +904,7 @@ function router() {
   if (path === '/objectif') return renderObjectifBTS(view);
   if (path === '/examens') return renderExamens(view);
   if (path === '/session') return renderSession(view, params);
+  if (path === '/nova') return renderNova(view);
   return renderDashboard(view);
 }
 
@@ -772,6 +914,9 @@ window.addEventListener('btssio:update', refreshHeader);
 window.addEventListener('DOMContentLoaded', () => {
   router();
   refreshHeader();
+
+  const navNova = document.getElementById('nav-nova');
+  if (navNova && AI_PROXY_URL) navNova.style.display = '';
 
   const menuBtn = document.getElementById('menu-toggle');
   const sidebar = document.getElementById('sidebar');

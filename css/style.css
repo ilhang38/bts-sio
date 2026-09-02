@@ -263,6 +263,9 @@ body::before {
 .sidebar a:nth-child(6) { animation-delay: .24s; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--border); }
 .sidebar a:nth-child(7) { animation-delay: .28s; }
 .sidebar a:nth-child(8) { animation-delay: .32s; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--border); }
+.sidebar a:nth-child(9) { animation-delay: .36s; margin-top: 10px; padding-top: 9px; border-top: 1px solid rgba(63,224,232,0.25); }
+#nav-nova { color: var(--cyan); }
+#nav-nova::before { content: '$'; color: var(--cyan); }
 .sidebar a::before { content: '$'; color: var(--green); opacity: 0.5; font-weight: 700; }
 .sidebar a:hover { background: linear-gradient(90deg, rgba(57,255,136,0.07), rgba(63,224,232,0.04)); color: var(--text-bright); transform: translateX(3px); }
 .sidebar a.is-active {
@@ -536,6 +539,28 @@ select:focus, .input-text:focus { outline: none; border-color: var(--green); box
 .ai-helper__bloc { margin-top: 10px; padding: 10px 12px; background: var(--bg-tertiary); border-left: 3px solid var(--cyan); border-radius: 3px; }
 .ai-helper__bloc strong { display: block; font-size: 0.78rem; color: var(--cyan); margin-bottom: 4px; }
 .ai-helper__bloc p { margin: 0; font-size: 0.9rem; white-space: pre-line; }
+
+/* ------------------------------------------------------------------- Nova */
+.nova-tabs { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+.nova-tab.is-active { background: var(--cyan-dim); border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); }
+.nova-panel { background: var(--bg-card); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.nova-chat { display: flex; flex-direction: column; gap: 10px; max-height: 420px; overflow-y: auto; margin-bottom: 14px; padding-right: 4px; }
+.nova-chat:empty::before { content: 'Pose ta première question ci-dessous.'; color: var(--text-muted); font-style: italic; font-size: 0.88rem; }
+.nova-message { padding: 10px 14px; border-radius: var(--radius-sm); max-width: 90%; }
+.nova-message strong { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.nova-message p { margin: 0; font-size: 0.92rem; white-space: pre-line; }
+.nova-message--user { align-self: flex-end; background: var(--green-dim); border: 1px solid rgba(57,255,136,0.25); }
+.nova-message--user strong { color: var(--green); }
+.nova-message--assistant { align-self: flex-start; background: var(--cyan-dim); border: 1px solid rgba(63,224,232,0.25); }
+.nova-message--assistant strong { color: var(--cyan); }
+.nova-message--loading p { opacity: 0.6; }
+.nova-input-row { display: flex; gap: 10px; }
+.nova-input-row .input-text { flex: 1; }
+.nova-note { color: var(--text-muted); font-size: 0.78rem; margin-top: 10px; }
+.lecon-section-nova { background: var(--bg-tertiary); border: 1px solid rgba(63,224,232,0.25); border-radius: var(--radius); padding: 20px; margin-top: 16px; }
+.lecon-section-nova h2 { color: var(--cyan); margin-bottom: 6px; }
+.lecon-section-nova h3 { font-size: 0.92rem; margin: 16px 0 6px; }
+.nova-generated-tag { font-size: 0.76rem; color: var(--amber); font-style: italic; margin-bottom: 14px; }
 
 .editor {
   display: flex; background: var(--bg-code); border-radius: var(--radius);
