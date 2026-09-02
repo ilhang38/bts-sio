@@ -34,10 +34,13 @@ sous-ensemble représentatif :
 - **Anglais** : vocabulaire professionnel de l'informatique (faux-amis
   inclus), present simple/continuous, expression orale (entretien
   professionnel).
-- **Culture générale et expression** : méthodologie de la synthèse de
-  documents ET de l'écriture personnelle (les thèmes annuels changeant
-  chaque année, les leçons restent volontairement centrées sur la méthode).
-- **100 exercices** couvrant les 8 types demandés (QCM simple/multiple,
+- **Culture générale et expression** : méthodologie à jour de l'épreuve
+  réformée depuis la session 2025 (analyse de corpus, ce n'est plus une
+  "synthèse") et de l'essai argumenté, plus une leçon sur le thème national
+  réellement en vigueur pour la session 2027 (année 2026-2027) : "Le vrai
+  du faux", vérifié via recherche avant rédaction (Bulletin officiel du
+  1er avril 2026).
+- **103 exercices** couvrant les 8 types demandés (QCM simple/multiple,
   vrai/faux, réponse courte, trouver l'erreur, corriger le code, compléter le
   code, lire le code, programmation), à plusieurs niveaux de difficulté.
   Pour les matières générales, seuls QCM / vrai-faux / réponse-courte /

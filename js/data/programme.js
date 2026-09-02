@@ -189,10 +189,11 @@ export const PARCOURS = [
     id: 'culture-generale',
     nom: '📖 Culture générale et expression',
     matiereId: 'culture-generale',
-    description: "Méthodologie de la synthèse de documents et de l'écriture personnelle — les thèmes changent chaque année, la méthode reste.",
+    description: "Méthodologie de l'analyse de corpus et de l'essai argumenté, et thème national de l'année (\"Le vrai du faux\", session 2027).",
     niveaux: [
-      { n: 1, nom: 'La synthèse de documents' },
-      { n: 2, nom: "L'écriture personnelle (essai argumenté)" }
+      { n: 1, nom: "L'analyse de corpus" },
+      { n: 2, nom: "L'essai argumenté" },
+      { n: 3, nom: 'Thème 2026-2027 — Le vrai du faux' }
     ]
   }
 ];

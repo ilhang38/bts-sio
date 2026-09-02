@@ -795,24 +795,24 @@ export const EXERCISES = [
     matiere: 'culture-generale', chapitre: 'cg-synthese', competence: 'cg.synthese',
     langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
     annees: ['2025-2026', '2026-2027'],
-    enonce: 'Que doit éviter absolument l\'auteur d\'une synthèse de documents ?',
+    enonce: 'Depuis la réforme de l\'épreuve (appliquée à partir de la session 2025), comment appelle-t-on la partie qui porte sur les documents du corpus ?',
     options: [
-      { id: 'a', texte: 'Reformuler les idées avec ses propres mots' },
-      { id: 'b', texte: 'Donner son avis personnel sur le sujet' },
-      { id: 'c', texte: 'Organiser son plan par thème' },
-      { id: 'd', texte: 'Confronter les documents entre eux' }
+      { id: 'a', texte: 'La synthèse' },
+      { id: 'b', texte: 'L\'analyse de corpus' },
+      { id: 'c', texte: 'Le commentaire composé' },
+      { id: 'd', texte: 'La dissertation' }
     ],
     correctes: ['b'],
-    explication: 'La synthèse est un exercice de neutralité : elle ne doit jamais contenir l\'opinion personnelle du candidat, contrairement à l\'écriture personnelle qui suit dans l\'épreuve.'
+    explication: 'Depuis l\'arrêté du 13 juillet 2023 (appliqué à partir de la session 2025), on ne parle plus de "synthèse" mais d\'"analyse de corpus" : 2 à 4 questions sur un corpus de 2 à 3 documents, au lieu d\'un texte de synthèse continu.'
   },
   {
     id: 'ex-cg-synthese-vf-1',
     matiere: 'culture-generale', chapitre: 'cg-synthese', competence: 'cg.synthese',
     langage: null, difficulte: 'moyen', type: 'vrai-faux',
     annees: ['2025-2026', '2026-2027'],
-    enonce: 'Un bon plan de synthèse traite les documents un par un, dans l\'ordre où ils sont présentés dans le dossier.',
-    correct: false,
-    explication: 'C\'est l\'erreur la plus fréquente : un bon plan est THÉMATIQUE, il croise les idées de plusieurs documents autour d\'un même thème plutôt que de les résumer séparément.'
+    enonce: 'Depuis la réforme, l\'interprétation personnelle du candidat est explicitement attendue dans l\'analyse de corpus.',
+    correct: true,
+    explication: 'C\'est un changement important par rapport à l\'ancienne synthèse : le nouveau format attend une réponse nuancée et argumentée, ce n\'est plus un exercice de pure neutralité.'
   },
 
   // --------------------------------------------------- Culture générale — écriture personnelle
@@ -821,15 +821,15 @@ export const EXERCISES = [
     matiere: 'culture-generale', chapitre: 'cg-ecriture-personnelle', competence: 'cg.ecriture-personnelle',
     langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
     annees: ['2025-2026', '2026-2027'],
-    enonce: 'Quelle est la principale différence entre la synthèse et l\'écriture personnelle ?',
+    enonce: 'Dans l\'essai argumenté, comment le candidat choisit-il son sujet ?',
     options: [
-      { id: 'a', texte: 'La synthèse est plus longue' },
-      { id: 'b', texte: 'L\'écriture personnelle demande l\'avis argumenté du candidat, contrairement à la synthèse qui doit rester neutre' },
-      { id: 'c', texte: 'L\'écriture personnelle ne porte pas sur le même sujet' },
-      { id: 'd', texte: 'Il n\'y a aucune différence' }
+      { id: 'a', texte: 'Le sujet est unique et imposé' },
+      { id: 'b', texte: 'Le candidat choisit entre deux sujets proposés, liés au thème annuel' },
+      { id: 'c', texte: 'Le candidat invente librement son propre sujet' },
+      { id: 'd', texte: 'Il n\'y a pas d\'essai à rédiger' }
     ],
     correctes: ['b'],
-    explication: 'La synthèse exige la neutralité totale ; l\'écriture personnelle demande au contraire un avis personnel argumenté sur une question liée au dossier.'
+    explication: 'Le candidat a le choix entre deux sujets proposés, tous deux en lien avec le thème national étudié dans l\'année ("Le vrai du faux" pour la session 2027).'
   },
   {
     id: 'ex-cg-ecriture-vf-1',
@@ -839,6 +839,41 @@ export const EXERCISES = [
     enonce: 'Un bon paragraphe argumenté doit développer plusieurs idées différentes à la fois pour être complet.',
     correct: false,
     explication: 'Au contraire, un bon paragraphe développe UNE seule idée principale, clairement illustrée par un exemple précis.'
+  },
+
+  // --------------------------------------------------- Culture générale — thème 2026-2027
+  {
+    id: 'ex-cg-theme-qcm-1',
+    matiere: 'culture-generale', chapitre: 'cg-theme-vrai-faux', competence: 'cg.theme-vrai-faux',
+    langage: null, difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2026-2027'],
+    enonce: 'Quel est l\'intitulé officiel du thème national de Culture générale et expression pour la session 2027 ?',
+    options: [
+      { id: 'a', texte: 'Le vrai du faux' },
+      { id: 'b', texte: 'Les animaux et nous' },
+      { id: 'c', texte: 'L\'invitation au voyage' },
+      { id: 'd', texte: 'Le désir' }
+    ],
+    correctes: ['a'],
+    explication: '"Le vrai du faux" est le thème retenu pour la session 2027 (année scolaire 2026-2027), publié au Bulletin officiel le 1er avril 2026. "Les animaux et nous..." était le thème de la session précédente (2026).'
+  },
+  {
+    id: 'ex-cg-theme-vf-1',
+    matiere: 'culture-generale', chapitre: 'cg-theme-vrai-faux', competence: 'cg.theme-vrai-faux',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2026-2027'],
+    enonce: 'Le thème "Le vrai du faux" invite uniquement à dénoncer le faux comme une menace à combattre.',
+    correct: false,
+    explication: 'La problématique officielle invite aussi à interroger ce que le faux peut avoir de fécond ou de révélateur (fiction, illusion artistique) — s\'en tenir à une lecture uniquement négative appauvrit la réflexion attendue.'
+  },
+  {
+    id: 'ex-cg-theme-reponse-1',
+    matiere: 'culture-generale', chapitre: 'cg-theme-vrai-faux', competence: 'cg.theme-vrai-faux',
+    langage: null, difficulte: 'moyen', type: 'reponse-courte',
+    annees: ['2026-2027'],
+    enonce: 'Selon l\'anecdote antique rapportée par Pline l\'Ancien, quel peintre grec aurait trompé des oiseaux avec des raisins peints ?',
+    reponsesAcceptees: ['zeuxis'],
+    explication: 'Zeuxis est le peintre grec dont l\'illusion picturale aurait été si parfaite que des oiseaux tentèrent de picorer les raisins qu\'il avait peints.'
   },
 
   // ---------------------------------------------------------- CEJM — régulation

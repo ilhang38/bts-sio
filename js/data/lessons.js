@@ -1081,45 +1081,44 @@ now, I am testing a new feature that isn't working yet.`
     parcoursId: 'culture-generale',
     niveau: 1,
     ordre: 1,
-    titre: 'La méthodologie de la synthèse de documents',
+    titre: "L'analyse de corpus : comprendre et interpréter les documents",
     competence: 'cg.synthese',
     difficulte: 'moyen',
     annees: ['2025-2026', '2026-2027'],
-    objectif: "Comprendre l'objectif et la méthode de la synthèse de documents, exercice central de l'épreuve de Culture générale et expression.",
+    objectif: "Comprendre le fonctionnement actuel de l'analyse de corpus (première partie de l'épreuve de Culture générale et expression depuis sa réforme).",
     explication: [
-      "La synthèse de documents consiste à reformuler, de façon organisée et objective, les idées essentielles d'un dossier de plusieurs documents portant sur un même sujet. L'exercice teste la capacité à comprendre, hiérarchiser et reformuler — PAS à donner son avis personnel.",
-      "Les thèmes du dossier changent chaque année (ils sont fixés au niveau national) : la méthode compte donc davantage que la connaissance préalable du sujet.",
-      "Méthode : d'abord lire chaque document pour en dégager l'idée centrale, puis confronter les documents entre eux pour repérer points communs, nuances et oppositions, puis construire un PLAN THÉMATIQUE (organisé par idées, pas document par document), et enfin rédiger un texte suivi, neutre, sans citer sa propre opinion.",
-      "Une bonne synthèse respecte une limite de mots imposée par le sujet, reformule avec ses propres mots plutôt que de copier de longues citations, et ne néglige aucun document du dossier."
+      "Depuis l'arrêté du 13 juillet 2023 (appliqué à partir de la session 2025), l'épreuve de Culture générale et expression a changé de format. Ce n'est plus une \"synthèse\" au sens classique : la première partie s'appelle désormais l'ANALYSE DE CORPUS, notée sur 10 points (sur 20 au total), et porte sur un corpus resserré de 2 à 3 documents (au lieu de 4 auparavant), pour une épreuve écrite ramenée à 3 heures.",
+      "Concrètement, il ne s'agit plus de rédiger un texte de synthèse continu, mais de répondre à 2 à 4 QUESTIONS portant sur le corpus : une question peut porter sur un seul document (compréhension, reformulation, interprétation), sur deux documents à la fois (confrontation), ou sur l'ensemble du corpus (dégager le thème commun, les points de convergence et de divergence).",
+      "Changement important : l'interprétation personnelle, nuancée et argumentée, est désormais AU CŒUR de l'exercice — ce n'est plus une reformulation neutre et impersonnelle comme dans l'ancienne synthèse. Il est même possible de citer de brefs passages du corpus à l'appui d'une réponse. Une introduction et une conclusion standardisées ne sont plus attendues : on peut aller directement au cœur de chaque réponse.",
+      "Ce qui reste vrai malgré la réforme : il faut toujours confronter les documents entre eux plutôt que les traiter isolément dès qu'une question porte sur plusieurs d'entre eux, et ne jamais négliger un document du corpus."
     ],
     aRetenir: [
-      "Objectif : reformuler et organiser les idées d'un dossier, jamais donner son avis personnel",
-      'Plan THÉMATIQUE (organisé par idées), pas document par document',
-      'Confronter les documents : points communs, nuances, oppositions',
-      'Respecter le nombre de mots imposé et ne négliger aucun document'
+      "Depuis la session 2025 : \"analyse de corpus\", pas \"synthèse\" — 2 à 3 documents, épreuve de 3h, notée sur 10 points",
+      "2 à 4 questions à traiter : sur 1 document, sur 2 documents (confrontation), ou sur tout le corpus",
+      "L'interprétation personnelle nuancée et argumentée est centrale — ce n'est plus un exercice neutre",
+      "Introduction/conclusion standardisées non attendues ; de brèves citations du corpus sont autorisées"
     ],
     exemple: {
       langage: null,
       code:
-`Erreur fréquente :
-"Le document 1 dit que... Le document 2 dit que... Le
-document 3 dit que..."
+`Réponse faible (traite les documents isolément) :
+"Le document 1 dit que... Le document 2 dit que..."
 
-Attendu :
-"Si les trois documents s'accordent sur [idée commune], ils
-divergent en revanche sur [point de désaccord], notamment
-entre le document 1 et le document 3."`
+Réponse attendue (confronte et interprète) :
+"Si les deux documents s'accordent sur [idée commune], le
+document 2 nuance cependant la position du document 1 en
+soulignant que [nuance] — ce qui invite à se demander si..."`
     },
     exempleExplique: [
-      "La première formulation résume chaque document séparément, sans les croiser : c'est un résumé juxtaposé, pas une synthèse.",
-      "La seconde formulation confronte les documents entre eux autour d'une idée : c'est exactement ce qui est attendu dans un plan thématique."
+      "La première formulation résume chaque document séparément, sans les croiser : c'est un résumé juxtaposé, pas une réponse à une question de confrontation.",
+      "La seconde formulation confronte les documents ET propose une interprétation personnelle nuancée, exactement ce qui est attendu depuis la réforme."
     ],
     erreursFrequentes: [
-      "Traiter les documents un par un au lieu de croiser leurs idées par thème : l'erreur la plus fréquente et la plus pénalisée.",
-      "Donner son avis personnel (\"je pense que...\") : la synthèse doit rester totalement neutre et objective.",
-      "Recopier de longues phrases du dossier au lieu de reformuler avec ses propres mots."
+      "Utiliser encore la méthode de l'ancienne synthèse (plan thématique rédigé, ton neutre, avis interdit) : ce n'est plus le format actuel de l'épreuve depuis la session 2025.",
+      "Traiter les documents un par un sur une question de confrontation, au lieu de croiser explicitement leurs idées.",
+      "Rester purement descriptif alors qu'une interprétation personnelle argumentée est justement ce qui est noté."
     ],
-    astuce: "Avant de rédiger, fabrique un tableau à double entrée : en ligne les grandes idées du dossier, en colonne les documents — tu verras immédiatement qui dit quoi sur chaque idée, et ton plan thématique en découlera presque naturellement.",
+    astuce: "Si tu utilises un manuel ou une fiche plus ancienne qui parle de \"synthèse\" avec plan thématique obligatoire et interdiction de tout avis personnel, méfie-toi : elle décrit probablement le format d'avant la réforme. Vérifie toujours la date de la ressource.",
     exercicesIds: ['ex-cg-synthese-qcm-1', 'ex-cg-synthese-vf-1']
   },
   {
@@ -1128,22 +1127,22 @@ entre le document 1 et le document 3."`
     parcoursId: 'culture-generale',
     niveau: 2,
     ordre: 1,
-    titre: "L'écriture personnelle : construire un essai argumenté",
+    titre: "L'essai argumenté : construire une réflexion personnelle",
     competence: 'cg.ecriture-personnelle',
     difficulte: 'moyen',
     annees: ['2025-2026', '2026-2027'],
-    objectif: "Comprendre l'objectif et la méthode de l'écriture personnelle, qui suit la synthèse dans l'épreuve de Culture générale et expression.",
+    objectif: "Comprendre l'objectif et la méthode de l'essai argumenté, seconde partie de l'épreuve de Culture générale et expression.",
     explication: [
-      "Contrairement à la synthèse, l'écriture personnelle demande explicitement l'avis du candidat sur une question liée à la thématique du dossier. C'est un essai argumenté : il faut prendre position et la justifier, pas seulement décrire.",
+      "La seconde partie de l'épreuve (notée sur 10 points, comme l'analyse de corpus) est un essai : chaque candidat a le choix ENTRE DEUX SUJETS pour rédiger un texte structuré, argumentatif et personnel, en lien avec le thème annuel national.",
+      "Contrairement à l'analyse de corpus, qui reste ancrée dans l'interprétation des documents fournis, l'essai est une réflexion autonome : tu mobilises ta culture générale, tes lectures, l'actualité, sans être limité aux documents du corpus étudié.",
       "Une bonne argumentation combine plusieurs types d'arguments : des exemples concrets et précis (tirés de sa culture générale, de l'actualité, d'œuvres...), et un raisonnement logique qui relie chaque idée à la question posée.",
-      "La structure classique d'un essai argumenté suit un plan organisé : une introduction qui présente la question et annonce le plan, des paragraphes qui développent chacun UNE idée principale illustrée par un exemple, et une conclusion qui répond clairement à la question posée.",
-      "Nuancer sa position (\"certes... cependant...\") montre une réflexion plus mature qu'une position uniquement tranchée, et permet souvent d'aborder plusieurs aspects du sujet plutôt qu'un seul argument répété."
+      "La structure classique reste : une introduction qui présente la question et annonce le plan, des paragraphes qui développent chacun UNE idée principale illustrée par un exemple, et une conclusion qui répond clairement à la question posée. Nuancer sa position (\"certes... cependant...\") montre une réflexion plus mature qu'une position uniquement tranchée."
     ],
     aRetenir: [
-      "L'écriture personnelle demande un AVIS ARGUMENTÉ — contrairement à la synthèse qui doit rester neutre",
-      'Chaque paragraphe = UNE idée principale + un exemple précis qui l\'illustre',
-      'Structure : introduction (annonce la question et le plan), développement, conclusion (répond clairement)',
-      'Nuancer sa position (certes... cependant...) montre une réflexion plus aboutie qu\'un avis uniquement tranché'
+      "Choix entre DEUX sujets proposés, en lien avec le thème annuel national",
+      "Réflexion autonome : pas limitée aux documents du corpus, contrairement à l'analyse de corpus",
+      "Chaque paragraphe = UNE idée principale + un exemple précis qui l'illustre",
+      "Structure : introduction (annonce la question et le plan), développement, conclusion (répond clairement)"
     ],
     exemple: {
       langage: null,
@@ -1171,6 +1170,53 @@ envisagent aujourd'hui d'en limiter l'accès avant un certain
     ],
     astuce: "Avant de rédiger un paragraphe, résume-le en une seule phrase (\"Ce paragraphe démontre que...\") : si tu n'arrives pas à la formuler clairement, c'est que l'idée n'est pas encore assez précise.",
     exercicesIds: ['ex-cg-ecriture-qcm-1', 'ex-cg-ecriture-vf-1']
+  },
+  {
+    id: 'cg-theme-vrai-faux',
+    matiere: 'culture-generale',
+    parcoursId: 'culture-generale',
+    niveau: 3,
+    ordre: 1,
+    titre: 'Le thème 2026-2027 : "Le vrai du faux"',
+    competence: 'cg.theme-vrai-faux',
+    difficulte: 'moyen',
+    annees: ['2026-2027'],
+    objectif: "Connaître la problématique officielle du thème national de l'année et ses grands axes de réflexion, pour aborder efficacement le corpus comme l'essai.",
+    explication: [
+      "Le thème national de Culture générale et expression pour la session 2027 (donc pour l'année scolaire 2026-2027) est \"Le vrai du faux\". Il a été publié au Bulletin officiel de l'enseignement supérieur le 1er avril 2026, dans le cadre fixé par l'arrêté du 13 juillet 2023.",
+      "La problématique officielle part d'un constat : notre époque a de plus en plus de mal à distinguer le vrai du faux, submergée par des manipulations de discours et surtout d'images, qui peuvent aller jusqu'à fabriquer des documents, des témoignages, voire des univers entièrement artificiels.",
+      "Deux grands axes de réflexion se dégagent. Un axe d'actualité et numérique : désinformation, fake news, deepfakes, manipulation de l'image, rôle de l'intelligence artificielle dans la production de faux contenus. Un axe plus culturel et esthétique : la fiction, l'illusion artistique (le trompe-l'œil, la contrefaçon), qui interroge ce que le faux peut révéler de vrai — un tableau très réaliste ou un roman peuvent \"mentir\" tout en disant quelque chose de vrai sur le monde.",
+      "Point de nuance essentiel : le thème n'invite pas seulement à dénoncer le faux comme une menace. Il invite aussi à se demander ce que le faux peut avoir de fécond ou de révélateur (le plaisir de la fiction, la vérité que peut révéler une illusion réussie). Réduire sa réflexion à \"le faux c'est mal, il faut lutter contre\" appauvrirait ce qui est attendu."
+    ],
+    aRetenir: [
+      'Thème officiel : "Le vrai du faux" — session 2027, année scolaire 2026-2027',
+      'Axe actualité/numérique : désinformation, fake news, deepfakes, intelligence artificielle',
+      "Axe culturel/esthétique : fiction, illusion artistique, trompe-l'œil, contrefaçon",
+      'Le faux n\'est pas systématiquement à condamner : il peut aussi révéler une forme de vérité (art, fiction)'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Anecdote antique souvent citée sur ce thème (rapportée par
+Pline l'Ancien) :
+
+Le peintre grec Zeuxis aurait peint des raisins si
+ressemblants que des oiseaux tentèrent de venir les picorer.
+Mais Zeuxis se désola : s'il avait aussi bien réussi l'enfant
+qui figurait sur la même toile, les oiseaux auraient dû avoir
+peur de lui et s'enfuir.`
+    },
+    exempleExplique: [
+      "L'anecdote illustre la puissance de l'illusion picturale (le trompe-l'œil) : une imitation si parfaite qu'elle trompe la perception, jusqu'à tromper des oiseaux eux-mêmes.",
+      "Mais elle sert aussi à nuancer : Zeuxis juge son propre travail imparfait précisément parce que l'illusion n'est pas totale sur l'enfant — ce qui interroge la notion de mimésis (l'art comme imitation du réel) déjà théorisée par Aristote, et le plaisir particulier que procure une illusion réussie."
+    ],
+    erreursFrequentes: [
+      "Réduire le thème au seul axe numérique (fake news, IA) en oubliant complètement l'axe culturel et esthétique (fiction, art, illusion) tout aussi central dans la problématique officielle.",
+      "Traiter le \"faux\" comme une catégorie uniquement négative, sans jamais interroger ce qu'il peut avoir de créateur ou de révélateur.",
+      "Confondre les notions : désinformation (intention de tromper), fiction (accord implicite sur l'irréel, sans intention de tromper) et erreur (absence d'intention) ne sont pas la même chose face au \"faux\"."
+    ],
+    astuce: "Pour chaque document ou exemple que tu étudies sur ce thème, pose-toi systématiquement deux questions : \"en quoi est-ce faux (ou vrai) ?\" ET \"qu'est-ce que ce faux (ou ce vrai) révèle ?\" — la seconde question est souvent celle qui apporte la vraie valeur ajoutée dans une copie.",
+    exercicesIds: ['ex-cg-theme-qcm-1', 'ex-cg-theme-vf-1', 'ex-cg-theme-reponse-1']
   },
 
   // -------------------------------------------------------- CEJM (suite) --
