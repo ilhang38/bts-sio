@@ -530,6 +530,13 @@ select:focus, .input-text:focus { outline: none; border-color: var(--green); box
 .editor-note { color: var(--text-muted); font-size: 0.8rem; font-style: italic; margin-bottom: 8px; }
 .editor-note::before { content: '# '; }
 
+.ai-helper { margin: 14px 0; padding: 14px 16px; background: var(--bg-window); border: 1px solid rgba(63,224,232,0.25); border-radius: var(--radius-sm); }
+.ai-helper__header { font-weight: 700; color: var(--cyan); margin-bottom: 10px; font-size: 0.9rem; }
+.ai-helper__steps { display: flex; gap: 10px; }
+.ai-helper__bloc { margin-top: 10px; padding: 10px 12px; background: var(--bg-tertiary); border-left: 3px solid var(--cyan); border-radius: 3px; }
+.ai-helper__bloc strong { display: block; font-size: 0.78rem; color: var(--cyan); margin-bottom: 4px; }
+.ai-helper__bloc p { margin: 0; font-size: 0.9rem; white-space: pre-line; }
+
 .editor {
   display: flex; background: var(--bg-code); border-radius: var(--radius);
   overflow: hidden; font-size: 0.86rem; line-height: 1.6; margin-bottom: 10px;

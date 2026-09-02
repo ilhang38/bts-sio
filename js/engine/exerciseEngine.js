@@ -18,6 +18,7 @@
 
 import { recordAttempt } from '../store.js';
 import { renderCodeBlock, createEditor, escapeHtml } from '../components/codeEditor.js';
+import { AI_PROXY_URL } from '../aiConfig.js';
 
 function normalize(str) {
   return String(str)
@@ -228,6 +229,7 @@ function renderCorrigerCode(exercise, body, actions, finish) {
 
   const editor = createEditor({ code: exercise.codeInitial, lang: exercise.langage });
   body.appendChild(editor.el);
+  renderAiHelper(exercise, editor, body);
 
   actions.innerHTML = `<button class="btn" data-act="reset">↻ Réinitialiser</button><button class="btn btn--primary" data-act="verify">✓ Vérifier</button>`;
   actions.querySelector('[data-act="reset"]').addEventListener('click', () => editor.setValue(exercise.codeInitial));
@@ -250,6 +252,7 @@ function renderProgrammation(exercise, body, actions, finish) {
 
   const editor = createEditor({ code: exercise.codeDepart, lang: exercise.langage });
   body.appendChild(editor.el);
+  renderAiHelper(exercise, editor, body);
 
   actions.innerHTML = `<button class="btn" data-act="reset">↻ Réinitialiser</button><button class="btn btn--primary" data-act="verify">✓ Vérifier</button>`;
   actions.querySelector('[data-act="reset"]').addEventListener('click', () => editor.setValue(exercise.codeDepart));
@@ -262,4 +265,79 @@ function renderProgrammation(exercise, body, actions, finish) {
       <div class="exercise__solution"><strong>Corrigé proposé</strong>${renderCodeBlock(exercise.solution, exercise.langage)}</div>`;
     finish(allOk, extra);
   });
+}
+
+/**
+ * Aide IA progressive : indice → explication → correction complète, jamais
+ * la réponse directe (l'étape suivante n'apparaît qu'une fois la précédente
+ * consultée). Ne s'affiche pas du tout tant que AI_PROXY_URL n'est pas
+ * configuré (js/aiConfig.js) — le site fonctionne normalement sans ça.
+ */
+function renderAiHelper(exercise, editor, body) {
+  if (!AI_PROXY_URL) return;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'ai-helper';
+  wrap.innerHTML = `
+    <div class="ai-helper__header">🤖 Besoin d'aide ?</div>
+    <div class="ai-helper__steps"></div>
+    <div class="ai-helper__response"></div>
+  `;
+  body.appendChild(wrap);
+
+  const stepsEl = wrap.querySelector('.ai-helper__steps');
+  const responseEl = wrap.querySelector('.ai-helper__response');
+
+  const ETAPES = [
+    { niveau: 'indice', label: '💡 Demander un indice' },
+    { niveau: 'explication', label: "🔎 Voir l'explication" },
+    { niveau: 'correction', label: '✅ Voir la correction complète' }
+  ];
+
+  async function demander(niveau, btn) {
+    btn.disabled = true;
+    btn.textContent = '… génération en cours';
+    try {
+      const res = await fetch(AI_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          niveau,
+          enonce: exercise.enonce,
+          codeEtudiant: editor.getValue(),
+          langage: exercise.langage
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Erreur inconnue');
+      const bloc = document.createElement('div');
+      bloc.className = 'ai-helper__bloc';
+      bloc.innerHTML = `<strong>${escapeHtml(ETAPES.find(e => e.niveau === niveau).label)}</strong><p>${escapeHtml(data.reponse)}</p>`;
+      responseEl.appendChild(bloc);
+      afficherEtapeSuivante(niveau);
+    } catch (e) {
+      const erreur = document.createElement('p');
+      erreur.className = 'inline-msg';
+      erreur.textContent = "L'aide IA n'a pas pu répondre (" + e.message + ").";
+      responseEl.appendChild(erreur);
+      btn.disabled = false;
+      btn.textContent = ETAPES.find(e2 => e2.niveau === niveau).label;
+    }
+  }
+
+  function afficherEtapeSuivante(niveauActuel) {
+    stepsEl.innerHTML = '';
+    const idx = ETAPES.findIndex(e => e.niveau === niveauActuel);
+    const suivante = ETAPES[idx + 1];
+    if (!suivante) return;
+    const btn = document.createElement('button');
+    btn.className = 'btn btn--outline';
+    btn.textContent = suivante.label;
+    btn.addEventListener('click', () => demander(suivante.niveau, btn));
+    stepsEl.appendChild(btn);
+  }
+
+  afficherEtapeSuivante(null); // affiche la première étape (indice)
+  // astuce : niveau `null` ne matche aucune étape existante, donc idx = -1,
+  // et ETAPES[-1 + 1] = ETAPES[0] = l'indice. C'est voulu.
 }
