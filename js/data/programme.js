@@ -105,6 +105,20 @@ export const MATIERES = [
     type: 'générale',
     blocId: null,
     couleur: '#B5762B'
+  },
+  {
+    id: 'cybersecurite',
+    nom: 'Cybersécurité',
+    type: 'professionnelle',
+    blocId: 'bloc3',
+    couleur: '#C6483A'
+  },
+  {
+    id: 'web',
+    nom: 'Développement Web',
+    type: 'professionnelle',
+    blocId: 'bloc2-slam',
+    couleur: '#D97706'
   }
 ];
 
@@ -138,12 +152,16 @@ export const PARCOURS = [
     id: 'sql',
     nom: '🗄️ Apprendre SQL',
     matiereId: 'slam-bdd',
-    description: 'Modélisation et manipulation des données, du SELECT simple aux jointures.',
+    description: 'Des fondamentaux (tables, clés) à la conception (MCD/MLD), en passant par les requêtes.',
     niveaux: [
-      { n: 1, nom: 'Interroger une table' },
-      { n: 2, nom: 'Croiser plusieurs tables' },
-      { n: 3, nom: 'Agréger et filtrer' },
-      { n: 4, nom: 'Modifier les données' }
+      { n: 1, nom: 'Fondamentaux : tables, clés, contraintes' },
+      { n: 2, nom: 'Interroger une table' },
+      { n: 3, nom: 'Croiser plusieurs tables' },
+      { n: 4, nom: 'Agréger et filtrer' },
+      { n: 5, nom: 'Modifier les données' },
+      { n: 6, nom: 'Requêtes avancées' },
+      { n: 7, nom: "Conception d'une base de données" },
+      { n: 8, nom: 'Fiabilité et transactions' }
     ]
   },
   {
@@ -194,6 +212,34 @@ export const PARCOURS = [
       { n: 1, nom: "L'analyse de corpus" },
       { n: 2, nom: "L'essai argumenté" },
       { n: 3, nom: 'Thème 2026-2027 — Le vrai du faux' }
+    ]
+  },
+  {
+    id: 'cybersecurite',
+    nom: '🔐 Cybersécurité',
+    matiereId: 'cybersecurite',
+    description: "Bloc 3 du référentiel : protéger les données, sécuriser les usages et les applications développées.",
+    niveaux: [
+      { n: 1, nom: 'Menaces et vulnérabilités' },
+      { n: 2, nom: 'Sécurité des données et des échanges' },
+      { n: 3, nom: 'Sécurité des applications web' },
+      { n: 4, nom: 'Identité numérique et authentification' }
+    ]
+  },
+  {
+    id: 'web',
+    nom: '🌐 Développement Web',
+    matiereId: 'web',
+    description: "De HTML/CSS à la communication client-serveur (HTTP, JSON, Fetch), pour construire une vraie application web.",
+    niveaux: [
+      { n: 1, nom: 'HTML' },
+      { n: 2, nom: 'CSS' },
+      { n: 3, nom: 'JavaScript' },
+      { n: 4, nom: 'Web dynamique et API' },
+      { n: 5, nom: 'Back-end' },
+      { n: 6, nom: 'Sécurité web' },
+      { n: 7, nom: 'Qualité et référencement' },
+      { n: 8, nom: 'Projet web' }
     ]
   }
 ];

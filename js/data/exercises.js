@@ -1368,6 +1368,959 @@ export const EXERCISES = [
     enonce: 'Comment appelle-t-on la formulation qui reconnaît un point de vue opposé avant de le nuancer (ex : "certes... cependant...") ?',
     reponsesAcceptees: ['concession', 'une concession', 'la concession'],
     explication: 'Cette figure, qui reconnaît un point avant de le nuancer, s\'appelle une concession — elle montre une réflexion plus nuancée qu\'une position uniquement tranchée.'
+  },
+
+  // ---------------------------------------------------------- C# — héritage
+  {
+    id: 'ex-csharp-heritage-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-heritage', competence: 'csharp.poo.heritage',
+    langage: 'csharp', difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel mot-clé faut-il ajouter à une méthode de la classe MÈRE pour qu\'elle puisse être redéfinie par une classe fille ?',
+    options: [
+      { id: 'a', texte: 'override' }, { id: 'b', texte: 'virtual' },
+      { id: 'c', texte: 'base' }, { id: 'd', texte: 'static' }
+    ],
+    correctes: ['b'],
+    explication: '`virtual` sur la méthode mère l\'autorise à être redéfinie ; `override`, côté fille, réalise cette redéfinition.'
+  },
+  {
+    id: 'ex-csharp-heritage-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-heritage', competence: 'csharp.poo.heritage',
+    langage: 'csharp', difficulte: 'difficile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette redéfinition de méthode.',
+    template: 'class Animal\n{\n    public {{1}} void Crier()\n    {\n        Console.WriteLine("...");\n    }\n}\n\nclass Chien : Animal\n{\n    public {{2}} void Crier()\n    {\n        Console.WriteLine("Wouf !");\n    }\n}',
+    trous: [
+      { id: 1, accepte: ['virtual'] },
+      { id: 2, accepte: ['override'] }
+    ],
+    explication: 'La méthode mère doit être `virtual` pour pouvoir être redéfinie ; la méthode fille utilise `override` pour la redéfinir effectivement.'
+  },
+
+  // ---------------------------------------------------- C# — polymorphisme
+  {
+    id: 'ex-csharp-polymorphisme-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-polymorphisme', competence: 'csharp.poo.polymorphisme',
+    langage: 'csharp', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que permet le polymorphisme ?',
+    options: [
+      { id: 'a', texte: 'Créer plusieurs constructeurs pour une classe' },
+      { id: 'b', texte: 'Appeler la même méthode sur des objets de types différents, chacun exécutant sa propre version' },
+      { id: 'c', texte: 'Empêcher l\'héritage d\'une classe' },
+      { id: 'd', texte: 'Rendre une méthode privée' }
+    ],
+    correctes: ['b'],
+    explication: 'Le polymorphisme permet d\'appeler une même méthode sur des objets de classes différentes (liées par héritage), chacun exécutant sa propre version redéfinie.'
+  },
+  {
+    id: 'ex-csharp-polymorphisme-lire-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-polymorphisme', competence: 'csharp.poo.polymorphisme',
+    langage: 'csharp', difficulte: 'difficile', type: 'lire-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Lis attentivement ce programme.',
+    code: 'class Forme\n{\n    public virtual void Afficher() { Console.WriteLine("Forme"); }\n}\nclass Cercle : Forme\n{\n    public override void Afficher() { Console.WriteLine("Cercle"); }\n}\nclass Carre : Forme\n{\n    public override void Afficher() { Console.WriteLine("Carré"); }\n}\n\nList<Forme> formes = new List<Forme> { new Cercle(), new Carre() };\nforeach (Forme f in formes)\n{\n    f.Afficher();\n}',
+    question: 'Que va afficher ce programme (dans l\'ordre) ?',
+    reponsesAcceptees: ['cercle carré', 'cercle et carré', 'cercle, carré'],
+    explication: 'Chaque objet exécute sa propre version redéfinie de Afficher() : d\'abord Cercle affiche "Cercle", puis Carré affiche "Carré", dans l\'ordre de la liste.'
+  },
+
+  // ------------------------------------------------------- C# — interfaces
+  {
+    id: 'ex-csharp-interfaces-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-interfaces', competence: 'csharp.poo.interfaces',
+    langage: 'csharp', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Combien d\'interfaces une classe C# peut-elle implémenter en même temps ?',
+    options: [
+      { id: 'a', texte: 'Aucune' }, { id: 'b', texte: 'Une seule' },
+      { id: 'c', texte: 'Plusieurs, autant que nécessaire' }, { id: 'd', texte: 'Deux maximum' }
+    ],
+    correctes: ['c'],
+    explication: 'Contrairement à l\'héritage de classe (limité à une seule classe mère), une classe C# peut implémenter autant d\'interfaces que nécessaire.'
+  },
+  {
+    id: 'ex-csharp-interfaces-vf-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-interfaces', competence: 'csharp.poo.interfaces',
+    langage: 'csharp', difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'On peut créer un objet directement à partir d\'une classe abstraite avec new.',
+    correct: false,
+    explication: 'Une classe abstraite ne peut jamais être instanciée directement : elle sert uniquement de modèle à hériter. Seule une classe concrète qui en hérite peut être instanciée.'
+  },
+
+  // -------------------------------------------------------- C# — recherche
+  {
+    id: 'ex-csharp-recherche-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-recherche', competence: 'csharp.algo.recherche',
+    langage: 'csharp', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle condition est indispensable pour utiliser une recherche dichotomique ?',
+    options: [
+      { id: 'a', texte: 'Le tableau doit être trié' },
+      { id: 'b', texte: 'Le tableau doit contenir uniquement des nombres pairs' },
+      { id: 'c', texte: 'Le tableau doit avoir moins de 10 éléments' },
+      { id: 'd', texte: 'Aucune condition particulière' }
+    ],
+    correctes: ['a'],
+    explication: 'La recherche dichotomique élimine une moitié du tableau à chaque étape en se basant sur l\'ordre des valeurs : sans tri préalable, cette logique ne fonctionne pas.'
+  },
+  {
+    id: 'ex-csharp-recherche-prog-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-recherche', competence: 'csharp.algo.recherche',
+    langage: 'csharp', difficulte: 'difficile', type: 'programmation',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Écris une méthode `Contient` qui reçoit un tableau `int[] valeurs` et un entier `cible`, et renvoie `true` si `cible` est présent dans le tableau (recherche séquentielle).',
+    codeDepart: 'static bool Contient(int[] valeurs, int cible)\n{\n    // ton code ici\n}',
+    criteres: [
+      { regex: /for(each)?\s*\(/, label: 'parcourt le tableau (for ou foreach)' },
+      { regex: /return/, label: 'renvoie un résultat' }
+    ],
+    solution: 'static bool Contient(int[] valeurs, int cible)\n{\n    foreach (int v in valeurs)\n    {\n        if (v == cible)\n        {\n            return true;\n        }\n    }\n    return false;\n}',
+    explication: 'On parcourt le tableau et on renvoie `true` dès qu\'une valeur correspond à la cible. Si la boucle se termine sans correspondance, on renvoie `false`.'
+  },
+
+  // ------------------------------------------------------------- C# — tri
+  {
+    id: 'ex-csharp-tri-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-tri', competence: 'csharp.algo.tri',
+    langage: 'csharp', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans le tri par sélection, combien d\'échanges effectue-t-on à chaque passage de la boucle principale ?',
+    options: [
+      { id: 'a', texte: 'Un seul' }, { id: 'b', texte: 'Autant que d\'éléments restants' },
+      { id: 'c', texte: 'Zéro' }, { id: 'd', texte: 'Deux' }
+    ],
+    correctes: ['a'],
+    explication: 'Le tri par sélection cherche le minimum restant puis fait UN SEUL échange par passage — contrairement au tri à bulles, qui peut échanger plusieurs paires à chaque passage.'
+  },
+  {
+    id: 'ex-csharp-tri-lire-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-tri', competence: 'csharp.algo.tri',
+    langage: 'csharp', difficulte: 'difficile', type: 'lire-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Lis attentivement ce programme.',
+    code: 'int[] valeurs = { 5, 2, 8 };\nint temp = valeurs[0];\nvaleurs[0] = valeurs[2];\nvaleurs[2] = temp;\n\nforeach (int v in valeurs)\n{\n    Console.Write(v + " ");\n}',
+    question: 'Que va afficher ce programme ?',
+    reponsesAcceptees: ['8 2 5'],
+    explication: 'L\'échange via la variable temporaire inverse les positions 0 et 2 : le tableau {5, 2, 8} devient {8, 2, 5}.'
+  },
+
+  // ------------------------------------------------------ Cybersécurité
+  {
+    id: 'ex-cyber-menaces-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-menaces', competence: 'cyber.menaces',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel type de logiciel malveillant chiffre les données de la victime et exige une rançon pour les débloquer ?',
+    options: [
+      { id: 'a', texte: 'Un virus' }, { id: 'b', texte: 'Un cheval de Troie' },
+      { id: 'c', texte: 'Un rançongiciel (ransomware)' }, { id: 'd', texte: 'Un ver' }
+    ],
+    correctes: ['c'],
+    explication: 'Un rançongiciel (ransomware) chiffre les données de la victime et exige le paiement d\'une rançon pour fournir la clé de déchiffrement.'
+  },
+  {
+    id: 'ex-cyber-menaces-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-menaces', competence: 'cyber.menaces',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le phishing repose principalement sur l\'exploitation d\'une faille technique du système visé.',
+    correct: false,
+    explication: 'Le phishing relève de l\'ingénierie sociale : il repose sur la manipulation psychologique de la victime, pas sur une faille technique.'
+  },
+
+  // -------------------------------------------------- Cybersécurité — web
+  {
+    id: 'ex-cyber-web-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-securite-web', competence: 'cyber.securite-web',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle attaque consiste à injecter du code JavaScript malveillant qui s\'exécutera dans le navigateur d\'autres visiteurs ?',
+    options: [
+      { id: 'a', texte: 'Injection SQL' }, { id: 'b', texte: 'XSS' },
+      { id: 'c', texte: 'CSRF' }, { id: 'd', texte: 'Phishing' }
+    ],
+    correctes: ['b'],
+    explication: 'Le XSS (Cross-Site Scripting) injecte du code malveillant dans une page web, qui s\'exécute ensuite dans le navigateur des visiteurs qui la consultent.'
+  },
+  {
+    id: 'ex-cyber-web-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-securite-web', competence: 'cyber.securite-web',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Les mots de passe doivent être stockés en clair dans la base de données pour permettre à l\'utilisateur de les récupérer facilement en cas d\'oubli.',
+    correct: false,
+    explication: 'Les mots de passe doivent toujours être stockés hachés, jamais en clair. En cas d\'oubli, on réinitialise le mot de passe — on ne "récupère" jamais l\'original.'
+  },
+
+  // ------------------------------------------------------ C# — conversions
+  {
+    id: 'ex-csharp-conversion-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n1-conversion', competence: 'csharp.conversion',
+    langage: 'csharp', difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que renvoie `int.TryParse("abc", out int x)` ?',
+    options: [
+      { id: 'a', texte: 'Une exception est levée' },
+      { id: 'b', texte: 'false, et x vaut 0' },
+      { id: 'c', texte: 'true, et x vaut 0' },
+      { id: 'd', texte: '"abc" converti en nombre' }
+    ],
+    correctes: ['b'],
+    explication: '`TryParse` ne plante jamais : si la conversion échoue, elle renvoie `false` et place la valeur par défaut (0 pour un int) dans la variable de sortie.'
+  },
+  {
+    id: 'ex-csharp-conversion-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n1-conversion', competence: 'csharp.conversion',
+    langage: 'csharp', difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette conversion sécurisée d\'une saisie utilisateur.',
+    template: 'string saisie = Console.ReadLine();\nif ({{1}}.{{2}}(saisie, out int age))\n{\n    Console.WriteLine(age);\n}',
+    trous: [
+      { id: 1, accepte: ['int'] },
+      { id: 2, accepte: ['TryParse'] }
+    ],
+    explication: '`int.TryParse(saisie, out int age)` tente de convertir la saisie en entier, sans jamais planter même si elle est invalide.'
+  },
+
+  // ---------------------------------------------------- C# — break/continue
+  {
+    id: 'ex-csharp-breakcontinue-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n2-breakcontinue', competence: 'csharp.breakcontinue',
+    langage: 'csharp', difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle instruction arrête complètement une boucle ?',
+    options: [
+      { id: 'a', texte: 'continue' }, { id: 'b', texte: 'break' },
+      { id: 'c', texte: 'return' }, { id: 'd', texte: 'stop' }
+    ],
+    correctes: ['b'],
+    explication: '`break` arrête immédiatement la boucle en cours ; `continue` ne fait que sauter au tour suivant sans l\'arrêter.'
+  },
+  {
+    id: 'ex-csharp-breakcontinue-lire-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n2-breakcontinue', competence: 'csharp.breakcontinue',
+    langage: 'csharp', difficulte: 'moyen', type: 'lire-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Lis attentivement ce programme.',
+    code: 'for (int i = 1; i <= 5; i++)\n{\n    if (i == 3)\n    {\n        continue;\n    }\n    Console.Write(i + " ");\n}',
+    question: 'Que va afficher ce programme ?',
+    reponsesAcceptees: ['1 2 4 5'],
+    explication: '`continue` saute uniquement l\'affichage quand i vaut 3, sans arrêter la boucle : 1, 2, 4, 5 s\'affichent.'
+  },
+
+  // ---------------------------------------------------------- C# — strings
+  {
+    id: 'ex-csharp-strings-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n2-strings', competence: 'csharp.strings',
+    langage: 'csharp', difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que renvoie `"Bonjour".Substring(0, 3)` ?',
+    options: [
+      { id: 'a', texte: '"Bon"' }, { id: 'b', texte: '"jour"' },
+      { id: 'c', texte: '"Bonjour"' }, { id: 'd', texte: '"our"' }
+    ],
+    correctes: ['a'],
+    explication: '`Substring(0, 3)` extrait 3 caractères à partir de l\'indice 0 : "Bon".'
+  },
+  {
+    id: 'ex-csharp-strings-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n2-strings', competence: 'csharp.strings',
+    langage: 'csharp', difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète ce code qui extrait le nom d\'utilisateur d\'une adresse email.',
+    template: 'string email = "eleve@ecole.fr";\nstring[] parties = email.{{1}}(\'@\');\nstring utilisateur = parties[{{2}}];',
+    trous: [
+      { id: 1, accepte: ['Split'] },
+      { id: 2, accepte: ['0'] }
+    ],
+    explication: '`Split(\'@\')` découpe la chaîne au niveau du @ ; l\'indice 0 correspond à la première partie du tableau résultant.'
+  },
+
+  // ------------------------------------------------------ C# — tableaux 2D
+  {
+    id: 'ex-csharp-tableaux2d-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n4-tableaux2d', competence: 'csharp.tableaux2d',
+    langage: 'csharp', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Pour un tableau `int[,] grille = new int[3, 5];`, que renvoie `grille.GetLength(1)` ?',
+    options: [
+      { id: 'a', texte: '3' }, { id: 'b', texte: '5' },
+      { id: 'c', texte: '15' }, { id: 'd', texte: '0' }
+    ],
+    correctes: ['b'],
+    explication: '`GetLength(1)` donne le nombre de COLONNES (le deuxième indice), soit 5. `GetLength(0)` aurait donné le nombre de lignes, 3.'
+  },
+  {
+    id: 'ex-csharp-tableaux2d-lire-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n4-tableaux2d', competence: 'csharp.tableaux2d',
+    langage: 'csharp', difficulte: 'difficile', type: 'lire-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Lis attentivement ce programme.',
+    code: 'int[,] grille = { { 1, 2 }, { 3, 4 } };\nConsole.WriteLine(grille[1, 0]);',
+    question: 'Que va afficher ce programme ?',
+    reponsesAcceptees: ['3'],
+    explication: 'grille[1, 0] désigne la ligne d\'indice 1 (la deuxième ligne, {3, 4}), colonne d\'indice 0 : la valeur 3.'
+  },
+
+  // ------------------------------------------------------- C# — propriétés
+  {
+    id: 'ex-csharp-proprietes-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-proprietes', competence: 'csharp.proprietes',
+    langage: 'csharp', difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans le bloc `set` d\'une propriété, quel mot-clé représente la valeur qu\'on essaie d\'affecter ?',
+    options: [
+      { id: 'a', texte: 'this' }, { id: 'b', texte: 'value' },
+      { id: 'c', texte: 'set' }, { id: 'd', texte: 'get' }
+    ],
+    correctes: ['b'],
+    explication: '`value` est un mot-clé réservé qui représente, à l\'intérieur d\'un bloc set, la valeur que l\'on essaie d\'affecter à la propriété.'
+  },
+  {
+    id: 'ex-csharp-proprietes-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-proprietes', competence: 'csharp.proprietes',
+    langage: 'csharp', difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette propriété automatique.',
+    template: 'public int Age { {{1}}; {{2}}; }',
+    trous: [
+      { id: 1, accepte: ['get'] },
+      { id: 2, accepte: ['set'] }
+    ],
+    explication: '{ get; set; } est la syntaxe d\'une propriété automatique : C# gère lui-même l\'attribut caché associé.'
+  },
+
+  // ------------------------------------------------------------ C# — static
+  {
+    id: 'ex-csharp-static-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-static', competence: 'csharp.static',
+    langage: 'csharp', difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Comment appelle-t-on une méthode static `MaMethode()` de la classe `MaClasse` ?',
+    options: [
+      { id: 'a', texte: 'unObjet.MaMethode()' }, { id: 'b', texte: 'MaClasse.MaMethode()' },
+      { id: 'c', texte: 'new MaClasse().MaMethode()' }, { id: 'd', texte: 'static.MaMethode()' }
+    ],
+    correctes: ['b'],
+    explication: 'Un membre static s\'appelle via le NOM DE LA CLASSE, pas via un objet particulier.'
+  },
+  {
+    id: 'ex-csharp-static-vf-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-static', competence: 'csharp.static',
+    langage: 'csharp', difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un attribut static est propre à chaque objet créé, comme un attribut normal.',
+    correct: false,
+    explication: 'C\'est l\'inverse : un attribut static est partagé par TOUS les objets de la classe, il n\'en existe qu\'une seule copie.'
+  },
+
+  // -------------------------------------------------------------- C# — enum
+  {
+    id: 'ex-csharp-enum-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-enum', competence: 'csharp.enum',
+    langage: 'csharp', difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Comment utilise-t-on la valeur `EnCours` d\'un enum nommé `Statut` ?',
+    options: [
+      { id: 'a', texte: 'EnCours' }, { id: 'b', texte: 'Statut.EnCours' },
+      { id: 'c', texte: 'Statut->EnCours' }, { id: 'd', texte: 'new Statut.EnCours()' }
+    ],
+    correctes: ['b'],
+    explication: 'Une valeur d\'enum s\'utilise toujours préfixée par le nom de l\'énumération : `Statut.EnCours`.'
+  },
+  {
+    id: 'ex-csharp-enum-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n5-enum', competence: 'csharp.enum',
+    langage: 'csharp', difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète la déclaration et l\'utilisation de cette énumération.',
+    template: '{{1}} Jour { Lundi, Mardi, Mercredi }\n\nJour aujourdhui = {{2}}.Mardi;',
+    trous: [
+      { id: 1, accepte: ['enum'] },
+      { id: 2, accepte: ['Jour'] }
+    ],
+    explication: '`enum` déclare l\'énumération ; on utilise ensuite une de ses valeurs préfixée par son nom, ici `Jour.Mardi`.'
+  },
+
+  // ---------------------------------------------------------- C# — fichiers
+  {
+    id: 'ex-csharp-fichiers-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-fichiers', competence: 'csharp.fichiers',
+    langage: 'csharp', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle méthode ajoute du texte à la fin d\'un fichier SANS effacer son contenu existant ?',
+    options: [
+      { id: 'a', texte: 'File.WriteAllText' }, { id: 'b', texte: 'File.AppendAllText' },
+      { id: 'c', texte: 'File.ReadAllText' }, { id: 'd', texte: 'File.Delete' }
+    ],
+    correctes: ['b'],
+    explication: '`File.AppendAllText` ajoute à la suite du contenu existant ; `File.WriteAllText` écrase systématiquement tout le fichier.'
+  },
+  {
+    id: 'ex-csharp-fichiers-vf-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-fichiers', competence: 'csharp.fichiers',
+    langage: 'csharp', difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: '`File.ReadAllLines` renvoie tout le contenu du fichier sous la forme d\'une seule chaîne de caractères.',
+    correct: false,
+    explication: '`File.ReadAllLines` renvoie un TABLEAU de chaînes, une par ligne. C\'est `File.ReadAllText` qui renvoie une seule grande chaîne.'
+  },
+
+  // ------------------------------------------------------------- C# — LINQ
+  {
+    id: 'ex-csharp-linq-qcm-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-linq', competence: 'csharp.linq',
+    langage: 'csharp', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que fait `notes.Where(n => n >= 10)` ?',
+    options: [
+      { id: 'a', texte: 'Trie les notes' },
+      { id: 'b', texte: 'Filtre les notes supérieures ou égales à 10' },
+      { id: 'c', texte: 'Compte les notes' },
+      { id: 'd', texte: 'Additionne les notes' }
+    ],
+    correctes: ['b'],
+    explication: '`Where` filtre une collection en ne gardant que les éléments qui respectent la condition donnée par la lambda.'
+  },
+  {
+    id: 'ex-csharp-linq-completer-1',
+    matiere: 'slam-prog', chapitre: 'csharp-n6-linq', competence: 'csharp.linq',
+    langage: 'csharp', difficulte: 'difficile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète ces deux opérations LINQ.',
+    template: 'List<int> valeurs = new List<int> { 3, 8, 1, 9 };\nvar grandes = valeurs.{{1}}(v => v > 5);\nint total = valeurs.{{2}}();',
+    trous: [
+      { id: 1, accepte: ['Where'] },
+      { id: 2, accepte: ['Sum'] }
+    ],
+    explication: '`Where(v => v > 5)` filtre les valeurs supérieures à 5 ; `Sum()` additionne toutes les valeurs de la collection.'
+  },
+  {
+    id: 'ex-sql-fondamentaux-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-fondamentaux', competence: 'sql.fondamentaux',
+    langage: 'sql', difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Lequel de ces logiciels est un exemple de SGBDR ?',
+    options: [
+      { id: 'a', texte: 'Microsoft Word' }, { id: 'b', texte: 'PostgreSQL' },
+      { id: 'c', texte: 'Photoshop' }, { id: 'd', texte: 'Google Chrome' }
+    ],
+    correctes: ['b'],
+    explication: 'PostgreSQL est un Système de Gestion de Base de Données Relationnelle (SGBDR), comme MySQL ou SQL Server.'
+  },
+  {
+    id: 'ex-sql-fondamentaux-vf-1',
+    matiere: 'slam-bdd', chapitre: 'sql-fondamentaux', competence: 'sql.fondamentaux',
+    langage: 'sql', difficulte: 'facile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans une table, une colonne représente un enregistrement complet, et une ligne représente une seule caractéristique.',
+    correct: false,
+    explication: 'C\'est l\'inverse : une LIGNE représente un enregistrement complet (ex : un client), une COLONNE représente une seule caractéristique (ex : l\'email).'
+  },
+  {
+    id: 'ex-sql-cles-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-cles', competence: 'sql.cles',
+    langage: 'sql', difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que garantit une clé primaire ?',
+    options: [
+      { id: 'a', texte: 'Qu\'aucune valeur n\'est NULL dans la table' },
+      { id: 'b', texte: 'Que chaque ligne est identifiée de façon unique' },
+      { id: 'c', texte: 'Que la table est triée' },
+      { id: 'd', texte: 'Que les données sont chiffrées' }
+    ],
+    correctes: ['b'],
+    explication: 'Une clé primaire garantit qu\'aucune ligne ne partage la même valeur, et qu\'elle n\'est jamais NULL : elle identifie chaque ligne de façon unique.'
+  },
+  {
+    id: 'ex-sql-cles-vf-1',
+    matiere: 'slam-bdd', chapitre: 'sql-cles', competence: 'sql.cles',
+    langage: 'sql', difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une clé étrangère référence la clé primaire d\'une autre table.',
+    correct: true,
+    explication: 'C\'est exactement le rôle d\'une clé étrangère (FOREIGN KEY) : créer une relation en référençant la clé primaire d\'une autre table.'
+  },
+  {
+    id: 'ex-sql-contraintes-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-contraintes', competence: 'sql.contraintes',
+    langage: 'sql', difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que fait la contrainte UNIQUE sur une colonne ?',
+    options: [
+      { id: 'a', texte: 'Elle interdit les valeurs NULL' },
+      { id: 'b', texte: 'Elle interdit les doublons dans cette colonne' },
+      { id: 'c', texte: 'Elle trie automatiquement la colonne' },
+      { id: 'd', texte: 'Elle chiffre la colonne' }
+    ],
+    correctes: ['b'],
+    explication: 'UNIQUE interdit que deux lignes aient la même valeur dans cette colonne — mais n\'interdit pas NULL par elle-même (c\'est le rôle de NOT NULL).'
+  },
+  {
+    id: 'ex-sql-contraintes-vf-1',
+    matiere: 'slam-bdd', chapitre: 'sql-contraintes', competence: 'sql.contraintes',
+    langage: 'sql', difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'NULL et 0 représentent la même chose en SQL pour une colonne numérique.',
+    correct: false,
+    explication: 'NULL signifie "valeur absente/inconnue", ce qui est totalement différent de 0 (une vraie valeur numérique). Comparer avec = NULL ne fonctionne jamais, il faut IS NULL.'
+  },
+  {
+    id: 'ex-sql-operateurs-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-operateurs', competence: 'sql.operateurs',
+    langage: 'sql', difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que sélectionne `WHERE age BETWEEN 18 AND 25` ?',
+    options: [
+      { id: 'a', texte: 'Les âges strictement entre 18 et 25' },
+      { id: 'b', texte: 'Les âges de 18 à 25 inclus' },
+      { id: 'c', texte: 'Les âges différents de 18 et 25' },
+      { id: 'd', texte: 'Uniquement 18 et 25' }
+    ],
+    correctes: ['b'],
+    explication: 'BETWEEN inclut toujours les deux bornes : 18 et 25 font partie du résultat, pas seulement les valeurs strictement entre les deux.'
+  },
+  {
+    id: 'ex-sql-operateurs-completer-1',
+    matiere: 'slam-bdd', chapitre: 'sql-operateurs', competence: 'sql.operateurs',
+    langage: 'sql', difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette requête qui filtre par ville et par début de nom.',
+    template: 'SELECT * FROM client\nWHERE ville {{1}} (\'Lyon\', \'Paris\')\nAND nom {{2}} \'M%\';',
+    trous: [
+      { id: 1, accepte: ['IN', 'in'] },
+      { id: 2, accepte: ['LIKE', 'like'] }
+    ],
+    explication: 'IN teste l\'appartenance à une liste de valeurs ; LIKE \'M%\' teste que le nom commence par M.'
+  },
+  {
+    id: 'ex-sql-distinctlimit-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-distinctlimit', competence: 'sql.distinctlimit',
+    langage: 'sql', difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que fait `SELECT DISTINCT ville FROM client` ?',
+    options: [
+      { id: 'a', texte: 'Trie les villes' },
+      { id: 'b', texte: 'Supprime les doublons de villes dans le résultat' },
+      { id: 'c', texte: 'Compte les villes' },
+      { id: 'd', texte: 'Supprime la colonne ville' }
+    ],
+    correctes: ['b'],
+    explication: 'DISTINCT élimine les doublons du résultat : chaque ville n\'apparaît qu\'une seule fois, même si plusieurs clients y habitent.'
+  },
+  {
+    id: 'ex-sql-distinctlimit-vf-1',
+    matiere: 'slam-bdd', chapitre: 'sql-distinctlimit', competence: 'sql.distinctlimit',
+    langage: 'sql', difficulte: 'facile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Il est recommandé d\'utiliser LIMIT sans ORDER BY pour garantir un résultat toujours identique.',
+    correct: false,
+    explication: 'C\'est l\'inverse : sans ORDER BY, l\'ordre des lignes renvoyées par le SGBD n\'est pas garanti, donc LIMIT peut donner des résultats différents d\'une exécution à l\'autre.'
+  },
+  {
+    id: 'ex-sql-leftjoin-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-leftjoin', competence: 'sql.leftjoin',
+    langage: 'sql', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Avec un LEFT JOIN entre client et commande, que se passe-t-il pour un client sans aucune commande ?',
+    options: [
+      { id: 'a', texte: 'Il disparaît du résultat' },
+      { id: 'b', texte: 'Il apparaît, avec NULL dans les colonnes de commande' },
+      { id: 'c', texte: 'Une erreur est levée' },
+      { id: 'd', texte: 'Il apparaît en double' }
+    ],
+    correctes: ['b'],
+    explication: 'LEFT JOIN garde TOUTES les lignes de la table de gauche (client) : un client sans commande apparaît quand même, avec NULL dans les colonnes de la table de droite.'
+  },
+  {
+    id: 'ex-sql-leftjoin-lire-1',
+    matiere: 'slam-bdd', chapitre: 'sql-leftjoin', competence: 'sql.leftjoin',
+    langage: 'sql', difficulte: 'difficile', type: 'lire-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Table client (id, nom) : 1, Paul / 2, Emma.\nTable commande (id, client_id) : 10, 1.\nEmma (id 2) n\'a passé aucune commande.',
+    code: 'SELECT client.nom, commande.id\nFROM client\nLEFT JOIN commande ON commande.client_id = client.id;',
+    question: 'Combien de lignes ce résultat contiendra-t-il ?',
+    reponsesAcceptees: ['2', '2 lignes'],
+    explication: 'Le LEFT JOIN garde TOUS les clients, y compris Emma qui n\'a pas de commande (elle apparaît avec NULL) : 2 lignes au total, une par client.'
+  },
+  {
+    id: 'ex-sql-sousrequetes-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-sousrequetes', competence: 'sql.sousrequetes',
+    langage: 'sql', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Pourquoi utilise-t-on `IN` plutôt que `=` avec une sous-requête ?',
+    options: [
+      { id: 'a', texte: 'Parce que = est plus rapide' },
+      { id: 'b', texte: 'Parce que la sous-requête peut renvoyer plusieurs valeurs' },
+      { id: 'c', texte: 'Parce que IN est obligatoire en SQL' },
+      { id: 'd', texte: 'Il n\'y a aucune différence' }
+    ],
+    correctes: ['b'],
+    explication: '= exige une seule valeur ; si la sous-requête peut renvoyer plusieurs lignes, il faut IN pour tester l\'appartenance à cet ensemble de résultats.'
+  },
+  {
+    id: 'ex-sql-sousrequetes-lire-1',
+    matiere: 'slam-bdd', chapitre: 'sql-sousrequetes', competence: 'sql.sousrequetes',
+    langage: 'sql', difficulte: 'difficile', type: 'lire-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Table commande (id_commande, client_id, montant) :\n1, 10, 600\n2, 10, 200\n3, 20, 700',
+    code: 'SELECT client_id FROM commande WHERE montant > 500;',
+    question: 'Quels client_id ce résultat contient-il ?',
+    reponsesAcceptees: ['10 et 20', '10, 20', '20 et 10', '20, 10'],
+    explication: 'Seules les commandes de montant > 500 sont gardées : la commande 1 (600, client 10) et la commande 3 (700, client 20).'
+  },
+  {
+    id: 'ex-sql-case-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-case', competence: 'sql.case',
+    langage: 'sql', difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans une expression CASE, que se passe-t-il si aucune condition WHEN n\'est vraie et qu\'il n\'y a pas de ELSE ?',
+    options: [
+      { id: 'a', texte: 'Une erreur est levée' },
+      { id: 'b', texte: 'Le résultat vaut NULL pour cette ligne' },
+      { id: 'c', texte: 'La première valeur WHEN est utilisée par défaut' },
+      { id: 'd', texte: 'La ligne est supprimée du résultat' }
+    ],
+    correctes: ['b'],
+    explication: 'Sans ELSE, une ligne qui ne correspond à aucune condition WHEN reçoit simplement NULL comme résultat.'
+  },
+  {
+    id: 'ex-sql-case-completer-1',
+    matiere: 'slam-bdd', chapitre: 'sql-case', competence: 'sql.case',
+    langage: 'sql', difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette expression conditionnelle.',
+    template: 'SELECT nom,\n{{1}}\n    WHEN age >= 18 THEN \'Majeur\'\n    ELSE \'Mineur\'\n{{2}} AS statut\nFROM client;',
+    trous: [
+      { id: 1, accepte: ['CASE', 'case'] },
+      { id: 2, accepte: ['END', 'end'] }
+    ],
+    explication: 'CASE ouvre l\'expression conditionnelle, END la ferme obligatoirement.'
+  },
+  {
+    id: 'ex-sql-mcd-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-mcd', competence: 'sql.mcd',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans un MCD, à quoi correspond une ENTITÉ ?',
+    options: [
+      { id: 'a', texte: 'Une colonne d\'une table' },
+      { id: 'b', texte: 'Un objet ou concept du monde réel à représenter' },
+      { id: 'c', texte: 'Une ligne d\'une table' },
+      { id: 'd', texte: 'Une requête SQL' }
+    ],
+    correctes: ['b'],
+    explication: 'Une entité représente un objet ou concept du monde réel (CLIENT, COMMANDE...) dont on veut stocker des informations — une notion conceptuelle, avant toute traduction en table.'
+  },
+  {
+    id: 'ex-sql-mcd-vf-1',
+    matiere: 'slam-bdd', chapitre: 'sql-mcd', competence: 'sql.mcd',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'La cardinalité (1,N) côté CLIENT dans une association avec COMMANDE signifie qu\'un client ne peut passer qu\'une seule commande.',
+    correct: false,
+    explication: '(1,N) signifie qu\'un client passe AU MOINS une commande et PEUT EN AVOIR PLUSIEURS — pas une seule. (1,1) signifierait exactement une.'
+  },
+  {
+    id: 'ex-sql-mld-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-mld', competence: 'sql.mld',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans une association 1-N, de quel côté migre la clé primaire pour devenir clé étrangère ?',
+    options: [
+      { id: 'a', texte: 'Du côté N vers le côté 1' },
+      { id: 'b', texte: 'Du côté 1 vers le côté N' },
+      { id: 'c', texte: 'Elle ne migre jamais' },
+      { id: 'd', texte: 'Des deux côtés à la fois' }
+    ],
+    correctes: ['b'],
+    explication: 'La clé primaire du côté "1" (ex : CLIENT) migre en clé étrangère dans la table du côté "N" (ex : COMMANDE).'
+  },
+  {
+    id: 'ex-sql-mld-completer-1',
+    matiere: 'slam-bdd', chapitre: 'sql-mld', competence: 'sql.mld',
+    langage: null, difficulte: 'difficile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète ce MLD obtenu à partir du MCD CLIENT (1,N) --- passe --- (1,1) COMMANDE.',
+    template: 'CLIENT(id_client {{1}}, nom)\nCOMMANDE(id_commande PK, date_commande, id_client {{2}})',
+    trous: [
+      { id: 1, accepte: ['PK'] },
+      { id: 2, accepte: ['FK'] }
+    ],
+    explication: 'id_client est la clé primaire (PK) de CLIENT. Dans COMMANDE, id_client apparaît comme clé étrangère (FK), résultat de la migration depuis le côté "1" de l\'association.'
+  },
+  {
+    id: 'ex-sql-transactions-qcm-1',
+    matiere: 'slam-bdd', chapitre: 'sql-transactions', competence: 'sql.transactions',
+    langage: 'sql', difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que fait ROLLBACK ?',
+    options: [
+      { id: 'a', texte: 'Valide définitivement la transaction' },
+      { id: 'b', texte: 'Annule toutes les opérations de la transaction en cours' },
+      { id: 'c', texte: 'Supprime une table' },
+      { id: 'd', texte: 'Crée une nouvelle transaction' }
+    ],
+    correctes: ['b'],
+    explication: 'ROLLBACK annule toutes les opérations effectuées depuis le début de la transaction en cours, comme si elles n\'avaient jamais eu lieu.'
+  },
+  {
+    id: 'ex-sql-transactions-vf-1',
+    matiere: 'slam-bdd', chapitre: 'sql-transactions', competence: 'sql.transactions',
+    langage: 'sql', difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une transaction garantit que plusieurs opérations réussissent ensemble ou échouent toutes ensemble.',
+    correct: true,
+    explication: 'C\'est exactement le principe d\'atomicité d\'une transaction : soit toutes les opérations sont validées, soit aucune ne l\'est.'
+  },
+  {
+    id: 'ex-web-fondamentaux-qcm-1',
+    matiere: 'web', chapitre: 'web-fondamentaux', competence: 'web.fondamentaux',
+    langage: null, difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel protocole utilise le navigateur pour dialoguer avec un serveur web ?',
+    options: [
+      { id: 'a', texte: 'FTP' }, { id: 'b', texte: 'HTTP' },
+      { id: 'c', texte: 'SMTP' }, { id: 'd', texte: 'SSH' }
+    ],
+    correctes: ['b'],
+    explication: 'HTTP (ou sa version chiffrée HTTPS) est le protocole utilisé pour échanger des requêtes et réponses entre un navigateur et un serveur web.'
+  },
+  {
+    id: 'ex-web-fondamentaux-vf-1',
+    matiere: 'web', chapitre: 'web-fondamentaux', competence: 'web.fondamentaux',
+    langage: null, difficulte: 'facile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'La balise <head> contient le contenu visible d\'une page HTML.',
+    correct: false,
+    explication: 'C\'est <body> qui contient le contenu visible. <head> contient des informations sur la page (titre, liens CSS...), non affichées directement.'
+  },
+  {
+    id: 'ex-web-balisesliens-qcm-1',
+    matiere: 'web', chapitre: 'web-balisesliens', competence: 'web.balisesliens',
+    langage: null, difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel attribut permet d\'ouvrir un lien dans un nouvel onglet ?',
+    options: [
+      { id: 'a', texte: 'href="_blank"' }, { id: 'b', texte: 'target="_blank"' },
+      { id: 'c', texte: 'new="tab"' }, { id: 'd', texte: 'open="blank"' }
+    ],
+    correctes: ['b'],
+    explication: 'target="_blank" sur une balise <a> fait s\'ouvrir le lien dans un nouvel onglet plutôt que dans la page actuelle.'
+  },
+  {
+    id: 'ex-web-balisesliens-completer-1',
+    matiere: 'web', chapitre: 'web-balisesliens', competence: 'web.balisesliens',
+    langage: null, difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette liste à puces.',
+    template: '<{{1}}>\n    <li>Pomme</li>\n    <li>Banane</li>\n</{{2}}>',
+    trous: [
+      { id: 1, accepte: ['ul'] },
+      { id: 2, accepte: ['ul'] }
+    ],
+    explication: '<ul> (Unordered List) ouvre et ferme une liste à puces, contenant des éléments <li>.'
+  },
+  {
+    id: 'ex-web-formulaires-qcm-1',
+    matiere: 'web', chapitre: 'web-formulaires', competence: 'web.formulaires',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel attribut HTML rend un champ de formulaire obligatoire ?',
+    options: [
+      { id: 'a', texte: 'obligatoire' }, { id: 'b', texte: 'required' },
+      { id: 'c', texte: 'mandatory' }, { id: 'd', texte: 'needed' }
+    ],
+    correctes: ['b'],
+    explication: 'L\'attribut required empêche l\'envoi du formulaire tant que ce champ n\'est pas rempli.'
+  },
+  {
+    id: 'ex-web-formulaires-vf-1',
+    matiere: 'web', chapitre: 'web-formulaires', competence: 'web.formulaires',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'La validation HTML (required, pattern...) suffit à sécuriser un formulaire, sans besoin de vérification côté serveur.',
+    correct: false,
+    explication: 'La validation HTML s\'exécute côté navigateur et peut être contournée : une vérification côté serveur reste indispensable.'
+  },
+  {
+    id: 'ex-web-cssbases-qcm-1',
+    matiere: 'web', chapitre: 'web-cssbases', competence: 'web.cssbases',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel sélecteur cible tous les éléments ayant class="carte" ?',
+    options: [
+      { id: 'a', texte: '#carte' }, { id: 'b', texte: '.carte' },
+      { id: 'c', texte: 'carte' }, { id: 'd', texte: '*carte' }
+    ],
+    correctes: ['b'],
+    explication: 'Le point (.) précède un sélecteur de classe ; le dièse (#) précède un sélecteur d\'identifiant.'
+  },
+  {
+    id: 'ex-web-cssbases-completer-1',
+    matiere: 'web', chapitre: 'web-cssbases', competence: 'web.cssbases',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette règle CSS.',
+    template: '.carte {\n    width: 200px;\n    {{1}}: 16px;\n    box-sizing: border-{{2}};\n}',
+    trous: [
+      { id: 1, accepte: ['padding'] },
+      { id: 2, accepte: ['box'] }
+    ],
+    explication: 'padding définit l\'espace intérieur ; box-sizing: border-box; fait que width inclut le padding et la bordure.'
+  },
+  {
+    id: 'ex-web-flexbox-qcm-1',
+    matiere: 'web', chapitre: 'web-flexbox', competence: 'web.flexbox',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle propriété active Flexbox sur un conteneur ?',
+    options: [
+      { id: 'a', texte: 'flex: true;' }, { id: 'b', texte: 'display: flex;' },
+      { id: 'c', texte: 'position: flex;' }, { id: 'd', texte: 'layout: flex;' }
+    ],
+    correctes: ['b'],
+    explication: 'display: flex; transforme un conteneur en conteneur flexible : ses enfants directs deviennent des éléments flexibles.'
+  },
+  {
+    id: 'ex-web-flexbox-completer-1',
+    matiere: 'web', chapitre: 'web-flexbox', competence: 'web.flexbox',
+    langage: null, difficulte: 'difficile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette règle Flexbox.',
+    template: '.conteneur {\n    display: {{1}};\n    justify-content: {{2}}-between;\n}',
+    trous: [
+      { id: 1, accepte: ['flex'] },
+      { id: 2, accepte: ['space'] }
+    ],
+    explication: 'display: flex; active Flexbox ; justify-content: space-between; répartit l\'espace entre les éléments sur l\'axe principal.'
+  },
+  {
+    id: 'ex-web-responsive-qcm-1',
+    matiere: 'web', chapitre: 'web-responsive', competence: 'web.responsive',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que fait `@media (max-width: 600px) { ... }` ?',
+    options: [
+      { id: 'a', texte: 'Applique ces règles seulement au-delà de 600px' },
+      { id: 'b', texte: 'Applique ces règles seulement en dessous de 600px' },
+      { id: 'c', texte: 'Fixe la largeur à 600px' },
+      { id: 'd', texte: 'Ignore les écrans de moins de 600px' }
+    ],
+    correctes: ['b'],
+    explication: 'max-width: 600px signifie "jusqu\'à 600px inclus" : les règles s\'appliquent quand la largeur de la fenêtre est de 600px ou moins.'
+  },
+  {
+    id: 'ex-web-responsive-vf-1',
+    matiere: 'web', chapitre: 'web-responsive', competence: 'web.responsive',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'L\'approche mobile-first consiste à écrire d\'abord le CSS pour grand écran, puis à l\'adapter pour mobile.',
+    correct: false,
+    explication: 'C\'est l\'inverse : le mobile-first écrit d\'abord le CSS pour petit écran, puis ajoute des media queries min-width pour les écrans plus grands.'
+  },
+  {
+    id: 'ex-web-jsbases-qcm-1',
+    matiere: 'web', chapitre: 'web-jsbases', competence: 'web.jsbases',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel mot-clé utilise-t-on pour déclarer une variable dont la valeur ne doit jamais changer ?',
+    options: [
+      { id: 'a', texte: 'let' }, { id: 'b', texte: 'const' },
+      { id: 'c', texte: 'var' }, { id: 'd', texte: 'fixed' }
+    ],
+    correctes: ['b'],
+    explication: 'const déclare une constante : sa valeur ne peut plus être réaffectée après sa déclaration.'
+  },
+  {
+    id: 'ex-web-jsbases-completer-1',
+    matiere: 'web', chapitre: 'web-jsbases', competence: 'web.jsbases',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette fonction fléchée.',
+    template: '{{1}} addition = (a, b) => a {{2}} b;',
+    trous: [
+      { id: 1, accepte: ['const'] },
+      { id: 2, accepte: ['+'] }
+    ],
+    explication: 'const convient car la fonction elle-même n\'est pas censée être réaffectée ; + additionne les deux paramètres.'
+  },
+  {
+    id: 'ex-web-domevenements-qcm-1',
+    matiere: 'web', chapitre: 'web-domevenements', competence: 'web.domevenements',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que renvoie `document.querySelectorAll(\'.item\')` ?',
+    options: [
+      { id: 'a', texte: 'Le premier élément trouvé' },
+      { id: 'b', texte: 'Tous les éléments correspondants' },
+      { id: 'c', texte: 'Un seul booléen' },
+      { id: 'd', texte: 'Une erreur s\'il y a plusieurs éléments' }
+    ],
+    correctes: ['b'],
+    explication: 'querySelectorAll renvoie TOUS les éléments correspondant au sélecteur, contrairement à querySelector qui ne renvoie que le premier.'
+  },
+  {
+    id: 'ex-web-domevenements-vf-1',
+    matiere: 'web', chapitre: 'web-domevenements', competence: 'web.domevenements',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: '.textContent interprète le texte inséré comme du HTML, contrairement à .innerHTML.',
+    correct: false,
+    explication: 'C\'est l\'inverse : .innerHTML interprète le contenu comme du HTML, .textContent insère toujours du texte brut, sans interprétation.'
+  },
+  {
+    id: 'ex-web-http-qcm-1',
+    matiere: 'web', chapitre: 'web-http', competence: 'web.http',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel code HTTP indique qu\'une ressource demandée n\'existe pas ?',
+    options: [
+      { id: 'a', texte: '200' }, { id: 'b', texte: '301' },
+      { id: 'c', texte: '404' }, { id: 'd', texte: '500' }
+    ],
+    correctes: ['c'],
+    explication: '404 Not Found signifie que la ressource demandée n\'a pas été trouvée sur le serveur.'
+  },
+  {
+    id: 'ex-web-http-vf-1',
+    matiere: 'web', chapitre: 'web-http', competence: 'web.http',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'GET est la méthode HTTP recommandée pour une action qui modifie ou supprime des données.',
+    correct: false,
+    explication: 'GET doit rester sans effet de bord (juste lire) ; POST, PUT ou DELETE sont les méthodes adaptées pour créer, modifier ou supprimer des données.'
+  },
+  {
+    id: 'ex-web-fetchjson-qcm-1',
+    matiere: 'web', chapitre: 'web-fetchjson', competence: 'web.fetchjson',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que faut-il faire après `await fetch(url)` pour obtenir les données JSON utilisables ?',
+    options: [
+      { id: 'a', texte: 'Rien, c\'est déjà utilisable' },
+      { id: 'b', texte: 'await reponse.json()' },
+      { id: 'c', texte: 'JSON.stringify(reponse)' },
+      { id: 'd', texte: 'reponse.data' }
+    ],
+    correctes: ['b'],
+    explication: 'fetch() renvoie la réponse HTTP brute ; il faut ensuite await reponse.json() pour convertir son corps en objet JavaScript utilisable.'
+  },
+  {
+    id: 'ex-web-fetchjson-completer-1',
+    matiere: 'web', chapitre: 'web-fetchjson', competence: 'web.fetchjson',
+    langage: null, difficulte: 'difficile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette fonction qui récupère des données JSON.',
+    template: 'async function charger() {\n    const reponse = {{1}} fetch(\'/api/data\');\n    const data = await reponse.{{2}}();\n}',
+    trous: [
+      { id: 1, accepte: ['await'] },
+      { id: 2, accepte: ['json'] }
+    ],
+    explication: 'await attend la réponse HTTP ; .json() convertit ensuite son corps en objet JavaScript, lui aussi de façon asynchrone.'
   }
 ];
 

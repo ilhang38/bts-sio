@@ -40,7 +40,30 @@ sous-ensemble représentatif :
   réellement en vigueur pour la session 2027 (année 2026-2027) : "Le vrai
   du faux", vérifié via recherche avant rédaction (Bulletin officiel du
   1er avril 2026).
-- **103 exercices** couvrant les 8 types demandés (QCM simple/multiple,
+- **Cybersécurité** (nouvelle matière, bloc 3 du référentiel) : menaces
+  informatiques (malwares, ingénierie sociale) et sécurité des applications
+  web (injection SQL, XSS, CSRF, hachage des mots de passe).
+- **POO complète en C#** : classes/objets, héritage, polymorphisme,
+  interfaces et classes abstraites (niveau 5 désormais couvert en entier).
+- **Algorithmique** : algorithmes de recherche (séquentielle, dichotomique)
+  et de tri (bulles, sélection, insertion), rattachés au niveau 6 C#.
+- **Parcours C# étoffé** : conversions de types (Convert/Parse/TryParse),
+  break/continue, manipulation de chaînes, tableaux multidimensionnels,
+  propriétés (get/set), membres static, énumérations, lecture/écriture de
+  fichiers texte, introduction à LINQ — 25 leçons C# au total, du niveau 1
+  au niveau 7.
+- **Parcours SQL complet** (8 niveaux, du fondamental à la conception) :
+  qu'est-ce qu'une base de données, clés primaires/étrangères, contraintes
+  (NOT NULL, UNIQUE, CHECK), opérateurs BETWEEN/IN/LIKE, DISTINCT/LIMIT,
+  LEFT JOIN et jointures multiples, sous-requêtes, expression CASE, et —
+  point auparavant totalement absent — la **conception d'une base de
+  données (MCD et MLD)**, ainsi que les transactions (COMMIT/ROLLBACK).
+- **Développement Web** (nouvelle matière, bloc 2 SLAM) : un socle
+  transversal plutôt qu'une seule couche épuisée avant l'autre — structure
+  HTML et formulaires, sélecteurs/modèle de boîte/Flexbox/responsive en
+  CSS, variables/fonctions/DOM/événements en JavaScript, HTTP et Fetch/JSON
+  pour la communication client-serveur.
+- **177 exercices** couvrant les 8 types demandés (QCM simple/multiple,
   vrai/faux, réponse courte, trouver l'erreur, corriger le code, compléter le
   code, lire le code, programmation), à plusieurs niveaux de difficulté.
   Pour les matières générales, seuls QCM / vrai-faux / réponse-courte /

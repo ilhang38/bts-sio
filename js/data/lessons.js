@@ -360,7 +360,7 @@ Console.WriteLine(e1.EstAdmis());`
     id: 'sql-n1-select',
     matiere: 'slam-bdd',
     parcoursId: 'sql',
-    niveau: 1,
+    niveau: 2,
     ordre: 1,
     titre: 'La requête SELECT',
     competence: 'sql.select',
@@ -405,7 +405,7 @@ ORDER BY moyenne DESC;`
     id: 'sql-n2-jointures',
     matiere: 'slam-bdd',
     parcoursId: 'sql',
-    niveau: 2,
+    niveau: 3,
     ordre: 1,
     titre: 'Les jointures (JOIN)',
     competence: 'sql.join',
@@ -450,7 +450,7 @@ WHERE commande.montant > 100;`
     id: 'sql-n3-agregats',
     matiere: 'slam-bdd',
     parcoursId: 'sql',
-    niveau: 3,
+    niveau: 4,
     ordre: 1,
     titre: "Les fonctions d'agrégation et GROUP BY",
     competence: 'sql.groupby',
@@ -495,7 +495,7 @@ HAVING COUNT(*) > 3;`
     id: 'sql-n4-modification',
     matiere: 'slam-bdd',
     parcoursId: 'sql',
-    niveau: 4,
+    niveau: 5,
     ordre: 1,
     titre: 'INSERT, UPDATE, DELETE',
     competence: 'sql.dml',
@@ -1635,6 +1635,1869 @@ write documentation."`
     ],
     astuce: "Prépare et entraîne-toi à voix haute sur trois réponses clés avant tout entretien en anglais : \"Tell me about yourself\", \"What are your strengths?\" et \"Why this company?\" — elles couvrent une grande partie des entretiens réels.",
     exercicesIds: ['ex-anglais-oral-qcm-1', 'ex-anglais-oral-completer-1']
+  },
+
+  // ---------------------------------------------------------- C# — POO (suite)
+  {
+    id: 'csharp-n5-heritage',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 5,
+    ordre: 2,
+    titre: "L'héritage",
+    competence: 'csharp.poo.heritage',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre comment une classe peut hériter des attributs et méthodes d'une autre pour éviter la duplication de code.",
+    explication: [
+      "L'héritage permet à une classe (dite classe FILLE ou dérivée) de réutiliser les attributs et méthodes d'une autre classe (dite classe MÈRE ou de base), en y ajoutant ou modifiant seulement ce qui lui est spécifique. En C#, on utilise `:` pour indiquer l'héritage : `class Etudiant : Personne`.",
+      "La classe fille hérite automatiquement des membres publics et protégés de la classe mère. Elle peut ajouter ses propres membres, et peut redéfinir le comportement d'une méthode héritée grâce à `override` (la méthode mère doit alors être marquée `virtual`).",
+      "Le mot-clé `base` permet, depuis la classe fille, d'appeler explicitement le constructeur ou une méthode de la classe mère — utile pour initialiser les attributs hérités dans le constructeur de la classe fille.",
+      "L'héritage modélise une relation \"est un\" (is-a) : un `Etudiant` EST une `Personne`. Si la relation est plutôt \"a un\" (has-a, par exemple une Voiture A un Moteur), ce n'est pas de l'héritage mais de la composition."
+    ],
+    aRetenir: [
+      'class Fille : Mere { } — la fille hérite des membres publics/protégés de la mère',
+      'virtual sur la méthode mère, override sur la méthode fille pour la redéfinir',
+      'base(...) dans le constructeur fille pour appeler le constructeur de la mère',
+      'Héritage = relation "est un" ; si c\'est "a un", utiliser la composition à la place'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`class Personne
+{
+    protected string nom;
+
+    public Personne(string nom)
+    {
+        this.nom = nom;
+    }
+
+    public virtual void SePresenter()
+    {
+        Console.WriteLine("Je m'appelle " + nom);
+    }
+}
+
+class Etudiant : Personne
+{
+    private string classe;
+
+    public Etudiant(string nom, string classe) : base(nom)
+    {
+        this.classe = classe;
+    }
+
+    public override void SePresenter()
+    {
+        base.SePresenter();
+        Console.WriteLine("Je suis en " + classe);
+    }
+}`
+    },
+    exempleExplique: [
+      "`protected string nom;` : contrairement à `private`, `protected` reste accessible depuis les classes filles (mais toujours pas depuis l'extérieur).",
+      "`: base(nom)` appelle le constructeur de `Personne` avec la valeur `nom`, pour initialiser l'attribut hérité.",
+      "`override void SePresenter()` redéfinit la méthode : `base.SePresenter();` exécute d'abord la version de la classe mère, puis la ligne suivante ajoute le comportement propre à `Etudiant`."
+    ],
+    erreursFrequentes: [
+      "Utiliser `private` au lieu de `protected` pour un attribut que la classe fille doit pouvoir utiliser directement.",
+      "Oublier `virtual` sur la méthode mère : sans lui, `override` dans la fille provoque une erreur de compilation.",
+      "Confondre héritage (\"est un\") et composition (\"a un\") : hériter d'une classe juste parce qu'elle a une méthode utile, sans relation logique réelle, est un signe de mauvaise conception."
+    ],
+    astuce: "Pour vérifier si l'héritage est justifié, termine la phrase : \"Un/Une [classe fille] EST UN/UNE [classe mère]\". Si la phrase sonne bizarre, c'est probablement plutôt de la composition qu'il faut utiliser.",
+    exercicesIds: ['ex-csharp-heritage-qcm-1', 'ex-csharp-heritage-completer-1']
+  },
+  {
+    id: 'csharp-n5-polymorphisme',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 5,
+    ordre: 3,
+    titre: 'Le polymorphisme',
+    competence: 'csharp.poo.polymorphisme',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre comment des objets de classes différentes peuvent être manipulés de façon uniforme grâce au polymorphisme.",
+    explication: [
+      "Le polymorphisme (\"plusieurs formes\") permet de traiter des objets de classes différentes, mais liées par héritage, de manière uniforme — en appelant la même méthode, chaque objet exécute SA PROPRE version grâce à `override`.",
+      "Concrètement : si `Chat` et `Chien` héritent tous les deux d'`Animal` et redéfinissent une méthode `FaireDuBruit()`, on peut créer une liste d'`Animal` contenant des Chats et des Chiens mélangés, et appeler `FaireDuBruit()` sur chacun sans se soucier de son type exact.",
+      "C'est possible parce qu'une variable de type `Animal` peut en réalité contenir un objet `Chat` ou `Chien` (une classe fille peut toujours être utilisée là où sa classe mère est attendue). C# détermine à l'EXÉCUTION (pas à la compilation) quelle version de la méthode appeler : c'est la liaison dynamique.",
+      "Le polymorphisme évite d'écrire une longue suite de `if (animal is Chat) ... else if (animal is Chien) ...` : le code appelant reste simple, et ajouter un nouveau type d'animal ne demande pas de modifier ce code existant."
+    ],
+    aRetenir: [
+      'Polymorphisme : appeler la même méthode sur des objets de types différents, chacun exécute sa propre version',
+      'Une variable de la classe mère peut contenir un objet d\'une classe fille',
+      'La liaison dynamique décide À L\'EXÉCUTION quelle version de la méthode utiliser',
+      'Le polymorphisme évite les longues suites de if/else basées sur le type de l\'objet'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`List<Animal> animaux = new List<Animal>
+{
+    new Chat("Félix"),
+    new Chien("Rex")
+};
+
+foreach (Animal a in animaux)
+{
+    a.FaireDuBruit();
+}`
+    },
+    exempleExplique: [
+      "La liste est typée `List<Animal>`, mais contient en réalité des objets `Chat` et `Chien` : c'est autorisé car chacun EST UN `Animal` (héritage).",
+      "`a.FaireDuBruit()` appelle, pour chaque élément, la version redéfinie (`override`) correspondant à son vrai type — sans qu'on ait eu besoin de tester le type explicitement."
+    ],
+    erreursFrequentes: [
+      "Croire qu'il faut connaître le type exact de chaque objet pour appeler la bonne méthode : c'est justement ce que le polymorphisme évite.",
+      "Oublier `override` sur les méthodes filles : sans lui, c'est toujours la version de la classe mère qui s'exécute, même sur un objet fille.",
+      "Confondre polymorphisme et simple surcharge de méthode (plusieurs méthodes de même nom mais de paramètres différents dans UNE SEULE classe) : ce sont deux notions différentes."
+    ],
+    astuce: "Pour repérer un bon cas d'usage du polymorphisme dans un énoncé BTS, cherche une phrase comme \"chaque [catégorie] doit se comporter différemment\" appliquée à plusieurs sous-types d'une même famille : c'est le signal qu'il faut une méthode virtual/override, pas une suite de conditions.",
+    exercicesIds: ['ex-csharp-polymorphisme-qcm-1', 'ex-csharp-polymorphisme-lire-1']
+  },
+  {
+    id: 'csharp-n5-interfaces',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 5,
+    ordre: 4,
+    titre: 'Les interfaces et les classes abstraites',
+    competence: 'csharp.poo.interfaces',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre à quoi servent les interfaces et les classes abstraites, et quand utiliser l'une plutôt que l'autre.",
+    explication: [
+      "Une INTERFACE définit un contrat : une liste de méthodes qu'une classe s'engage à implémenter, SANS fournir leur code. En C#, une interface se déclare avec `interface` (son nom commence par convention par un `I` majuscule), et une classe l'implémente avec `:` puis doit écrire le corps de toutes ses méthodes.",
+      "Une CLASSE ABSTRAITE (mot-clé `abstract`) mélange des méthodes déjà codées (comme une classe normale) ET des méthodes abstraites (sans code, à implémenter obligatoirement par les classes filles). On ne peut JAMAIS créer directement un objet d'une classe abstraite avec `new`.",
+      "Différence clé : une classe C# ne peut hériter que d'UNE SEULE classe (abstraite ou non), mais peut implémenter PLUSIEURS interfaces à la fois.",
+      "Choisir entre les deux : classe abstraite quand des classes filles partagent du code commun à réutiliser ; interface quand on veut seulement garantir qu'une classe sait faire certaines choses, sans imposer de code partagé ni de lien d'héritage fort."
+    ],
+    aRetenir: [
+      'Interface : un contrat de méthodes SANS code, une classe peut en implémenter PLUSIEURS',
+      'Classe abstraite (abstract) : mélange de méthodes codées et abstraites, UNE SEULE possible par classe, jamais instanciable avec new',
+      'class MaClasse : InterfaceA, InterfaceB — implémente deux interfaces à la fois',
+      'Interface = garantir un comportement ; classe abstraite = partager du code commun'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`interface IStockable
+{
+    void Stocker();
+}
+
+abstract class Vehicule
+{
+    protected string marque;
+
+    public Vehicule(string marque)
+    {
+        this.marque = marque;
+    }
+
+    public abstract void Demarrer();
+}
+
+class Voiture : Vehicule, IStockable
+{
+    public Voiture(string marque) : base(marque) { }
+
+    public override void Demarrer()
+    {
+        Console.WriteLine(marque + " démarre.");
+    }
+
+    public void Stocker()
+    {
+        Console.WriteLine("Voiture stockée au garage.");
+    }
+}`
+    },
+    exempleExplique: [
+      "`Vehicule` est abstraite : elle a un constructeur normal et un attribut partagé, mais `Demarrer()` est `abstract` — chaque véhicule concret doit fournir sa propre version.",
+      "`Voiture` hérite de `Vehicule` (une seule classe possible) ET implémente `IStockable` (autant d'interfaces que nécessaire) : elle doit donc fournir le code de `Demarrer()` ET de `Stocker()`.",
+      "Impossible d'écrire `new Vehicule(\"...\")` : seule une classe concrète comme `Voiture` peut être instanciée."
+    ],
+    erreursFrequentes: [
+      "Essayer d'instancier directement une classe abstraite avec `new` : erreur de compilation systématique.",
+      "Oublier d'implémenter TOUTES les méthodes d'une interface dans la classe qui l'implémente.",
+      "Vouloir hériter de deux classes à la fois (`class A : B, C` où B et C sont des classes) : impossible en C#, seules plusieurs INTERFACES peuvent être combinées ainsi."
+    ],
+    astuce: "Question rapide pour choisir : \"est-ce que je veux partager du CODE entre plusieurs classes filles ?\" → classe abstraite. \"Est-ce que je veux juste garantir qu'une classe SAIT FAIRE quelque chose ?\" → interface.",
+    exercicesIds: ['ex-csharp-interfaces-qcm-1', 'ex-csharp-interfaces-vf-1']
+  },
+
+  // ------------------------------------------------------ C# — algorithmique
+  {
+    id: 'csharp-n6-recherche',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 6,
+    ordre: 2,
+    titre: 'Les algorithmes de recherche',
+    competence: 'csharp.algo.recherche',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître et savoir implémenter les algorithmes de recherche séquentielle et de recherche dichotomique.",
+    explication: [
+      "Chercher une valeur dans un tableau est une opération très fréquente. La RECHERCHE SÉQUENTIELLE (ou linéaire) est la méthode la plus simple : on parcourt le tableau élément par élément jusqu'à trouver la valeur (ou atteindre la fin sans la trouver). Elle fonctionne sur n'importe quel tableau, trié ou non.",
+      "La RECHERCHE DICHOTOMIQUE est beaucoup plus rapide, MAIS exige que le tableau soit DÉJÀ TRIÉ. Principe : comparer la valeur cherchée à l'élément du MILIEU du tableau. Si elle est plus petite, on répète la recherche sur la moitié gauche ; si elle est plus grande, sur la moitié droite.",
+      "Différence de performance : sur un tableau de 1000 éléments, une recherche séquentielle peut nécessiter jusqu'à 1000 comparaisons dans le pire cas, alors qu'une recherche dichotomique n'en demande qu'environ 10 (2^10 = 1024). C'est l'exemple classique pour introduire la complexité algorithmique.",
+      "En pratique : utiliser la recherche séquentielle par défaut ; passer à la dichotomique seulement si le tableau est trié ET suffisamment grand pour que le gain de performance soit utile."
+    ],
+    aRetenir: [
+      'Recherche séquentielle : parcourt tout, du début à la fin, fonctionne sur un tableau non trié',
+      'Recherche dichotomique : exige un tableau TRIÉ, compare au milieu et élimine une moitié à chaque étape',
+      'La dichotomie est beaucoup plus rapide (environ log2(n) comparaisons au lieu de n)',
+      'Sans tri préalable, la dichotomie ne fonctionne pas correctement'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`static bool RechercheSequentielle(int[] valeurs, int cible)
+{
+    for (int i = 0; i < valeurs.Length; i++)
+    {
+        if (valeurs[i] == cible)
+        {
+            return true;
+        }
+    }
+    return false;
+}`
+    },
+    exempleExplique: [
+      "On parcourt chaque case du tableau avec une boucle for classique.",
+      "Dès qu'une case correspond à la valeur cherchée, on renvoie true immédiatement — inutile de continuer à parcourir.",
+      "Si la boucle se termine sans avoir trouvé la valeur, on renvoie false : elle n'est pas dans le tableau."
+    ],
+    erreursFrequentes: [
+      "Utiliser une recherche dichotomique sur un tableau non trié : le résultat devient incorrect et imprévisible.",
+      "Mal calculer l'indice du milieu, ou mal réduire l'intervalle de recherche à chaque étape de la dichotomie.",
+      "Continuer à parcourir le tableau après avoir trouvé la valeur en recherche séquentielle : inutile, ça ralentit sans raison."
+    ],
+    astuce: "Pour la dichotomie, garde toujours deux indices `debut` et `fin` représentant la zone encore à explorer, et calcule le milieu avec `(debut + fin) / 2` : à chaque étape, tu déplaces `debut` ou `fin` pour réduire cette zone de moitié.",
+    exercicesIds: ['ex-csharp-recherche-qcm-1', 'ex-csharp-recherche-prog-1']
+  },
+  {
+    id: 'csharp-n6-tri',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 6,
+    ordre: 3,
+    titre: 'Les algorithmes de tri',
+    competence: 'csharp.algo.tri',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le principe des algorithmes de tri classiques : tri à bulles, tri par sélection, tri par insertion.",
+    explication: [
+      "Trier un tableau signifie réorganiser ses éléments dans un ordre précis (croissant ou décroissant). Il existe plusieurs algorithmes classiques, essentiels pour comprendre les bases de l'algorithmique.",
+      "Le TRI À BULLES compare chaque paire d'éléments voisins, et les échange s'ils sont dans le mauvais ordre. On répète ce parcours plusieurs fois : à chaque passage, le plus grand élément restant \"remonte\" progressivement, comme une bulle.",
+      "Le TRI PAR SÉLECTION cherche le plus petit élément du tableau et l'échange avec le premier ; puis cherche le plus petit élément RESTANT et l'échange avec le deuxième ; et ainsi de suite. On ne fait qu'un seul échange par passage.",
+      "Le TRI PAR INSERTION construit le tableau trié petit à petit : on prend chaque élément un par un, et on l'insère à sa bonne place parmi les éléments déjà triés qui le précèdent — comme trier des cartes à jouer dans sa main."
+    ],
+    aRetenir: [
+      'Tri à bulles : compare et échange les voisins, répété plusieurs fois',
+      'Tri par sélection : cherche le minimum restant, un seul échange par passage',
+      'Tri par insertion : insère chaque élément à sa place parmi ceux déjà triés',
+      'Ces trois algorithmes ont la même complexité dans le pire cas, mais des comportements différents en pratique'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`static void TriParSelection(int[] valeurs)
+{
+    for (int i = 0; i < valeurs.Length - 1; i++)
+    {
+        int indexMin = i;
+        for (int j = i + 1; j < valeurs.Length; j++)
+        {
+            if (valeurs[j] < valeurs[indexMin])
+            {
+                indexMin = j;
+            }
+        }
+        int temp = valeurs[i];
+        valeurs[i] = valeurs[indexMin];
+        valeurs[indexMin] = temp;
+    }
+}`
+    },
+    exempleExplique: [
+      "La boucle extérieure (i) avance la position à remplir, une par une, de gauche à droite.",
+      "La boucle intérieure (j) cherche l'indice du plus petit élément parmi ceux qui restent à trier.",
+      "Une fois ce minimum trouvé (indexMin), on l'échange avec la position i grâce à une variable temporaire temp — technique classique pour échanger deux valeurs sans en perdre une."
+    ],
+    erreursFrequentes: [
+      "Oublier la variable temporaire lors d'un échange de deux valeurs : ça écrase la première valeur avant de l'avoir sauvegardée.",
+      "Confondre les trois algorithmes : le tri à bulles échange des VOISINS, le tri par sélection cherche un MINIMUM avant d'échanger, le tri par insertion DÉPLACE un élément vers sa place.",
+      "Se tromper dans les bornes des boucles imbriquées, provoquant un tri incomplet ou une erreur d'indice hors limites."
+    ],
+    astuce: "Pour retenir la différence : à bulles → les grosses valeurs \"flottent\" progressivement vers la fin ; par sélection → on \"sélectionne\" le meilleur candidat avant de l'échanger ; par insertion → on \"insère\" chaque nouvel élément à la bonne place, comme des cartes à jouer.",
+    exercicesIds: ['ex-csharp-tri-qcm-1', 'ex-csharp-tri-lire-1']
+  },
+
+  // ------------------------------------------------------------ Cybersécurité
+  {
+    id: 'cyber-menaces',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 1,
+    ordre: 1,
+    titre: 'Les menaces informatiques',
+    competence: 'cyber.menaces',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les principales menaces informatiques et savoir les distinguer.",
+    explication: [
+      "Une menace informatique est tout ce qui peut compromettre la confidentialité, l'intégrité ou la disponibilité d'un système ou de données. On distingue plusieurs grandes familles de menaces, qu'il est important de savoir nommer précisément.",
+      "Les LOGICIELS MALVEILLANTS (malwares) regroupent plusieurs types : un VIRUS s'attache à un programme et se propage quand celui-ci est exécuté ; un CHEVAL DE TROIE (trojan) se fait passer pour un programme légitime mais cache une action malveillante ; un RANÇONGICIEL (ransomware) chiffre les données de la victime et exige une rançon pour les débloquer.",
+      "L'INGÉNIERIE SOCIALE ne repose pas sur une faille technique mais sur la manipulation psychologique d'une personne. Le PHISHING (hameçonnage) en est la forme la plus courante : un message imite une source de confiance pour pousser la victime à cliquer un lien piégé ou fournir ses identifiants.",
+      "D'autres attaques ciblent directement un système : une ATTAQUE PAR FORCE BRUTE essaie un très grand nombre de combinaisons pour deviner un mot de passe ; une ATTAQUE PAR DÉNI DE SERVICE (DoS/DDoS) sature un service de requêtes pour le rendre indisponible."
+    ],
+    aRetenir: [
+      'Malware : virus (s\'attache à un programme), trojan (se fait passer pour légitime), ransomware (chiffre et rançonne)',
+      'Ingénierie sociale : manipulation psychologique, pas une faille technique — le phishing en est la forme la plus fréquente',
+      'Force brute : deviner un mot de passe par essais massifs',
+      'Déni de service (DoS/DDoS) : saturer un service pour le rendre indisponible'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Un salarié reçoit un email visuellement identique à ceux de sa
+banque, l'invitant à "vérifier son compte" via un lien.
+
+Le lien mène à une fausse page qui ressemble au site de la
+banque, où le salarié saisit ses identifiants... qui sont
+alors directement récupérés par l'attaquant.`
+    },
+    exempleExplique: [
+      "C'est une attaque de PHISHING typique : elle n'exploite aucune faille technique du système de la banque, mais la confiance et l'inattention de la victime.",
+      "La ressemblance visuelle avec le vrai site est l'élément clé qui trompe la vigilance — d'où l'importance de toujours vérifier l'adresse exacte d'un site avant de saisir des identifiants."
+    ],
+    erreursFrequentes: [
+      "Confondre virus et ver informatique (un ver se propage tout seul sur un réseau, sans avoir besoin de s'attacher à un programme existant).",
+      "Penser que le phishing nécessite une faille technique : la meilleure protection est la vigilance, pas seulement un antivirus.",
+      "Confondre DoS (une seule source d'attaque) et DDoS (Distributed, de nombreuses sources coordonnées)."
+    ],
+    astuce: "Pour classer une menace rapidement, demande-toi : \"est-ce que ça exploite une faille technique, ou est-ce que ça manipule une personne ?\" Les deux catégories demandent des protections très différentes.",
+    exercicesIds: ['ex-cyber-menaces-qcm-1', 'ex-cyber-menaces-vf-1']
+  },
+  {
+    id: 'cyber-securite-web',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 3,
+    ordre: 1,
+    titre: 'Sécuriser une application web',
+    competence: 'cyber.securite-web',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les failles de sécurité web les plus courantes et les bonnes pratiques pour s'en protéger.",
+    explication: [
+      "L'INJECTION SQL (déjà vue avec la connexion aux bases de données depuis C#) consiste à insérer du code SQL malveillant dans une donnée saisie par l'utilisateur. La protection : toujours des requêtes paramétrées, jamais de concaténation directe.",
+      "Le XSS (Cross-Site Scripting) consiste à injecter du code JavaScript malveillant dans une page web, qui s'exécutera dans le navigateur d'autres utilisateurs — par exemple via un commentaire non filtré. La protection principale est d'ÉCHAPPER toute donnée provenant d'un utilisateur avant de l'afficher.",
+      "Le CSRF (Cross-Site Request Forgery) piège un utilisateur déjà connecté à un site pour lui faire exécuter, à son insu, une action non voulue, en profitant de sa session active.",
+      "Concernant les mots de passe : ils ne doivent JAMAIS être stockés en clair dans une base de données, mais toujours après HACHAGE (une fonction à sens unique impossible à inverser). Ainsi, même en cas de vol de la base, les mots de passe réels restent protégés."
+    ],
+    aRetenir: [
+      'Injection SQL : se protéger avec des requêtes paramétrées, jamais de concaténation',
+      'XSS : injecter du code malveillant dans une page — se protéger en échappant les données affichées',
+      'CSRF : détourner une session active pour faire agir l\'utilisateur à son insu',
+      'Mots de passe : toujours stockés hachés, jamais en clair, dans une base de données'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Un site affiche les commentaires des visiteurs sans les
+filtrer. Un attaquant poste comme commentaire du code
+JavaScript malveillant.
+
+Chaque visiteur qui affiche ce commentaire exécute ce script
+à son insu, qui peut envoyer ses informations de session à
+l'attaquant.`
+    },
+    exempleExplique: [
+      "C'est une attaque XSS : le code malveillant est stocké sur le site lui-même (dans le commentaire) et s'exécute chez CHAQUE visiteur qui consulte la page, pas seulement chez une victime unique.",
+      "La faille vient de l'absence de filtrage : le site aurait dû échapper les caractères spéciaux du commentaire avant de l'afficher, ce qui aurait empêché le navigateur d'interpréter ce texte comme du vrai code."
+    ],
+    erreursFrequentes: [
+      "Croire qu'un antivirus protège contre les failles applicatives comme le XSS ou l'injection SQL : ce sont des erreurs de conception du site, pas des virus à détecter.",
+      "Stocker un mot de passe avec un hachage \"maison\" trop simple : il existe des méthodes de hachage spécialisées et robustes pour les mots de passe, à ne jamais réinventer soi-même.",
+      "Confondre XSS (exécuter du code dans le NAVIGATEUR d'une victime) et injection SQL (exécuter du code dans la BASE DE DONNÉES du serveur) : deux cibles différentes."
+    ],
+    astuce: "Retiens ce principe valable pour presque toutes ces failles : NE JAMAIS FAIRE CONFIANCE À UNE DONNÉE VENANT DE L'UTILISATEUR. Avant de l'insérer dans une requête SQL ou avant de l'afficher dans une page, il faut toujours la valider et/ou l'échapper.",
+    exercicesIds: ['ex-cyber-web-qcm-1', 'ex-cyber-web-vf-1']
+  },
+
+  // -------------------------------------------------------- C# — conversions
+  {
+    id: 'csharp-n1-conversion',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 1,
+    ordre: 3,
+    titre: 'Les conversions de types',
+    competence: 'csharp.conversion',
+    difficulte: 'facile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir convertir une valeur d'un type vers un autre, notamment lire un nombre saisi au clavier.",
+    explication: [
+      "C# est un langage fortement typé. Une CONVERSION IMPLICITE se fait automatiquement quand elle ne perd aucune information, par exemple `int` vers `double` (`double d = 5;` fonctionne directement).",
+      "Une CONVERSION EXPLICITE (ou CAST) est nécessaire quand on risque de perdre de l'information, par exemple `double` vers `int` : `int i = (int)3.9;` (le résultat est 3, la partie décimale est tronquée, pas arrondie).",
+      "Pour convertir un texte (comme une saisie utilisateur avec `Console.ReadLine()`, qui renvoie toujours une `string`) vers un nombre, on utilise `Convert.ToInt32(texte)`, `Convert.ToDouble(texte)`, etc. Si le texte n'est pas un nombre valide, ça déclenche une exception.",
+      "`int.TryParse(texte, out int resultat)` est une alternative plus sûre : elle renvoie `true`/`false` selon que la conversion a réussi, sans jamais planter le programme."
+    ],
+    aRetenir: [
+      'Conversion implicite : automatique, sans perte possible (int → double)',
+      'Conversion explicite (cast) : (type)valeur, risque de perte (double → int tronque la décimale)',
+      'Convert.ToInt32/ToDouble(texte) : convertit un texte en nombre, plante si le texte n\'est pas valide',
+      'int.TryParse(texte, out resultat) : conversion sûre, renvoie true/false sans jamais planter'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`Console.WriteLine("Entrez votre âge :");
+string saisie = Console.ReadLine();
+
+if (int.TryParse(saisie, out int age))
+{
+    Console.WriteLine("Dans 10 ans, vous aurez " + (age + 10) + " ans.");
+}
+else
+{
+    Console.WriteLine("Ce n'est pas un nombre valide.");
+}`
+    },
+    exempleExplique: [
+      "`Console.ReadLine()` renvoie toujours une `string`, même si l'utilisateur tape un nombre : il faut la convertir avant de calculer avec.",
+      "`int.TryParse(saisie, out int age)` tente la conversion : si elle réussit, `age` contient la valeur et la condition est vraie ; sinon, `age` vaut 0 par défaut et la condition est fausse, sans exception levée.",
+      "C'est plus sûr que `Convert.ToInt32(saisie)`, qui aurait fait planter le programme si l'utilisateur avait tapé autre chose qu'un nombre."
+    ],
+    erreursFrequentes: [
+      "Oublier qu'une saisie de Console.ReadLine() est toujours une string, et essayer de faire un calcul directement dessus.",
+      "Utiliser Convert.ToInt32 sans jamais vérifier que la saisie est valide, ce qui plante le programme au moindre mauvais caractère.",
+      "Confondre cast (int) (pour convertir un type déjà numérique) et Convert/Parse (pour convertir depuis du texte) : ce ne sont pas interchangeables."
+    ],
+    astuce: "Dès qu'une valeur vient d'une saisie utilisateur (donc potentiellement invalide), réflexe à avoir : TryParse plutôt que Convert, pour garder le contrôle si l'utilisateur se trompe.",
+    exercicesIds: ['ex-csharp-conversion-qcm-1', 'ex-csharp-conversion-completer-1']
+  },
+
+  // -------------------------------------------------- C# — break / continue
+  {
+    id: 'csharp-n2-breakcontinue',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 2,
+    ordre: 3,
+    titre: 'break et continue',
+    competence: 'csharp.breakcontinue',
+    difficulte: 'facile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir utiliser break pour arrêter une boucle et continue pour passer directement à l\'itération suivante.',
+    explication: [
+      "`break` arrête IMMÉDIATEMENT une boucle (for, while, foreach...), quelle que soit sa condition : l'exécution reprend juste après la boucle.",
+      "`continue` ne stoppe pas toute la boucle, mais passe directement à l'ITÉRATION SUIVANTE, en sautant le reste des instructions du tour actuel.",
+      "Ces deux mots-clés ne fonctionnent qu'à l'intérieur d'une boucle. Dans une boucle imbriquée, break/continue n'agissent que sur la boucle la PLUS PROCHE (la boucle intérieure), pas sur les deux à la fois.",
+      "Utilisés à bon escient, ils rendent le code plus lisible qu'une accumulation de conditions imbriquées — mais un abus peut aussi rendre le déroulement d'une boucle plus difficile à suivre."
+    ],
+    aRetenir: [
+      'break : arrête complètement la boucle, l\'exécution continue après elle',
+      'continue : saute directement à l\'itération suivante, sans arrêter la boucle',
+      'Dans une boucle imbriquée, break/continue n\'affectent que la boucle la plus proche',
+      'Utile pour simplifier le code, mais à ne pas abuser au risque de nuire à la lisibilité'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`for (int i = 1; i <= 10; i++)
+{
+    if (i == 7)
+    {
+        break;
+    }
+    if (i % 2 == 0)
+    {
+        continue;
+    }
+    Console.WriteLine(i);
+}`
+    },
+    exempleExplique: [
+      "Pour i de 1 à 6 : si i est pair, continue saute l'affichage pour ce tour ; sinon, i est affiché. On voit donc s'afficher 1, 3, 5.",
+      "Quand i atteint 7, break arrête complètement la boucle avant même de tester la parité : les valeurs 7 à 10 ne sont jamais atteintes."
+    ],
+    erreursFrequentes: [
+      "Confondre break et continue : break arrête TOUT, continue saute seulement le tour actuel.",
+      "Croire que break dans une boucle intérieure arrête aussi la boucle extérieure : il n'arrête que la boucle où il se trouve.",
+      "Utiliser continue/break en dehors de toute boucle : erreur de compilation."
+    ],
+    astuce: "Pense à break comme une sortie de secours (\"je quitte tout de suite\") et à continue comme un \"passe ton tour\" (on reste dans la boucle, juste ce tour-ci ne compte pas).",
+    exercicesIds: ['ex-csharp-breakcontinue-qcm-1', 'ex-csharp-breakcontinue-lire-1']
+  },
+
+  // ------------------------------------------------------------ C# — strings
+  {
+    id: 'csharp-n2-strings',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 2,
+    ordre: 4,
+    titre: 'Manipuler les chaînes de caractères',
+    competence: 'csharp.strings',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Connaître les méthodes les plus utiles pour manipuler des chaînes de caractères en C#.',
+    explication: [
+      "Un string est une suite de caractères. On peut le CONCATÉNER avec `+`, ou utiliser l'INTERPOLATION, plus lisible : `$\"Bonjour {prenom}, tu as {age} ans\"` insère directement les variables dans le texte.",
+      "Quelques méthodes essentielles : `.Length` (nombre de caractères), `.ToUpper()`/`.ToLower()`, `.Contains(texte)`, `.StartsWith(texte)`/`.EndsWith(texte)`.",
+      "`.Substring(debut, longueur)` extrait une partie du texte (le premier caractère est à l'indice 0). `.Replace(ancien, nouveau)` remplace toutes les occurrences. `.Split(separateur)` découpe le texte en un TABLEAU de morceaux.",
+      "IMPORTANT : un string en C# est IMMUABLE — aucune méthode ne modifie le texte original, elles renvoient toujours un NOUVEAU string. Il faut donc récupérer le résultat : `texte = texte.ToUpper();`."
+    ],
+    aRetenir: [
+      'Concaténation : + ou interpolation $"...{variable}..."',
+      '.Length (propriété), .ToUpper()/.ToLower(), .Contains(), .StartsWith()/.EndsWith()',
+      '.Substring(debut, longueur), .Replace(ancien, nouveau), .Split(separateur) (renvoie un tableau)',
+      'Un string est IMMUABLE : chaque méthode renvoie un NOUVEAU string, il faut le récupérer dans une variable'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`string email = "eleve@exemple.fr";
+string[] parties = email.Split('@');
+string utilisateur = parties[0];
+
+Console.WriteLine($"Nom d'utilisateur : {utilisateur}");
+Console.WriteLine("En majuscules : " + utilisateur.ToUpper());`
+    },
+    exempleExplique: [
+      "`email.Split('@')` découpe la chaîne à chaque @ et renvoie un tableau de deux morceaux.",
+      "`parties[0]` récupère le premier morceau du tableau.",
+      "L'interpolation $\"...{utilisateur}...\" insère directement la valeur de la variable dans le texte affiché."
+    ],
+    erreursFrequentes: [
+      "Appeler une méthode comme .ToUpper() sans récupérer son résultat, en pensant que ça modifie la variable d'origine.",
+      "Se tromper dans l'indice de .Substring() : le premier caractère est à l'indice 0, pas 1.",
+      "Oublier que .Split() renvoie un TABLEAU, pas un simple texte."
+    ],
+    astuce: "Pour retenir que les strings sont immuables, pense à une chaîne de caractères comme une photo imprimée : les méthodes comme .ToUpper() ne modifient pas la photo originale, elles t'en donnent une NOUVELLE.",
+    exercicesIds: ['ex-csharp-strings-qcm-1', 'ex-csharp-strings-completer-1']
+  },
+
+  // -------------------------------------------------- C# — tableaux 2D
+  {
+    id: 'csharp-n4-tableaux2d',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 4,
+    ordre: 4,
+    titre: 'Les tableaux multidimensionnels',
+    competence: 'csharp.tableaux2d',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir déclarer et parcourir un tableau à deux dimensions (lignes et colonnes).',
+    explication: [
+      "Un tableau 2D organise les valeurs en LIGNES et COLONNES, comme une grille. En C#, on le déclare avec deux crochets : `int[,] grille = new int[3, 4];` crée une grille de 3 lignes et 4 colonnes.",
+      "On accède à une case avec DEUX indices séparés par une virgule : `grille[1, 2]` désigne la ligne d'indice 1, colonne d'indice 2 (indices à partir de 0).",
+      "On peut initialiser directement : `int[,] grille = { {1, 2}, {3, 4} };`. Pour connaître les dimensions, on utilise `.GetLength(0)` (lignes) et `.GetLength(1)` (colonnes) — PAS `.Length`, qui donnerait le nombre TOTAL de cases.",
+      "Pour parcourir un tableau 2D, on utilise DEUX boucles for imbriquées : la boucle extérieure parcourt les lignes, l'intérieure parcourt les colonnes de la ligne courante."
+    ],
+    aRetenir: [
+      'int[,] nom = new int[nbLignes, nbColonnes]; — deux crochets, une seule paire',
+      'Accès à une case : nom[ligne, colonne], indices à partir de 0',
+      '.GetLength(0) = nombre de lignes, .GetLength(1) = nombre de colonnes (pas .Length)',
+      'Parcours : deux boucles for imbriquées (lignes puis colonnes)'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`int[,] notes = { { 12, 15 }, { 8, 17 }, { 10, 10 } };
+
+for (int ligne = 0; ligne < notes.GetLength(0); ligne++)
+{
+    for (int colonne = 0; colonne < notes.GetLength(1); colonne++)
+    {
+        Console.Write(notes[ligne, colonne] + " ");
+    }
+    Console.WriteLine();
+}`
+    },
+    exempleExplique: [
+      "`notes` a 3 lignes et 2 colonnes (par exemple 3 étudiants, 2 notes chacun).",
+      "La boucle extérieure (ligne) va de 0 à 2 ; pour chaque ligne, la boucle intérieure (colonne) va de 0 à 1.",
+      "Console.WriteLine(); sans argument sert juste à revenir à la ligne pour afficher chaque ligne de la grille séparément."
+    ],
+    erreursFrequentes: [
+      "Utiliser .Length en pensant obtenir le nombre de lignes ou de colonnes : sur un tableau 2D, .Length renvoie le nombre TOTAL de cases.",
+      "Confondre l'ORDRE des indices : notes[ligne, colonne], pas l'inverse.",
+      "Confondre int[,] (tableau 2D) et int[][] (tableau de tableaux, une autre notion) : la syntaxe et le fonctionnement diffèrent."
+    ],
+    astuce: "Visualise toujours un tableau 2D comme un tableau Excel : le premier indice choisit la LIGNE, le second choisit la COLONNE — dans cet ordre, toujours.",
+    exercicesIds: ['ex-csharp-tableaux2d-qcm-1', 'ex-csharp-tableaux2d-lire-1']
+  },
+
+  // ------------------------------------------------------- C# — propriétés
+  {
+    id: 'csharp-n5-proprietes',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 5,
+    ordre: 5,
+    titre: 'Les propriétés (get, set)',
+    competence: 'csharp.proprietes',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Comprendre à quoi servent les propriétés et savoir utiliser les propriétés automatiques.',
+    explication: [
+      "Une PROPRIÉTÉ ressemble à un attribut de l'extérieur (`etudiant.Age`, sans parenthèses), mais fonctionne comme une méthode en coulisse : elle permet de contrôler la lecture (get) et l'écriture (set) d'une valeur.",
+      "Syntaxe classique : `public int Age { get { return age; } set { age = value; } }`, où `age` est un attribut privé caché, et `value` représente la valeur qu'on essaie d'affecter dans le set.",
+      "Une PROPRIÉTÉ AUTOMATIQUE simplifie l'écriture quand il n'y a pas de contrôle particulier : `public int Age { get; set; }` — C# crée lui-même l'attribut privé associé.",
+      "On peut restreindre l'accès : `public int Age { get; private set; }` permet de LIRE depuis l'extérieur, mais de n'ÉCRIRE que depuis l'intérieur de la classe."
+    ],
+    aRetenir: [
+      'Propriété : s\'utilise comme un attribut (sans parenthèses), fonctionne comme une méthode avec get/set',
+      'value : mot-clé représentant la valeur qu\'on essaie d\'affecter, utilisé dans le set',
+      'Propriété automatique : { get; set; } — C# gère l\'attribut caché tout seul',
+      '{ get; private set; } : lisible de partout, modifiable seulement depuis l\'intérieur de la classe'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`class CompteBancaire
+{
+    private double solde;
+
+    public double Solde
+    {
+        get { return solde; }
+        set
+        {
+            if (value >= 0)
+            {
+                solde = value;
+            }
+        }
+    }
+}
+
+CompteBancaire compte = new CompteBancaire();
+compte.Solde = 100;
+Console.WriteLine(compte.Solde);`
+    },
+    exempleExplique: [
+      "`compte.Solde = 100;` déclenche en réalité le bloc set : value vaut 100, et comme 100 >= 0, solde est mis à jour.",
+      "Si on avait écrit compte.Solde = -50;, la condition value >= 0 aurait été fausse, et solde ne serait PAS modifié.",
+      "compte.Solde (en lecture) déclenche le bloc get, qui renvoie simplement la valeur actuelle de solde."
+    ],
+    erreursFrequentes: [
+      "Rendre l'attribut ET la propriété publics tous les deux avec le même rôle : l'attribut privé caché doit rester private.",
+      "Oublier le mot-clé value dans le set, ou essayer de lui donner un autre nom.",
+      "Utiliser une propriété automatique { get; set; } alors qu'on a justement besoin d'un contrôle particulier."
+    ],
+    astuce: "Si tu n'as aucune vérification à faire, utilise une propriété automatique { get; set; }. Dès qu'une règle doit être respectée, reviens à la syntaxe complète avec value.",
+    exercicesIds: ['ex-csharp-proprietes-qcm-1', 'ex-csharp-proprietes-completer-1']
+  },
+
+  // ----------------------------------------------------------- C# — static
+  {
+    id: 'csharp-n5-static',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 5,
+    ordre: 6,
+    titre: 'Les membres static',
+    competence: 'csharp.static',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Comprendre la différence entre un membre d\'instance et un membre static, partagé par toute la classe.',
+    explication: [
+      "Par défaut, chaque objet a SA PROPRE copie des attributs. Un membre marqué `static` appartient à LA CLASSE ELLE-MÊME, et est PARTAGÉ par tous les objets — il n'existe qu'une seule copie.",
+      "On accède à un membre static via le NOM DE LA CLASSE, jamais via un objet : `Math.Sqrt(16)`, pas `unObjet.Sqrt(16)`. La méthode Main() elle-même est toujours static.",
+      "Un attribut static est utile pour partager une information commune à tous les objets — par exemple, un compteur du nombre total d'objets créés.",
+      "Une méthode static ne peut PAS accéder directement aux attributs d'instance (non-static) de la classe, car elle ne \"connaît\" aucun objet précis."
+    ],
+    aRetenir: [
+      'static appartient à la CLASSE, pas à un objet précis : une seule copie, partagée par tous',
+      'On accède à un membre static via le nom de la classe (NomClasse.Membre), pas via un objet',
+      'Utile pour une donnée commune à tous les objets (ex : un compteur d\'instances créées)',
+      'Une méthode static ne peut pas utiliser directement les attributs d\'instance (non-static) de la classe'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`class Etudiant
+{
+    private static int nombreEtudiants = 0;
+    private string nom;
+
+    public Etudiant(string nom)
+    {
+        this.nom = nom;
+        nombreEtudiants++;
+    }
+
+    public static int GetNombreEtudiants()
+    {
+        return nombreEtudiants;
+    }
+}
+
+new Etudiant("Ilhan");
+new Etudiant("Sami");
+Console.WriteLine(Etudiant.GetNombreEtudiants());`
+    },
+    exempleExplique: [
+      "nombreEtudiants est static : il n'existe qu'UNE seule copie, partagée par tous les objets Etudiant, contrairement à nom qui est propre à chaque étudiant.",
+      "Chaque appel au constructeur incrémente ce compteur partagé : après deux créations, il vaut 2.",
+      "Etudiant.GetNombreEtudiants() s'appelle directement sur la CLASSE. Le résultat affiché est 2."
+    ],
+    erreursFrequentes: [
+      "Essayer d'appeler une méthode static sur un objet plutôt que sur le nom de la classe.",
+      "Essayer d'utiliser un attribut d'instance (non-static) directement dans une méthode static : erreur de compilation.",
+      "Rendre static un attribut qui devrait pourtant être propre à chaque objet : toutes les instances partageraient alors la même valeur."
+    ],
+    astuce: "Pose-toi la question : \"cette donnée appartient-elle à UN objet précis, ou à TOUS les objets en général ?\" Dans le premier cas, attribut normal ; dans le second, static.",
+    exercicesIds: ['ex-csharp-static-qcm-1', 'ex-csharp-static-vf-1']
+  },
+
+  // ------------------------------------------------------------- C# — enum
+  {
+    id: 'csharp-n5-enum',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 5,
+    ordre: 7,
+    titre: 'Les énumérations (enum)',
+    competence: 'csharp.enum',
+    difficulte: 'facile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir créer et utiliser une énumération pour représenter un ensemble fixe de valeurs possibles.',
+    explication: [
+      "Une ÉNUMÉRATION (enum) définit un ensemble FIXE et NOMMÉ de valeurs possibles — par exemple les jours de la semaine, ou le statut d'une commande. Ça évite d'utiliser des nombres ou textes \"magiques\" au sens peu clair.",
+      "Déclaration : `enum Statut { EnAttente, EnCours, Livree, Annulee }`. Utilisation : `Statut maCommande = Statut.EnCours;`.",
+      "En coulisse, chaque valeur correspond à un entier (EnAttente = 0, EnCours = 1, etc. par défaut, dans l'ordre de déclaration), mais dans le code on manipule le NOM, plus lisible.",
+      "Un enum est très utile avec un switch, pour traiter chaque cas possible de façon claire : `switch (statut) { case Statut.EnCours: ... break; ... }`."
+    ],
+    aRetenir: [
+      'enum NomEnum { Valeur1, Valeur2, ... } : un ensemble fixe de valeurs nommées',
+      'Utilisation : NomEnum.Valeur1 (toujours préfixé par le nom de l\'énumération)',
+      'En coulisse, chaque valeur correspond à un entier (0, 1, 2... par défaut)',
+      'Évite les nombres/textes "magiques" au sens peu clair dans le code'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`enum Statut { EnAttente, EnCours, Livree, Annulee }
+
+Statut maCommande = Statut.EnCours;
+
+if (maCommande == Statut.Livree)
+{
+    Console.WriteLine("Commande livrée !");
+}
+else
+{
+    Console.WriteLine("Pas encore livrée.");
+}`
+    },
+    exempleExplique: [
+      "Statut maCommande = Statut.EnCours; est beaucoup plus clair que int maCommande = 1;, où l'on devrait se souvenir que 1 signifie \"en cours\".",
+      "La comparaison maCommande == Statut.Livree se lit presque comme une phrase en français."
+    ],
+    erreursFrequentes: [
+      "Utiliser directement des nombres à la place d'un enum : ça rend le code beaucoup moins lisible.",
+      "Oublier de préfixer la valeur par le nom de l'enum (écrire juste EnCours au lieu de Statut.EnCours).",
+      "Traiter un enum comme une simple chaîne de caractères : ce sont des valeurs typées, pas du texte libre."
+    ],
+    astuce: "Dès qu'une donnée ne peut prendre qu'un nombre limité et connu à l'avance de valeurs possibles, pense réflexe à un enum plutôt qu'à un int ou un string.",
+    exercicesIds: ['ex-csharp-enum-qcm-1', 'ex-csharp-enum-completer-1']
+  },
+
+  // --------------------------------------------------------- C# — fichiers
+  {
+    id: 'csharp-n6-fichiers',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 6,
+    ordre: 4,
+    titre: 'Lire et écrire des fichiers texte',
+    competence: 'csharp.fichiers',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir lire et écrire dans un fichier texte depuis un programme C#.',
+    explication: [
+      "La classe statique File (dans System.IO) fournit des méthodes simples pour manipuler des fichiers texte. File.WriteAllText(chemin, contenu) écrit un texte dans un fichier (en écrasant tout contenu existant), et File.ReadAllText(chemin) lit tout le contenu et le renvoie en string.",
+      "Pour AJOUTER du texte à la fin d'un fichier existant sans l'effacer, on utilise File.AppendAllText(chemin, texte) plutôt que WriteAllText.",
+      "Pour travailler ligne par ligne, File.ReadAllLines(chemin) renvoie un TABLEAU de chaînes, une par ligne du fichier — pratique à combiner avec un foreach.",
+      "Ces opérations peuvent échouer (fichier introuvable, droits insuffisants...) : il est recommandé de les entourer d'un try/catch."
+    ],
+    aRetenir: [
+      'File.WriteAllText(chemin, texte) : écrit (et écrase le contenu existant)',
+      'File.AppendAllText(chemin, texte) : ajoute à la fin sans écraser',
+      'File.ReadAllText(chemin) : lit tout le fichier en une seule chaîne',
+      'File.ReadAllLines(chemin) : lit le fichier et renvoie un tableau, une case par ligne'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`string chemin = "notes.txt";
+
+File.WriteAllText(chemin, "Ilhan;15\\n");
+File.AppendAllText(chemin, "Sami;12\\n");
+
+string[] lignes = File.ReadAllLines(chemin);
+foreach (string ligne in lignes)
+{
+    Console.WriteLine(ligne);
+}`
+    },
+    exempleExplique: [
+      "WriteAllText crée le fichier notes.txt (ou écrase son contenu) avec la première ligne.",
+      "AppendAllText ajoute la deuxième ligne SANS effacer la première.",
+      "ReadAllLines relit le fichier et renvoie un tableau de 2 éléments, affiché ensuite avec foreach."
+    ],
+    erreursFrequentes: [
+      "Utiliser WriteAllText en pensant ajouter du texte : elle ÉCRASE systématiquement le contenu existant.",
+      "Oublier d'entourer les opérations sur fichiers d'un try/catch.",
+      "Confondre ReadAllText (une seule grande chaîne) et ReadAllLines (un tableau, une ligne par case)."
+    ],
+    astuce: "Retiens le sens des mots : Write EFFACE et réécrit tout, Append AJOUTE à la suite.",
+    exercicesIds: ['ex-csharp-fichiers-qcm-1', 'ex-csharp-fichiers-vf-1']
+  },
+
+  // -------------------------------------------------------------- C# — LINQ
+  {
+    id: 'csharp-n6-linq',
+    matiere: 'slam-prog',
+    parcoursId: 'csharp',
+    niveau: 6,
+    ordre: 5,
+    titre: 'Introduction à LINQ',
+    competence: 'csharp.linq',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Découvrir LINQ pour filtrer, transformer et interroger une collection de façon concise.',
+    explication: [
+      "LINQ permet d'interroger une collection (tableau, List...) avec une syntaxe proche d'une requête, directement en C#, sans écrire de boucle explicite.",
+      "Where(condition) filtre les éléments qui respectent une condition, écrite sous forme de LAMBDA : notes.Where(n => n >= 10) garde les notes ≥ 10. Le => se lit \"tel que\" ou \"donne\".",
+      "Select(transformation) transforme chaque élément. OrderBy(critere) trie une collection. First()/FirstOrDefault() récupèrent le premier élément (le second ne plante pas si la collection est vide).",
+      "Count(), Sum(), Average(), Any() calculent directement des agrégats sur une collection. Ces méthodes se combinent facilement : notes.Where(n => n >= 10).Count()."
+    ],
+    aRetenir: [
+      'Where(x => condition) : filtre les éléments respectant la condition',
+      'Select(x => transformation) : transforme chaque élément',
+      'OrderBy, First/FirstOrDefault, Count, Sum, Average, Any : opérations courantes sur une collection',
+      'x => ... est une expression lambda : une fonction courte, sans nom, utilisée en paramètre'
+    ],
+    exemple: {
+      langage: 'csharp',
+      code:
+`List<int> notes = new List<int> { 8, 15, 12, 6, 17 };
+
+var notesAdmises = notes.Where(n => n >= 10);
+int nombreAdmis = notesAdmises.Count();
+double moyenne = notes.Average();
+
+Console.WriteLine("Notes admises : " + nombreAdmis);
+Console.WriteLine("Moyenne : " + moyenne);`
+    },
+    exempleExplique: [
+      "notes.Where(n => n >= 10) parcourt la liste et ne garde que 15, 12 et 17 — sans écrire de boucle for ni de if explicite.",
+      ".Count() compte combien d'éléments sont dans cette sélection filtrée : 3.",
+      "notes.Average() calcule directement la moyenne de TOUTE la liste d'origine, en une seule instruction."
+    ],
+    erreursFrequentes: [
+      "Oublier using System.Linq; en haut du fichier : sans cette ligne, Where ou Select ne sont pas reconnues.",
+      "Confondre First() (plante si la collection est vide) et FirstOrDefault() (renvoie une valeur par défaut).",
+      "Écrire la lambda avec une syntaxe incorrecte : c'est toujours paramètre => expression."
+    ],
+    astuce: "Lis une expression LINQ presque comme une phrase : notes.Where(n => n >= 10).Count() se lit \"parmi les notes, celles telles que n soit supérieur ou égal à 10, compte-les\".",
+    exercicesIds: ['ex-csharp-linq-qcm-1', 'ex-csharp-linq-completer-1']
+  },
+
+  // ------------------------------------------------------ SQL — fondamentaux
+  {
+    id: 'sql-fondamentaux',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 1,
+    ordre: 1,
+    titre: "Qu'est-ce qu'une base de données ?",
+    competence: 'sql.fondamentaux',
+    difficulte: 'facile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre ce qu'est une base de données, un SGBD, et le vocabulaire de base du modèle relationnel.",
+    explication: [
+      "Une DONNÉE est un élément brut (un nom, un nombre, une date...). Une BASE DE DONNÉES est un ensemble organisé de données, structuré pour pouvoir les stocker, les consulter, les modifier et les exploiter efficacement — par opposition à un simple fichier texte en vrac.",
+      "Un SGBD (Système de Gestion de Base de Données) est le logiciel qui permet de créer, interroger et administrer une base de données. Un SGBDR (relationnel) organise spécifiquement les données sous forme de TABLES reliées entre elles. MySQL, PostgreSQL et SQL Server sont des exemples de SGBDR.",
+      "Dans le modèle relationnel, une TABLE ressemble à un tableau : chaque LIGNE (ou enregistrement) représente une donnée complète (par exemple, un client), et chaque COLONNE (ou attribut) représente une caractéristique de cette donnée.",
+      "Le SCHÉMA d'une base de données décrit l'ensemble de ses tables, leurs colonnes et les relations entre elles — c'est en quelque sorte le plan de la base."
+    ],
+    aRetenir: [
+      'Donnée = élément brut ; base de données = ensemble organisé de données',
+      'SGBD : logiciel de gestion de base de données ; SGBDR : organise les données en tables reliées (MySQL, PostgreSQL, SQL Server...)',
+      'Table = tableau de données ; ligne = un enregistrement ; colonne = un attribut',
+      'SQL (Structured Query Language) est le langage utilisé pour interroger un SGBDR'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`Table CLIENT :
+
+id | nom   | email
+1  | Paul  | paul@mail.fr
+2  | Emma  | emma@mail.fr`
+    },
+    exempleExplique: [
+      "Cette table a 3 colonnes (id, nom, email) et 2 lignes : chaque ligne représente un client distinct.",
+      "id sert à identifier chaque ligne de façon unique — c'est ce qu'on appelle une clé primaire, vue dans la leçon suivante."
+    ],
+    erreursFrequentes: [
+      "Confondre SGBD (le logiciel, ex : MySQL) et base de données (les données elles-mêmes, gérées PAR ce logiciel).",
+      "Croire qu'un simple fichier Excel est une vraie base de données relationnelle : il n'impose pas de relations structurées ni de contraintes d'intégrité entre plusieurs tables.",
+      "Confondre ligne (une donnée complète, ex : un client) et colonne (une seule caractéristique, ex : l'email)."
+    ],
+    astuce: "Retiens l'analogie du tableur : une table SQL ressemble à une feuille Excel, où chaque ligne est un enregistrement et chaque colonne une information — sauf qu'une base de données impose des règles strictes qu'un tableur n'impose pas.",
+    exercicesIds: ['ex-sql-fondamentaux-qcm-1', 'ex-sql-fondamentaux-vf-1']
+  },
+  {
+    id: 'sql-cles',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 1,
+    ordre: 2,
+    titre: 'Les clés primaires et étrangères',
+    competence: 'sql.cles',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le rôle d'une clé primaire et d'une clé étrangère dans une base relationnelle.",
+    explication: [
+      "Une CLÉ PRIMAIRE (PRIMARY KEY) est une colonne qui identifie de façon UNIQUE chaque ligne d'une table — deux lignes ne peuvent jamais avoir la même clé primaire, et elle ne peut jamais être NULL. C'est souvent un identifiant numérique auto-incrémenté (id).",
+      "Une CLÉ ÉTRANGÈRE (FOREIGN KEY) est une colonne d'une table qui référence la clé primaire d'une AUTRE table, pour créer une relation. Par exemple, commande.client_id référence client.id.",
+      "Cette mécanique garantit l'INTÉGRITÉ RÉFÉRENTIELLE : le SGBD empêche normalement d'insérer une commande avec un client_id qui ne correspond à aucun client existant.",
+      "Une relation via clé étrangère est le plus souvent une relation \"un vers plusieurs\" (1-N) : UN client peut avoir PLUSIEURS commandes, mais chaque commande n'appartient qu'à UN SEUL client."
+    ],
+    aRetenir: [
+      'Clé primaire (PRIMARY KEY) : identifie chaque ligne de façon unique, jamais NULL, jamais dupliquée',
+      'Clé étrangère (FOREIGN KEY) : référence la clé primaire d\'une autre table, crée une relation',
+      'Intégrité référentielle : le SGBD empêche les références vers une clé primaire inexistante',
+      'Relation 1-N typique : un client (1) peut avoir plusieurs commandes (N)'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`CREATE TABLE client (
+    id INT PRIMARY KEY,
+    nom VARCHAR(100)
+);
+
+CREATE TABLE commande (
+    id INT PRIMARY KEY,
+    date_commande DATE,
+    client_id INT,
+    FOREIGN KEY (client_id) REFERENCES client(id)
+);`
+    },
+    exempleExplique: [
+      "id INT PRIMARY KEY dans client garantit que chaque client a un identifiant unique.",
+      "client_id INT dans commande stocke une référence vers un client ; FOREIGN KEY (client_id) REFERENCES client(id) déclare explicitement cette relation.",
+      "Grâce à cette déclaration, le SGBD refusera d'insérer une commande avec un client_id qui n'existe pas dans la table client."
+    ],
+    erreursFrequentes: [
+      "Oublier de déclarer explicitement une FOREIGN KEY : la relation logique existe dans les données, mais le SGBD ne la vérifie plus automatiquement.",
+      "Autoriser une clé primaire à être NULL ou dupliquée : c'est contraire à sa définition même.",
+      "Confondre le sens de la relation : c'est la table \"du côté N\" (ici commande) qui porte la clé étrangère, jamais l'inverse."
+    ],
+    astuce: "Pour repérer qui porte la clé étrangère dans une relation 1-N, pose-toi la question : \"quelle table peut avoir PLUSIEURS lignes liées à une même ligne de l'autre table ?\" C'est celle-là qui porte la clé étrangère.",
+    exercicesIds: ['ex-sql-cles-qcm-1', 'ex-sql-cles-vf-1']
+  },
+  {
+    id: 'sql-contraintes',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 1,
+    ordre: 3,
+    titre: 'NULL et les contraintes',
+    competence: 'sql.contraintes',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Connaître les principales contraintes SQL qui garantissent la qualité des données stockées.',
+    explication: [
+      "NULL représente une valeur ABSENTE ou INCONNUE — ce n'est ni zéro, ni une chaîne vide ''. Une colonne numérique à NULL n'a simplement aucune valeur renseignée.",
+      "NOT NULL interdit qu'une colonne reste vide. UNIQUE interdit que deux lignes aient la même valeur dans cette colonne (contrairement à la clé primaire, une table peut avoir plusieurs colonnes UNIQUE).",
+      "DEFAULT valeur donne une valeur par défaut quand aucune n'est précisée lors d'un INSERT. CHECK (condition) impose qu'une condition soit toujours vraie pour cette colonne.",
+      "Ces contraintes sont vérifiées par le SGBD à chaque modification des données : elles garantissent la qualité et la cohérence de la base."
+    ],
+    aRetenir: [
+      'NULL = valeur absente/inconnue, différent de 0 ou de chaîne vide \'\'',
+      'NOT NULL : la colonne doit toujours avoir une valeur',
+      'UNIQUE : pas de doublon dans cette colonne (plusieurs colonnes UNIQUE possibles, contrairement à la clé primaire)',
+      'DEFAULT valeur : valeur automatique si non précisée ; CHECK (condition) : impose une règle sur les valeurs'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`CREATE TABLE client (
+    id INT PRIMARY KEY,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    pays VARCHAR(50) DEFAULT 'France',
+    age INT CHECK (age >= 0)
+);`
+    },
+    exempleExplique: [
+      "email ... NOT NULL UNIQUE : chaque client doit avoir un email renseigné, et deux clients ne peuvent pas partager le même.",
+      "pays VARCHAR(50) DEFAULT 'France' : si on insère un client sans préciser de pays, 'France' sera automatiquement utilisé.",
+      "age INT CHECK (age >= 0) : le SGBD refusera d'insérer un âge négatif."
+    ],
+    erreursFrequentes: [
+      "Comparer une colonne à NULL avec = NULL : ça ne fonctionne jamais en SQL, il faut utiliser IS NULL ou IS NOT NULL.",
+      "Confondre UNIQUE et PRIMARY KEY : une table n'a qu'UNE seule clé primaire, mais peut avoir PLUSIEURS colonnes UNIQUE.",
+      "Oublier qu'une valeur DEFAULT ne s'applique que si la colonne n'est PAS mentionnée dans l'INSERT."
+    ],
+    astuce: "Teste toujours une contrainte avec un cas limite en tête : \"que se passe-t-il si j'insère une valeur vide, négative, ou en double ?\"",
+    exercicesIds: ['ex-sql-contraintes-qcm-1', 'ex-sql-contraintes-vf-1']
+  },
+
+  // -------------------------------------------------------- SQL — opérateurs
+  {
+    id: 'sql-operateurs',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 2,
+    ordre: 2,
+    titre: 'BETWEEN, IN et LIKE',
+    competence: 'sql.operateurs',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir filtrer des données avec BETWEEN, IN et LIKE pour des conditions plus riches qu\'une simple égalité.',
+    explication: [
+      "BETWEEN valeur1 AND valeur2 teste si une valeur est comprise dans un intervalle, BORNES INCLUSES : WHERE age BETWEEN 18 AND 30 équivaut à age >= 18 AND age <= 30.",
+      "IN (valeur1, valeur2, ...) teste si une valeur fait partie d'une liste : WHERE ville IN ('Lyon', 'Paris') équivaut à ville = 'Lyon' OR ville = 'Paris', mais reste lisible même avec beaucoup de valeurs.",
+      "LIKE motif recherche un texte selon un modèle, avec deux symboles spéciaux : % remplace n'importe quelle suite de caractères (même vide), et _ remplace exactement UN caractère.",
+      "Ces trois opérateurs peuvent être combinés avec NOT pour inverser leur effet : NOT BETWEEN, NOT IN, NOT LIKE."
+    ],
+    aRetenir: [
+      'BETWEEN a AND b : intervalle, BORNES INCLUSES',
+      'IN (a, b, c) : appartient à cette liste de valeurs',
+      'LIKE \'motif\' : % = n\'importe quelle suite de caractères, _ = exactement un caractère',
+      'NOT BETWEEN / NOT IN / NOT LIKE : inversent la condition'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`SELECT nom
+FROM client
+WHERE ville IN ('Lyon', 'Marseille')
+AND nom LIKE 'D%';`
+    },
+    exempleExplique: [
+      "ville IN ('Lyon', 'Marseille') garde uniquement les clients de ces deux villes.",
+      "nom LIKE 'D%' garde uniquement les noms commençant par la lettre D, quelle que soit la suite.",
+      "Les deux conditions sont combinées avec AND : seuls les clients qui remplissent LES DEUX à la fois sont sélectionnés."
+    ],
+    erreursFrequentes: [
+      "Oublier que BETWEEN inclut les deux bornes.",
+      "Confondre % (n'importe quelle suite, y compris vide) et _ (exactement un caractère) dans un LIKE.",
+      "Utiliser plusieurs OR à la place d'un IN quand la liste de valeurs est longue."
+    ],
+    astuce: "Pense à LIKE comme une recherche avec des \"jokers\" : % est un joker qui peut remplacer n'importe quoi (même rien), _ remplace exactement une lettre.",
+    exercicesIds: ['ex-sql-operateurs-qcm-1', 'ex-sql-operateurs-completer-1']
+  },
+  {
+    id: 'sql-distinctlimit',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 2,
+    ordre: 3,
+    titre: 'DISTINCT et LIMIT',
+    competence: 'sql.distinctlimit',
+    difficulte: 'facile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir supprimer les doublons d\'un résultat avec DISTINCT et limiter son nombre de lignes avec LIMIT.',
+    explication: [
+      "SELECT DISTINCT colonne FROM table; élimine les doublons du résultat : si plusieurs clients habitent la même ville, DISTINCT ville n'affichera chaque ville qu'UNE seule fois.",
+      "LIMIT n restreint le résultat aux n premières lignes seulement — utile pour un aperçu ou une pagination.",
+      "L'ordre des clauses compte : LIMIT s'utilise après un éventuel ORDER BY — sans tri préalable, \"les premières lignes\" n'a pas de sens garanti.",
+      "DISTINCT peut aussi s'appliquer à PLUSIEURS colonnes à la fois : il élimine alors les doublons sur la COMBINAISON des colonnes, pas sur chacune séparément."
+    ],
+    aRetenir: [
+      'SELECT DISTINCT colonne : élimine les doublons du résultat',
+      'LIMIT n : ne renvoie que les n premières lignes du résultat',
+      'Toujours utiliser ORDER BY avant LIMIT pour un résultat prévisible',
+      'DISTINCT sur plusieurs colonnes élimine les doublons sur leur COMBINAISON'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`SELECT DISTINCT ville
+FROM client
+ORDER BY ville
+LIMIT 5;`
+    },
+    exempleExplique: [
+      "DISTINCT élimine les villes en double : chaque ville n'apparaîtra qu'une fois.",
+      "ORDER BY ville trie ensuite ces villes uniques par ordre alphabétique.",
+      "LIMIT 5 ne garde que les 5 premières de ce résultat trié."
+    ],
+    erreursFrequentes: [
+      "Utiliser LIMIT sans ORDER BY en pensant obtenir toujours les mêmes lignes.",
+      "Croire que DISTINCT élimine les doublons colonne par colonne séparément : il élimine les doublons sur la ligne complète du résultat.",
+      "Oublier que DISTINCT peut ralentir une requête sur une très grande table."
+    ],
+    astuce: "Pense à LIMIT comme une pagination basique : combiné à ORDER BY, c'est prévisible et reproductible.",
+    exercicesIds: ['ex-sql-distinctlimit-qcm-1', 'ex-sql-distinctlimit-vf-1']
+  },
+
+  // --------------------------------------------------------- SQL — LEFT JOIN
+  {
+    id: 'sql-leftjoin',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 3,
+    ordre: 2,
+    titre: 'LEFT JOIN et jointures multiples',
+    competence: 'sql.leftjoin',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Comprendre la différence entre INNER JOIN et LEFT JOIN, et savoir enchaîner plusieurs jointures.',
+    explication: [
+      "INNER JOIN ne garde que les lignes qui ont une correspondance dans LES DEUX tables. LEFT JOIN garde en plus TOUTES les lignes de la table de GAUCHE, même sans correspondance dans la table de droite — les colonnes de droite affichent alors NULL.",
+      "Exemple : client LEFT JOIN commande affichera TOUS les clients, y compris ceux qui n'ont jamais passé commande. Avec un simple INNER JOIN, ces clients auraient disparu du résultat.",
+      "On peut enchaîner PLUSIEURS jointures dans une même requête pour combiner plus de deux tables, chacune avec sa propre condition ON.",
+      "LEFT JOIN est très utile pour répondre à \"lesquels n'ont PAS de...\" : on fait un LEFT JOIN puis on filtre avec WHERE commande.id IS NULL pour ne garder que les clients sans correspondance."
+    ],
+    aRetenir: [
+      'INNER JOIN : garde seulement les lignes avec correspondance dans les deux tables',
+      'LEFT JOIN : garde TOUTES les lignes de la table de gauche, NULL si pas de correspondance à droite',
+      'Plusieurs JOIN peuvent s\'enchaîner pour combiner plus de deux tables',
+      'LEFT JOIN + WHERE ... IS NULL : technique classique pour trouver ce qui n\'a PAS de correspondance'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`SELECT client.nom, commande.id
+FROM client
+LEFT JOIN commande ON commande.client_id = client.id
+WHERE commande.id IS NULL;`
+    },
+    exempleExplique: [
+      "Le LEFT JOIN garde tous les clients, avec NULL dans commande.id pour ceux qui n'ont jamais commandé.",
+      "Le WHERE commande.id IS NULL filtre ensuite pour ne garder QUE ces clients sans aucune commande — impossible à écrire avec un simple INNER JOIN."
+    ],
+    erreursFrequentes: [
+      "Utiliser INNER JOIN alors qu'on veut garder les lignes SANS correspondance.",
+      "Oublier que dans un LEFT JOIN, les colonnes de la table de DROITE peuvent valoir NULL.",
+      "Se tromper dans l'ordre des tables : client LEFT JOIN commande ne donne pas le même résultat que commande LEFT JOIN client."
+    ],
+    astuce: "Retiens LEFT JOIN comme \"tout ce qui est à GAUCHE, je le garde TOUJOURS\" — la table de droite ne fait que compléter quand c'est possible.",
+    exercicesIds: ['ex-sql-leftjoin-qcm-1', 'ex-sql-leftjoin-lire-1']
+  },
+
+  // ---------------------------------------------------- SQL — sous-requêtes
+  {
+    id: 'sql-sousrequetes',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 6,
+    ordre: 1,
+    titre: 'Les sous-requêtes',
+    competence: 'sql.sousrequetes',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir écrire une sous-requête pour utiliser le résultat d\'une requête à l\'intérieur d\'une autre.',
+    explication: [
+      "Une SOUS-REQUÊTE est une requête SQL complète, placée entre parenthèses À L'INTÉRIEUR d'une autre requête. Elle est exécutée d'abord, et son résultat est utilisé par la requête externe.",
+      "Utilisation la plus courante : dans un WHERE ... IN (sous-requête), pour filtrer selon un ensemble de valeurs calculé dynamiquement.",
+      "Une sous-requête peut aussi apparaître après FROM (traitée comme une table temporaire) ou contenir une fonction d'agrégation, pour comparer une valeur à une moyenne calculée dynamiquement.",
+      "Une sous-requête CORRÉLÉE fait référence à une colonne de la requête EXTERNE — elle est donc réexécutée pour chaque ligne externe, ce qui peut la rendre plus lente qu'une jointure équivalente."
+    ],
+    aRetenir: [
+      'Sous-requête : une requête complète entre parenthèses, à l\'intérieur d\'une autre requête',
+      'Usage fréquent : WHERE colonne IN (sous-requête)',
+      'Une sous-requête peut aussi suivre FROM (table temporaire) ou contenir une agrégation',
+      'Sous-requête corrélée : référence une colonne de la requête externe, réexécutée ligne par ligne'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`SELECT nom
+FROM client
+WHERE id IN (
+    SELECT client_id
+    FROM commande
+);`
+    },
+    exempleExplique: [
+      "La sous-requête SELECT client_id FROM commande s'exécute d'abord : elle renvoie tous les identifiants clients ayant au moins une commande.",
+      "La requête externe garde ensuite uniquement les clients dont l'id apparaît dans cette liste — sans avoir besoin d'un JOIN."
+    ],
+    erreursFrequentes: [
+      "Oublier les parenthèses autour de la sous-requête : elles sont obligatoires.",
+      "Utiliser = au lieu de IN quand la sous-requête peut renvoyer PLUSIEURS lignes.",
+      "Écrire une sous-requête corrélée coûteuse sur une très grande table sans réaliser qu'elle sera réexécutée pour chaque ligne externe."
+    ],
+    astuce: "Pour construire une sous-requête, écris et teste-la D'ABORD toute seule, comme une requête normale, avant de l'insérer entre parenthèses.",
+    exercicesIds: ['ex-sql-sousrequetes-qcm-1', 'ex-sql-sousrequetes-lire-1']
+  },
+  {
+    id: 'sql-case',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 6,
+    ordre: 2,
+    titre: "L'expression CASE",
+    competence: 'sql.case',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir utiliser CASE pour créer une colonne calculée selon plusieurs conditions.',
+    explication: [
+      "L'expression CASE permet de créer une valeur CONDITIONNELLE directement dans une requête — l'équivalent d'un if/else if/else, utilisable au milieu d'un SELECT.",
+      "Syntaxe : CASE WHEN condition1 THEN valeur1 WHEN condition2 THEN valeur2 ELSE valeurParDefaut END. Les conditions sont testées DANS L'ORDRE, la première vraie l'emporte.",
+      "On donne généralement un nom à cette colonne calculée avec AS. Le résultat peut ensuite être utilisé comme n'importe quelle colonne, y compris dans un ORDER BY ou un GROUP BY.",
+      "ELSE est optionnel : sans lui, une ligne qui ne correspond à aucune condition reçoit NULL."
+    ],
+    aRetenir: [
+      'CASE WHEN condition THEN valeur ... ELSE valeurParDefaut END',
+      'Les conditions sont testées dans l\'ordre, la première vraie l\'emporte',
+      'On nomme le résultat avec AS : CASE ... END AS nomColonne',
+      'Sans ELSE, une ligne qui ne correspond à aucune condition reçoit NULL'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`SELECT nom,
+CASE
+    WHEN age >= 18 THEN 'Majeur'
+    ELSE 'Mineur'
+END AS statut
+FROM client;`
+    },
+    exempleExplique: [
+      "Pour chaque client, la condition age >= 18 est testée : si vraie, statut vaut 'Majeur', sinon 'Mineur' (via ELSE).",
+      "Le résultat apparaît comme une colonne normale nommée statut, bien qu'elle n'existe pas dans la table client."
+    ],
+    erreursFrequentes: [
+      "Oublier END à la fin de l'expression CASE.",
+      "Mettre les conditions dans le mauvais ordre quand elles se chevauchent.",
+      "Oublier le ELSE alors qu'un cas non prévu peut se présenter."
+    ],
+    astuce: "Lis un CASE comme une suite de \"sinon si\" en français : la traduction en SQL suit exactement cette logique.",
+    exercicesIds: ['ex-sql-case-qcm-1', 'ex-sql-case-completer-1']
+  },
+
+  // ---------------------------------------------------------------- SQL — MCD
+  {
+    id: 'sql-mcd',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 7,
+    ordre: 1,
+    titre: 'Le Modèle Conceptuel de Données (MCD)',
+    competence: 'sql.mcd',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Comprendre le rôle du MCD et savoir identifier entités, associations et cardinalités à partir d\'un besoin.',
+    explication: [
+      "Avant de créer les tables d'une base, on modélise le besoin de façon abstraite avec un MCD (Modèle Conceptuel de Données) — SANS se soucier encore de la technique (pas de table, pas de SQL à ce stade).",
+      "Une ENTITÉ représente un objet ou un concept du monde réel dont on veut stocker des informations (CLIENT, COMMANDE...). Chaque entité possède des ATTRIBUTS.",
+      "Une ASSOCIATION relie deux entités entre elles (un client PASSE une commande). Chaque association porte des CARDINALITÉS : 0,1 / 1,1 / 0,N / 1,N, qui précisent combien de fois chaque entité participe.",
+      "Exemple : cardinalité 1,N côté CLIENT et 1,1 côté COMMANDE sur \"passe\" : un client peut passer une à plusieurs commandes, mais chaque commande est passée par un seul client."
+    ],
+    aRetenir: [
+      'MCD : modélisation abstraite des données, avant toute table ou requête SQL',
+      'Entité : un objet du monde réel à représenter (CLIENT, COMMANDE...), avec ses attributs',
+      'Association : relation entre deux entités (un client PASSE une commande)',
+      'Cardinalités (0,1 / 1,1 / 0,N / 1,N) : combien de fois chaque entité participe à l\'association'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`CLIENT ───────── passe ───────── COMMANDE
+  (1,N)                            (1,1)
+
+CLIENT : id_client, nom, email
+COMMANDE : id_commande, date_commande`
+    },
+    exempleExplique: [
+      "Côté CLIENT, la cardinalité (1,N) signifie qu'un client a passé au moins une commande, et peut en avoir plusieurs.",
+      "Côté COMMANDE, la cardinalité (1,1) signifie que chaque commande est liée à exactement un client — jamais zéro, jamais plusieurs.",
+      "Cette lecture asymétrique est typique d'une relation \"un vers plusieurs\", qui se traduira par une clé étrangère du côté (1,1) — voir la leçon sur le MLD."
+    ],
+    erreursFrequentes: [
+      "Confondre le sens de lecture d'une cardinalité : celle placée du côté CLIENT décrit combien de fois UN client participe, pas l'inverse.",
+      "Vouloir directement écrire des tables SQL sans passer par cette étape de modélisation.",
+      "Oublier qu'une association peut aussi avoir ses propres attributs."
+    ],
+    astuce: "Pour déterminer une cardinalité, pose la question dans les deux sens : \"un client peut-il passer 0, 1 ou plusieurs commandes ?\" puis l'inverse — les réponses donnent directement les deux cardinalités.",
+    exercicesIds: ['ex-sql-mcd-qcm-1', 'ex-sql-mcd-vf-1']
+  },
+  {
+    id: 'sql-mld',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 7,
+    ordre: 2,
+    titre: 'Le Modèle Logique de Données (MLD)',
+    competence: 'sql.mld',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Savoir transformer un MCD en MLD, c\'est-à-dire en un ensemble de tables prêtes à être créées en SQL.',
+    explication: [
+      "Le MLD traduit le MCD en un format proche des tables SQL : chaque ENTITÉ devient généralement une TABLE, chaque ATTRIBUT devient une COLONNE.",
+      "Règle la plus importante pour une association 1-N : la clé primaire de l'entité côté \"1\" est ajoutée comme clé étrangère dans la table côté \"N\". On dit qu'elle \"migre\" vers l'autre table.",
+      "Notation habituelle : TABLE(colonne1 PK, colonne2, colonne3 FK), où PK signale la clé primaire et FK une clé étrangère — cette notation se lit directement comme un plan de CREATE TABLE.",
+      "Pour une association N-N (un élève suit plusieurs cours, un cours a plusieurs élèves), une simple clé étrangère ne suffit pas : il faut une TABLE D'ASSOCIATION intermédiaire, contenant les clés primaires des deux entités liées."
+    ],
+    aRetenir: [
+      'MLD : traduction du MCD en tables ; chaque entité devient une table, chaque attribut une colonne',
+      'Association 1-N : la clé primaire du côté "1" migre en clé étrangère dans la table du côté "N"',
+      'Notation : TABLE(colonne PK, colonne FK, ...)',
+      'Association N-N : nécessite une table d\'association intermédiaire portant les deux clés'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`MCD : CLIENT (1,N) --- passe --- (1,1) COMMANDE
+
+MLD :
+CLIENT(id_client PK, nom, email)
+COMMANDE(id_commande PK, date_commande, id_client FK)`
+    },
+    exempleExplique: [
+      "CLIENT devient une table avec sa clé primaire id_client.",
+      "COMMANDE devient une table avec sa propre clé primaire id_commande, ET reçoit id_client comme clé étrangère : c'est la migration de la clé primaire du côté \"1\" vers le côté \"N\".",
+      "Ce MLD se traduit ensuite directement par les instructions CREATE TABLE."
+    ],
+    erreursFrequentes: [
+      "Se tromper de sens dans la migration de clé : c'est toujours le côté \"1\" qui \"donne\" sa clé au côté \"N\", jamais l'inverse.",
+      "Oublier de créer une table d'association intermédiaire pour une relation N-N.",
+      "Oublier de reporter TOUS les attributs du MCD dans les bonnes tables du MLD."
+    ],
+    astuce: "Retiens la règle de migration ainsi : la clé primaire \"descend\" toujours du côté (1,1) ou (0,1) vers le côté (1,N) ou (0,N) de l'association — jamais l'inverse.",
+    exercicesIds: ['ex-sql-mld-qcm-1', 'ex-sql-mld-completer-1']
+  },
+
+  // --------------------------------------------------- SQL — transactions
+  {
+    id: 'sql-transactions',
+    matiere: 'slam-bdd',
+    parcoursId: 'sql',
+    niveau: 8,
+    ordre: 1,
+    titre: 'Les transactions (COMMIT, ROLLBACK)',
+    competence: 'sql.transactions',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: 'Comprendre à quoi sert une transaction et savoir utiliser COMMIT et ROLLBACK.',
+    explication: [
+      "Une TRANSACTION regroupe plusieurs opérations SQL en un seul bloc INDIVISIBLE (ATOMIQUE) : soit TOUTES les opérations réussissent et sont validées ensemble, soit AUCUNE ne l'est.",
+      "On exécute les opérations, puis on valide définitivement avec COMMIT. Si un problème survient avant, ROLLBACK annule TOUTES les opérations de la transaction en cours.",
+      "Exemple classique : un virement bancaire retire de l'argent d'un compte ET en ajoute sur un autre. Sans transaction, une panne entre les deux opérations pourrait faire disparaître de l'argent sans qu'il n'arrive nulle part.",
+      "Cette atomicité fait partie des propriétés ACID (Atomicité, Cohérence, Isolation, Durabilité) qui garantissent la fiabilité d'un SGBD."
+    ],
+    aRetenir: [
+      'Transaction : plusieurs opérations SQL regroupées en un bloc indivisible (atomique)',
+      'COMMIT : valide définitivement toutes les opérations de la transaction',
+      'ROLLBACK : annule TOUTES les opérations de la transaction en cours',
+      'Utile dès que plusieurs opérations doivent réussir ENSEMBLE ou pas du tout (ex : un virement bancaire)'
+    ],
+    exemple: {
+      langage: 'sql',
+      code:
+`BEGIN;
+
+UPDATE compte SET solde = solde - 100 WHERE id = 1;
+UPDATE compte SET solde = solde + 100 WHERE id = 2;
+
+COMMIT;`
+    },
+    exempleExplique: [
+      "BEGIN démarre la transaction : les deux UPDATE qui suivent ne sont pas encore définitifs.",
+      "Les 100 sont retirés du compte 1 et ajoutés au compte 2 — un ROLLBACK entre les deux annulerait le retrait déjà effectué, évitant de perdre de l'argent.",
+      "COMMIT valide les deux opérations ensemble : elles deviennent définitives uniquement à ce moment-là."
+    ],
+    erreursFrequentes: [
+      "Oublier COMMIT à la fin d'une transaction.",
+      "Croire qu'une transaction protège automatiquement contre TOUTES les erreurs : elle garantit l'atomicité, mais il faut déclencher un ROLLBACK explicitement en cas de problème détecté.",
+      "Utiliser une transaction pour une seule opération isolée, où elle n'apporte aucun bénéfice réel."
+    ],
+    astuce: "Pense à une transaction comme à un brouillon : tant que tu n'as pas fait COMMIT, tu peux tout annuler avec ROLLBACK — seul le COMMIT rend les changements réels et permanents.",
+    exercicesIds: ['ex-sql-transactions-qcm-1', 'ex-sql-transactions-vf-1']
+  },
+
+  // ------------------------------------------------------------ Web — HTML
+  {
+    id: 'web-fondamentaux',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 1,
+    ordre: 1,
+    titre: "Le fonctionnement du Web et la structure d'une page HTML",
+    competence: 'web.fondamentaux',
+    difficulte: 'facile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le principe client/serveur du Web et savoir structurer une page HTML de base.",
+    explication: [
+      "Le Web fonctionne selon un modèle CLIENT/SERVEUR : le NAVIGATEUR (client) envoie une REQUÊTE à un SERVEUR web, identifié par une URL, et le serveur renvoie une RÉPONSE (généralement une page HTML). Ce dialogue utilise le protocole HTTP (ou sa version chiffrée, HTTPS).",
+      "HTML (HyperText Markup Language) décrit la STRUCTURE d'une page web à l'aide de BALISES. Une page commence toujours par `<!DOCTYPE html>` (indique au navigateur qu'il s'agit de HTML5), suivi d'une balise `<html>` qui contient tout le reste.",
+      "À l'intérieur de `<html>`, deux grandes parties : `<head>` contient des informations sur la page (titre de l'onglet, liens vers les fichiers CSS...), non affichées directement, et `<body>` contient tout le contenu VISIBLE de la page.",
+      "HTML ne s'occupe QUE de la structure et du contenu — pas de l'apparence (le rôle de CSS) ni du comportement interactif (le rôle de JavaScript), vus dans les leçons suivantes."
+    ],
+    aRetenir: [
+      'Client (navigateur) envoie une requête HTTP, serveur renvoie une réponse (souvent du HTML)',
+      '<!DOCTYPE html> en première ligne, puis <html> qui contient tout',
+      '<head> : informations sur la page (titre, CSS...), non affichées ; <body> : contenu visible',
+      'HTML = structure et contenu uniquement, pas l\'apparence (CSS) ni le comportement (JavaScript)'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`<!DOCTYPE html>
+<html>
+<head>
+    <title>Ma première page</title>
+</head>
+<body>
+    <h1>Bienvenue</h1>
+    <p>Ceci est un paragraphe.</p>
+</body>
+</html>`
+    },
+    exempleExplique: [
+      "<title>Ma première page</title> définit le texte affiché dans l'onglet du navigateur — il est dans <head>, donc invisible dans la page elle-même.",
+      "<h1> et <p> sont dans <body> : ce sont eux qui apparaissent réellement à l'écran.",
+      "Chaque balise ouvrante (<h1>) a normalement une balise fermante correspondante (</h1>) qui délimite son contenu."
+    ],
+    erreursFrequentes: [
+      "Oublier de fermer une balise ouverte : la plupart des navigateurs \"rattrapent\" l'erreur, mais ça peut casser la mise en forme de façon imprévisible.",
+      "Mettre du contenu visible (texte, image) directement dans <head> au lieu de <body>.",
+      "Confondre HTML (structure) avec CSS (apparence) : une balise HTML seule n'a presque aucun style visuel au-delà du strict minimum du navigateur."
+    ],
+    astuce: "Retiens le rôle de chaque langage avec cette phrase : HTML construit le SQUELETTE, CSS l'HABILLE, JavaScript le fait BOUGER.",
+    exercicesIds: ['ex-web-fondamentaux-qcm-1', 'ex-web-fondamentaux-vf-1']
+  },
+  {
+    id: 'web-balisesliens',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 1,
+    ordre: 2,
+    titre: 'Les balises de base et les liens',
+    competence: 'web.balisesliens',
+    difficulte: 'facile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les balises HTML les plus courantes pour structurer du texte et créer des liens.",
+    explication: [
+      "Les titres utilisent les balises <h1> à <h6>, du plus important (<h1>, un seul par page idéalement) au moins important. Un paragraphe de texte s'écrit avec <p>.",
+      "Pour mettre en valeur du texte : <strong> indique une IMPORTANCE forte (gras par défaut), <em> indique une emphase (italique par défaut) — des balises de SENS, pas juste de style visuel.",
+      "Une liste à puces s'écrit avec <ul> contenant des <li> ; une liste numérotée utilise <ol> à la place de <ul>, avec les mêmes <li> à l'intérieur.",
+      "Un lien se crée avec <a href=\"...\">texte</a> : href indique la destination (une page, une URL externe, ou une ANCRE avec #idDeLaSection). target=\"_blank\" ouvre le lien dans un nouvel onglet."
+    ],
+    aRetenir: [
+      '<h1> à <h6> : titres du plus au moins important ; <p> : paragraphe',
+      '<strong> : importance forte (gras) ; <em> : emphase (italique) — des balises de SENS',
+      '<ul>/<ol> contiennent des <li> : liste à puces ou numérotée',
+      '<a href="...">texte</a> : lien ; target="_blank" ouvre un nouvel onglet'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`<h1>Mon blog</h1>
+<p>Bienvenue sur <strong>mon site</strong> de révisions.</p>
+<ul>
+    <li>Article 1</li>
+    <li>Article 2</li>
+</ul>
+<a href="https://exemple.fr" target="_blank">Visiter exemple.fr</a>`
+    },
+    exempleExplique: [
+      "<strong>mon site</strong> met en avant ces mots avec une importance forte (gras par défaut).",
+      "<ul> crée une liste à puces contenant deux éléments <li>.",
+      "target=\"_blank\" fait que le clic sur le lien ouvre exemple.fr dans un nouvel onglet, sans quitter la page actuelle."
+    ],
+    erreursFrequentes: [
+      "Utiliser plusieurs <h1> sur une même page sans raison : un seul <h1> par page est en général recommandé.",
+      "Confondre <strong>/<em> (sens) avec des styles purement visuels : pour du gras sans signification, on utilise plutôt CSS.",
+      "Oublier https:// dans un href externe, ce qui peut faire interpréter le lien comme relatif au site actuel."
+    ],
+    astuce: "Choisis le niveau de titre (<h1> à <h6>) selon la hiérarchie réelle du contenu, pas selon la taille de texte souhaitée — la taille se change avec CSS.",
+    exercicesIds: ['ex-web-balisesliens-qcm-1', 'ex-web-balisesliens-completer-1']
+  },
+  {
+    id: 'web-formulaires',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 1,
+    ordre: 3,
+    titre: 'Les formulaires HTML',
+    competence: 'web.formulaires',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir créer un formulaire HTML pour recueillir des informations saisies par l'utilisateur.",
+    explication: [
+      "Un formulaire se construit avec <form>, qui regroupe des champs de saisie. Le champ le plus courant est <input>, dont le comportement change selon son attribut type : text, email, password, number, checkbox, radio...",
+      "Chaque champ doit être associé à un <label>, idéalement lié via l'attribut for du label correspondant à l'id du champ — ça améliore l'accessibilité et permet de cliquer sur le texte pour activer le champ.",
+      "<textarea> sert pour un texte plus long. <select> avec des <option> à l'intérieur crée une liste déroulante. <button> (ou input type=\"submit\") déclenche l'envoi du formulaire.",
+      "HTML propose une validation basique dans le navigateur : required (obligatoire), minlength/maxlength, min/max, pattern. Attention : cette validation ne remplace JAMAIS une vérification côté serveur, car elle peut être contournée."
+    ],
+    aRetenir: [
+      '<form> regroupe les champs ; <input type="..."> change de comportement selon son type',
+      '<label for="idDuChamp"> associe une étiquette à un champ, via l\'id',
+      '<textarea>, <select>+<option>, <button> : autres champs courants',
+      'Validation HTML (required, min, max, pattern...) : un premier filtre, jamais suffisant seul'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`<form>
+    <label for="email">Email :</label>
+    <input type="email" id="email" required>
+
+    <label for="message">Message :</label>
+    <textarea id="message"></textarea>
+
+    <button type="submit">Envoyer</button>
+</form>`
+    },
+    exempleExplique: [
+      "type=\"email\" fait que le navigateur vérifie automatiquement un format d'email basique avant l'envoi.",
+      "required empêche l'envoi du formulaire tant que ce champ est vide.",
+      "<label for=\"email\"> est lié à <input id=\"email\"> via cette correspondance for/id : cliquer sur le texte du label active le champ."
+    ],
+    erreursFrequentes: [
+      "Oublier l'attribut for sur <label> (ou l'id correspondant sur le champ) : le lien entre l'étiquette et le champ n'existe plus.",
+      "Croire que la validation HTML suffit à sécuriser un formulaire : elle s'exécute côté NAVIGATEUR, un utilisateur malveillant peut la contourner.",
+      "Utiliser input type=\"text\" pour tout, alors que des types plus précis (email, number, date...) offrent une meilleure expérience."
+    ],
+    astuce: "Choisis toujours le type d'input le plus précis pour la donnée attendue : ça améliore l'expérience utilisateur sans écrire une ligne de JavaScript.",
+    exercicesIds: ['ex-web-formulaires-qcm-1', 'ex-web-formulaires-vf-1']
+  },
+  {
+    id: 'web-cssbases',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 2,
+    ordre: 1,
+    titre: 'Sélecteurs et modèle de boîte',
+    competence: 'web.cssbases',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre les sélecteurs CSS de base et le modèle de boîte (padding, border, margin).",
+    explication: [
+      "CSS définit l'APPARENCE d'une page HTML. Un fichier CSS externe est lié avec <link rel=\"stylesheet\" href=\"style.css\"> dans le <head> — la méthode recommandée, plutôt que le CSS inline ou interne.",
+      "Une règle CSS associe un SÉLECTEUR à des déclarations entre accolades. Sélecteurs de base : par BALISE (p { ... }), par CLASSE (.maClasse { ... }), par IDENTIFIANT (#monId { ... }).",
+      "Tout élément HTML est une BOÎTE, composée de l'intérieur vers l'extérieur du CONTENU, du padding (espace intérieur), du border (bordure), et du margin (espace extérieur).",
+      "Par défaut, width/height ne définissent que la taille du CONTENU (padding et border s'ajoutent). box-sizing: border-box; fait que width/height incluent le padding et la bordure — très utilisé pour des dimensions plus prévisibles."
+    ],
+    aRetenir: [
+      'Sélecteurs : balise (p), classe (.maClasse), identifiant (#monId)',
+      'Modèle de boîte, de l\'intérieur vers l\'extérieur : contenu → padding → border → margin',
+      'Une classe peut s\'appliquer à plusieurs éléments ; un id est censé être unique dans la page',
+      'box-sizing: border-box; fait que width/height incluent padding et border'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`.carte {
+    width: 200px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    box-sizing: border-box;
+}`
+    },
+    exempleExplique: [
+      ".carte cible tous les éléments ayant class=\"carte\" dans le HTML.",
+      "Grâce à box-sizing: border-box;, la largeur totale visible reste bien 200px, padding et bordure INCLUS — sans cette ligne, la largeur totale aurait été 234px.",
+      "margin: 10px; crée un espace de 10px tout autour de la boîte, la séparant des éléments voisins."
+    ],
+    erreursFrequentes: [
+      "Confondre padding (espace INTÉRIEUR) et margin (espace EXTÉRIEUR).",
+      "Oublier box-sizing: border-box; puis être surpris que les dimensions réelles dépassent la largeur/hauteur définie.",
+      "Utiliser un #id pour un style qui doit s'appliquer à plusieurs éléments : un id est censé rester unique, une classe est faite pour être réutilisée."
+    ],
+    astuce: "Beaucoup de développeurs ajoutent * { box-sizing: border-box; } tout en haut de leur CSS pour appliquer ce comportement à TOUS les éléments par défaut.",
+    exercicesIds: ['ex-web-cssbases-qcm-1', 'ex-web-cssbases-completer-1']
+  },
+  {
+    id: 'web-flexbox',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 2,
+    ordre: 2,
+    titre: 'Flexbox',
+    competence: 'web.flexbox',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir utiliser Flexbox pour aligner et répartir des éléments dans un conteneur.",
+    explication: [
+      "Flexbox facilite l'alignement d'éléments sur UNE dimension. On l'active sur un CONTENEUR avec display: flex; — tous ses enfants directs deviennent des \"éléments flexibles\".",
+      "flex-direction définit l'axe principal : row (défaut, horizontal) ou column (vertical). justify-content aligne SUR l'axe principal, align-items aligne SUR l'axe perpendiculaire.",
+      "gap définit un espace régulier entre les éléments, sans marges individuelles. flex-wrap: wrap; autorise le passage à la ligne suivante si les éléments ne tiennent pas tous sur une ligne.",
+      "Flexbox a largement remplacé les anciennes techniques (float) pour la plupart des mises en page courantes : centrer un élément, répartir une barre de navigation, aligner des cartes..."
+    ],
+    aRetenir: [
+      'display: flex; sur le conteneur active Flexbox pour ses enfants directs',
+      'flex-direction: row (défaut) ou column — définit l\'axe principal',
+      'justify-content : alignement sur l\'axe principal ; align-items : alignement sur l\'axe perpendiculaire',
+      'gap : espace entre les éléments ; flex-wrap: wrap; autorise le retour à la ligne'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`.barre-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}`
+    },
+    exempleExplique: [
+      "display: flex; transforme .barre-navigation en conteneur flexible : ses enfants s'alignent automatiquement en ligne.",
+      "justify-content: space-between; répartit l'espace disponible ENTRE les éléments, poussant le premier à gauche et le dernier à droite.",
+      "align-items: center; centre verticalement tous les éléments, même avec des hauteurs différentes."
+    ],
+    erreursFrequentes: [
+      "Confondre justify-content (axe principal) et align-items (axe perpendiculaire) : leur effet s'inverse si on change flex-direction en column.",
+      "Appliquer des propriétés flex (comme flex-grow) sur le CONTENEUR au lieu des ÉLÉMENTS enfants.",
+      "Oublier flex-wrap: wrap; quand beaucoup d'éléments doivent pouvoir passer à la ligne sur petit écran."
+    ],
+    astuce: "Retiens la règle simple : display: flex se met sur le PARENT, et la plupart des propriétés d'alignement s'appliquent aussi sur ce même parent, pas sur les enfants.",
+    exercicesIds: ['ex-web-flexbox-qcm-1', 'ex-web-flexbox-completer-1']
+  },
+  {
+    id: 'web-responsive',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 2,
+    ordre: 3,
+    titre: 'Le responsive design (media queries)',
+    competence: 'web.responsive',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le principe du responsive design et savoir écrire une media query CSS.",
+    explication: [
+      "Le RESPONSIVE DESIGN consiste à adapter l'affichage d'un site selon la taille de l'écran (ordinateur, tablette, téléphone), pour qu'il reste lisible et utilisable partout.",
+      "Les MEDIA QUERIES sont l'outil CSS principal pour ça : @media (max-width: 600px) { ... } applique les règles à l'intérieur uniquement quand la largeur de la fenêtre est de 600px ou moins.",
+      "L'approche MOBILE-FIRST consiste à écrire d'abord le CSS pour petit écran par défaut, puis à ajouter des media queries avec min-width pour ADAPTER l'affichage sur des écrans plus grands.",
+      "La balise <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> dans le <head> est indispensable pour que les media queries fonctionnent correctement sur mobile."
+    ],
+    aRetenir: [
+      'Responsive design : adapter l\'affichage selon la taille de l\'écran',
+      '@media (max-width: 600px) { ... } : règles appliquées seulement sous cette largeur',
+      'Approche mobile-first : CSS de base pour mobile, puis min-width pour les écrans plus grands',
+      '<meta name="viewport" ...> indispensable dans le <head> pour un responsive fonctionnel sur mobile'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`.carte {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .carte {
+        width: 50%;
+    }
+}`
+    },
+    exempleExplique: [
+      "Par défaut (mobile-first), .carte prend 100% de la largeur disponible — adapté à un petit écran.",
+      "À partir de 768px de large, la media query s'active et réduit la carte à 50%, permettant d'en afficher deux côte à côte.",
+      "Cette approche mobile-first écrit le cas le plus contraint en premier, puis l'enrichit progressivement pour les écrans plus grands."
+    ],
+    erreursFrequentes: [
+      "Oublier la balise meta viewport : les media queries peuvent se comporter de façon incohérente sur mobile.",
+      "Multiplier les media queries avec des seuils incohérents ou redondants, rendant le CSS difficile à maintenir.",
+      "Faire du desktop-first (CSS grand écran par défaut, puis max-width pour réduire) sur un nouveau projet : le mobile-first est aujourd'hui recommandé."
+    ],
+    astuce: "Teste toujours ton responsive en réduisant progressivement la largeur de la fenêtre du navigateur, plutôt qu'en devinant les seuils à l'avance.",
+    exercicesIds: ['ex-web-responsive-qcm-1', 'ex-web-responsive-vf-1']
+  },
+  {
+    id: 'web-jsbases',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 3,
+    ordre: 1,
+    titre: 'Introduction à JavaScript : variables et fonctions',
+    competence: 'web.jsbases',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Découvrir JavaScript, savoir déclarer des variables et écrire une fonction simple.",
+    explication: [
+      "JavaScript rend une page web INTERACTIVE, exécuté directement dans le navigateur (côté CLIENT). On l'inclut avec <script src=\"script.js\"></script>, généralement juste avant </body>.",
+      "Pour déclarer une variable : let (valeur modifiable) ou const (constante, non réaffectable après sa déclaration) — var, plus ancien, est aujourd'hui déconseillé. Types de base : string, number, boolean, mais aussi null et undefined.",
+      "Une fonction se déclare avec function nom(parametres) { return valeur; }. Une FONCTION FLÉCHÉE offre une syntaxe plus courte : const addition = (a, b) => a + b;",
+      "Contrairement à C#, JavaScript n'exige pas de déclarer le type d'une variable : JavaScript est TYPÉ DYNAMIQUEMENT — pratique, mais source d'erreurs si on ne fait pas attention au type réel d'une valeur."
+    ],
+    aRetenir: [
+      'let (modifiable) et const (constante) pour déclarer une variable ; var est déconseillé aujourd\'hui',
+      'Types de base : string, number, boolean, null, undefined, array, object',
+      'function nom(params) { return valeur; } ou fonction fléchée : (params) => expression',
+      'JavaScript est typé dynamiquement : le type d\'une variable peut changer au cours du programme'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`const TVA = 0.2;
+let prixHT = 100;
+
+function calculerTTC(prix) {
+    return prix + prix * TVA;
+}
+
+console.log(calculerTTC(prixHT));`
+    },
+    exempleExplique: [
+      "const TVA = 0.2; : cette valeur ne changera jamais dans le programme, donc const est approprié.",
+      "let prixHT = 100; : cette valeur pourrait changer, donc let convient.",
+      "calculerTTC(prixHT) renvoie 100 + 100×0.2 = 120, affiché par console.log (l'équivalent JavaScript de Console.WriteLine)."
+    ],
+    erreursFrequentes: [
+      "Essayer de réaffecter une variable déclarée avec const : ça provoque une erreur.",
+      "Utiliser encore var par habitude d'anciens tutoriels : let et const ont une portée plus prévisible.",
+      "Confondre null (absence de valeur volontaire) et undefined (variable déclarée mais jamais initialisée)."
+    ],
+    astuce: "Par défaut, utilise const pour toute variable ; ne passe à let que si tu sais que sa valeur devra changer plus tard — ça rend l'intention du code plus claire.",
+    exercicesIds: ['ex-web-jsbases-qcm-1', 'ex-web-jsbases-completer-1']
+  },
+  {
+    id: 'web-domevenements',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 3,
+    ordre: 2,
+    titre: 'Manipuler le DOM et les événements',
+    competence: 'web.domevenements',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir sélectionner un élément HTML depuis JavaScript et réagir à un événement utilisateur.",
+    explication: [
+      "Le DOM (Document Object Model) est la représentation, en mémoire, de la structure HTML d'une page — JavaScript peut le lire et le modifier pour changer dynamiquement l'affichage, SANS recharger la page.",
+      "document.querySelector('sélecteur') renvoie le PREMIER élément correspondant à un sélecteur CSS ; document.querySelectorAll('sélecteur') renvoie TOUS les éléments correspondants.",
+      "Une fois un élément sélectionné, on peut modifier son texte (.textContent), son HTML interne (.innerHTML), ses classes (.classList.add/remove/toggle(...)), ou ses attributs.",
+      "element.addEventListener('click', fonction) exécute fonction à chaque clic sur element — d'autres événements courants : 'input' (à chaque frappe), 'submit' (envoi d'un formulaire), 'change' (changement validé)."
+    ],
+    aRetenir: [
+      'document.querySelector(\'...\') : premier élément correspondant ; querySelectorAll(\'...\') : tous',
+      '.textContent (texte), .innerHTML (HTML), .classList.add/remove/toggle(...) : modifier un élément',
+      'element.addEventListener(\'click\', fonction) : réagir à un événement',
+      'Événements courants : click, input, submit, change'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`const bouton = document.querySelector('#monBouton');
+
+bouton.addEventListener('click', function () {
+    document.querySelector('#message').textContent = 'Bouton cliqué !';
+});`
+    },
+    exempleExplique: [
+      "document.querySelector('#monBouton') récupère l'élément dont l'id est \"monBouton\".",
+      "addEventListener('click', ...) enregistre une fonction qui s'exécutera à chaque clic — pas immédiatement, seulement au moment du clic.",
+      "À l'intérieur, .textContent = '...' change le texte d'un autre élément (#message), sans recharger la page."
+    ],
+    erreursFrequentes: [
+      "Confondre .textContent (texte brut, sûr) et .innerHTML (interprète le contenu comme du HTML, risque de sécurité si la donnée vient d'un utilisateur).",
+      "Appeler document.querySelector AVANT que l'élément existe dans la page : le résultat serait null.",
+      "Oublier les parenthèses en passant une fonction à addEventListener par erreur, ce qui l'exécute immédiatement au lieu de l'exécuter au clic."
+    ],
+    astuce: "Si document.querySelector renvoie null de façon inattendue, vérifie l'ORDRE : le script doit s'exécuter APRÈS que l'élément visé existe dans le HTML.",
+    exercicesIds: ['ex-web-domevenements-qcm-1', 'ex-web-domevenements-vf-1']
+  },
+  {
+    id: 'web-http',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 4,
+    ordre: 1,
+    titre: 'Le protocole HTTP et les codes de statut',
+    competence: 'web.http',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les principales méthodes HTTP et savoir interpréter les codes de statut les plus courants.",
+    explication: [
+      "HTTP définit plusieurs MÉTHODES selon l'action : GET (récupérer, sans effet de bord), POST (créer), PUT (remplacer entièrement une ressource), DELETE (supprimer). Elles correspondent au CRUD (Create, Read, Update, Delete).",
+      "Chaque réponse HTTP contient un CODE DE STATUT à 3 chiffres. Les 2xx signifient un SUCCÈS (200 OK, 201 Created), les 3xx une REDIRECTION.",
+      "Les 4xx signalent une ERREUR DU CLIENT (400 Bad Request, 401 Unauthorized : authentification requise, 403 Forbidden : accès refusé même authentifié, 404 Not Found). Les 5xx signalent une ERREUR DU SERVEUR (500 Internal Server Error).",
+      "Ces codes permettent au client (souvent du JavaScript avec Fetch) de réagir différemment selon ce qui s'est passé."
+    ],
+    aRetenir: [
+      'GET (lire), POST (créer), PUT (remplacer), DELETE (supprimer) — correspondent au CRUD',
+      '2xx = succès (200 OK, 201 Created)',
+      '4xx = erreur du CLIENT (400, 401 non authentifié, 403 accès refusé, 404 introuvable)',
+      '5xx = erreur du SERVEUR (500 Internal Server Error)'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Requête : GET /api/clients/42
+Réponse : 200 OK
+          { "id": 42, "nom": "Paul" }
+
+Requête : GET /api/clients/999
+Réponse : 404 Not Found`
+    },
+    exempleExplique: [
+      "La première requête demande le client 42 : il existe, le serveur répond 200 OK avec ses données.",
+      "La seconde demande le client 999, qui n'existe pas : le serveur répond 404 Not Found — le client peut détecter ce code pour afficher un message adapté."
+    ],
+    erreursFrequentes: [
+      "Confondre 401 (pas authentifié, ou identifiants invalides) et 403 (authentifié, mais sans le droit d'accéder à cette ressource).",
+      "Utiliser GET pour une action qui modifie des données : GET doit rester sans effet de bord, POST/PUT/DELETE sont faits pour ça.",
+      "Ignorer le code de statut d'une réponse et se fier uniquement à son contenu."
+    ],
+    astuce: "Retiens au minimum ces 5 codes : 200 (ça a marché), 201 (créé), 400 (ta requête est mal formée), 404 (ça n'existe pas), 500 (le serveur a un problème).",
+    exercicesIds: ['ex-web-http-qcm-1', 'ex-web-http-vf-1']
+  },
+  {
+    id: 'web-fetchjson',
+    matiere: 'web',
+    parcoursId: 'web',
+    niveau: 4,
+    ordre: 2,
+    titre: 'Fetch API et JSON',
+    competence: 'web.fetchjson',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir envoyer une requête HTTP en JavaScript avec fetch() et manipuler une réponse JSON.",
+    explication: [
+      "JSON (JavaScript Object Notation) est un format texte très utilisé pour échanger des données sur le Web. Sa syntaxe ressemble à un objet JavaScript : paires clé/valeur entre accolades, listes entre crochets.",
+      "fetch(url) envoie une requête HTTP (GET par défaut) et renvoie une PROMESSE (un résultat pas encore disponible immédiatement). On utilise await (dans une fonction async) pour ATTENDRE ce résultat de façon lisible.",
+      "La réponse de fetch n'est pas directement les données : il faut appeler .json() (aussi asynchrone) pour convertir le corps de la réponse JSON en objet JavaScript utilisable.",
+      "Pour envoyer des données (POST) : fetch(url, { method: 'POST', headers: {...}, body: JSON.stringify(donnees) }) — JSON.stringify convertit un objet JavaScript EN texte JSON."
+    ],
+    aRetenir: [
+      'JSON : format texte clé/valeur pour échanger des données, très proche d\'un objet JavaScript',
+      'fetch(url) renvoie une promesse ; await (dans une fonction async) attend son résultat',
+      'await fetch(url) donne la réponse HTTP ; il faut ENSUITE await reponse.json() pour les données',
+      'Pour un POST : fetch(url, { method: \'POST\', body: JSON.stringify(donnees) })'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`async function chargerClient(id) {
+    const reponse = await fetch('/api/clients/' + id);
+    const client = await reponse.json();
+    console.log(client.nom);
+}`
+    },
+    exempleExplique: [
+      "await fetch(...) attend que le serveur réponde, et stocke la réponse HTTP brute dans reponse.",
+      "await reponse.json() attend ensuite la conversion du corps de cette réponse en véritable objet JavaScript, stocké dans client.",
+      "client.nom accède ensuite normalement à une propriété de cet objet."
+    ],
+    erreursFrequentes: [
+      "Oublier await devant fetch(...) ou devant .json() : on manipule alors une promesse non résolue au lieu des données réelles.",
+      "Oublier que async/await ne s'utilisent qu'à l'intérieur d'une fonction elle-même déclarée async.",
+      "Envoyer un objet JavaScript brut comme body d'une requête POST sans passer par JSON.stringify."
+    ],
+    astuce: "Retiens la double étape systématique avec fetch : d'abord await fetch(url) pour la réponse HTTP, ENSUITE await reponse.json() pour les données elles-mêmes.",
+    exercicesIds: ['ex-web-fetchjson-qcm-1', 'ex-web-fetchjson-completer-1']
   }
 ];
 
