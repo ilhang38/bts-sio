@@ -2321,6 +2321,838 @@ export const EXERCISES = [
       { id: 2, accepte: ['json'] }
     ],
     explication: 'await attend la réponse HTTP ; .json() convertit ensuite son corps en objet JavaScript, lui aussi de façon asynchrone.'
+  },
+  {
+    id: 'ex-cyber-dic-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-dic', competence: 'cyber.dic',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une attaque par déni de service empêche les utilisateurs d\'accéder à un service. Quel principe du DIC est directement visé ?',
+    options: [
+      { id: 'a', texte: 'Confidentialité' }, { id: 'b', texte: 'Intégrité' },
+      { id: 'c', texte: 'Disponibilité' }, { id: 'd', texte: 'Aucun des trois' }
+    ],
+    correctes: ['c'],
+    explication: 'Le déni de service rend le service inaccessible : c\'est une atteinte à la disponibilité, sans forcément toucher la confidentialité ou l\'intégrité des données.'
+  },
+  {
+    id: 'ex-cyber-dic-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-dic', competence: 'cyber.dic',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le chiffrement d\'une donnée protège principalement sa disponibilité.',
+    correct: false,
+    explication: 'Le chiffrement protège avant tout la CONFIDENTIALITÉ d\'une donnée (la rendre illisible sans la clé), pas sa disponibilité.'
+  },
+  {
+    id: 'ex-cyber-authentification-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-authentification', competence: 'cyber.authentification',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle étape consiste à PROUVER que l\'on est bien la personne déclarée ?',
+    options: [
+      { id: 'a', texte: 'Identification' }, { id: 'b', texte: 'Authentification' },
+      { id: 'c', texte: 'Autorisation' }, { id: 'd', texte: 'Journalisation' }
+    ],
+    correctes: ['b'],
+    explication: 'L\'authentification est l\'étape de vérification/preuve de l\'identité, généralement via un mot de passe, une biométrie ou un code.'
+  },
+  {
+    id: 'ex-cyber-authentification-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-authentification', competence: 'cyber.authentification',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Être authentifié avec succès signifie automatiquement avoir le droit d\'accéder à toutes les ressources du système.',
+    correct: false,
+    explication: 'L\'authentification (prouver son identité) est distincte de l\'autorisation (ce qu\'on a le droit de faire) : les deux ne sont pas automatiquement liées.'
+  },
+  {
+    id: 'ex-cyber-mfa-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-mfa', competence: 'cyber.mfa',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Laquelle de ces combinaisons constitue une véritable authentification multifacteur ?',
+    options: [
+      { id: 'a', texte: 'Mot de passe + question secrète' },
+      { id: 'b', texte: 'Mot de passe + code reçu par SMS' },
+      { id: 'c', texte: 'Deux mots de passe différents' },
+      { id: 'd', texte: 'Nom d\'utilisateur + mot de passe' }
+    ],
+    correctes: ['b'],
+    explication: 'Le mot de passe (connaissance) et le code SMS (possession, via le téléphone) appartiennent à deux catégories différentes : c\'est du vrai MFA. Les autres options restent dans une seule catégorie.'
+  },
+  {
+    id: 'ex-cyber-mfa-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-mfa', competence: 'cyber.mfa',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le MFA rend un compte totalement inviolable, sans aucun risque résiduel.',
+    correct: false,
+    explication: 'Le MFA réduit fortement le risque mais ne l\'élimine pas complètement : un attaquant très déterminé peut parfois compromettre plusieurs facteurs.'
+  },
+  {
+    id: 'ex-cyber-droits-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-droits', competence: 'cyber.droits',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que préconise le principe du moindre privilège ?',
+    options: [
+      { id: 'a', texte: 'Donner tous les droits par défaut' },
+      { id: 'b', texte: 'Donner uniquement les droits strictement nécessaires' },
+      { id: 'c', texte: 'Ne jamais donner de droits' },
+      { id: 'd', texte: 'Donner les mêmes droits à tout le monde' }
+    ],
+    correctes: ['b'],
+    explication: 'Le moindre privilège consiste à limiter les droits de chaque utilisateur (ou programme) au strict nécessaire pour sa fonction.'
+  },
+  {
+    id: 'ex-cyber-droits-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-droits', competence: 'cyber.droits',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Il est recommandé de retirer les droits d\'un utilisateur qui change de poste si ses anciens droits ne sont plus nécessaires.',
+    correct: true,
+    explication: 'C\'est une bonne pratique directement liée au moindre privilège : des droits devenus inutiles doivent être retirés pour limiter la surface d\'attaque.'
+  },
+  {
+    id: 'ex-cyber-donneespersonnelles-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-donneespersonnelles', competence: 'cyber.donneespersonnelles',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une donnée de santé est-elle considérée comme une donnée personnelle ordinaire ou sensible ?',
+    options: [
+      { id: 'a', texte: 'Ordinaire' }, { id: 'b', texte: 'Sensible' },
+      { id: 'c', texte: 'Ni l\'un ni l\'autre' }, { id: 'd', texte: 'Cela dépend de sa longueur' }
+    ],
+    correctes: ['b'],
+    explication: 'Les données de santé font partie des catégories de données SENSIBLES au sens du RGPD, nécessitant une protection renforcée.'
+  },
+  {
+    id: 'ex-cyber-donneespersonnelles-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-donneespersonnelles', competence: 'cyber.donneespersonnelles',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une date de naissance seule ne peut jamais devenir identifiante, même combinée à d\'autres informations.',
+    correct: false,
+    explication: 'C\'est l\'inverse : une date de naissance, indirectement identifiante seule, peut permettre d\'identifier quelqu\'un une fois CROISÉE avec d\'autres données (code postal, profession...).'
+  },
+  {
+    id: 'ex-cyber-chiffrement-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-chiffrement', competence: 'cyber.chiffrement',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans le chiffrement asymétrique, quelle clé sert à CHIFFRER un message ?',
+    options: [
+      { id: 'a', texte: 'La clé privée' }, { id: 'b', texte: 'La clé publique' },
+      { id: 'c', texte: 'Les deux clés à la fois' }, { id: 'd', texte: 'Aucune clé n\'est nécessaire' }
+    ],
+    correctes: ['b'],
+    explication: 'N\'importe qui peut chiffrer avec la clé PUBLIQUE, partageable librement ; seul le possesseur de la clé PRIVÉE correspondante peut ensuite déchiffrer.'
+  },
+  {
+    id: 'ex-cyber-chiffrement-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-chiffrement', competence: 'cyber.chiffrement',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'HTTPS utilise uniquement le chiffrement asymétrique pour toute la durée de la communication.',
+    correct: false,
+    explication: 'HTTPS utilise l\'asymétrique seulement pour échanger une clé symétrique temporaire ; le reste de la communication est chiffré avec cette clé symétrique, plus rapide.'
+  },
+  {
+    id: 'ex-cyber-sauvegardes-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-sauvegardes', competence: 'cyber.sauvegardes',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que copie une sauvegarde différentielle ?',
+    options: [
+      { id: 'a', texte: 'Tout, à chaque fois' },
+      { id: 'b', texte: 'Ce qui a changé depuis la dernière sauvegarde complète' },
+      { id: 'c', texte: 'Ce qui a changé depuis la toute première sauvegarde' },
+      { id: 'd', texte: 'Rien, elle vérifie seulement l\'intégrité' }
+    ],
+    correctes: ['b'],
+    explication: 'La sauvegarde différentielle copie tout ce qui a changé depuis la DERNIÈRE SAUVEGARDE COMPLÈTE, contrairement à l\'incrémentale qui se base sur la dernière sauvegarde quelle qu\'elle soit.'
+  },
+  {
+    id: 'ex-cyber-sauvegardes-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-sauvegardes', competence: 'cyber.sauvegardes',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'La règle 3-2-1 recommande de conserver toutes les copies de sauvegarde au même endroit pour plus de simplicité.',
+    correct: false,
+    explication: 'La règle 3-2-1 recommande au contraire 2 supports différents et au moins 1 copie HORS SITE, justement pour éviter qu\'un même incident détruise toutes les copies à la fois.'
+  },
+  {
+    id: 'ex-cyber-equipements-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-equipements', competence: 'cyber.equipements',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel protocole Wi-Fi ne doit plus être utilisé aujourd\'hui car obsolète et peu sûr ?',
+    options: [
+      { id: 'a', texte: 'WPA2' }, { id: 'b', texte: 'WPA3' },
+      { id: 'c', texte: 'WEP' }, { id: 'd', texte: 'WPA' }
+    ],
+    correctes: ['c'],
+    explication: 'WEP est un protocole ancien et facilement cassable, aujourd\'hui totalement déconseillé au profit de WPA2 ou WPA3.'
+  },
+  {
+    id: 'ex-cyber-equipements-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-equipements', competence: 'cyber.equipements',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Brancher une clé USB trouvée par hasard pour voir ce qu\'elle contient est une pratique sans danger.',
+    correct: false,
+    explication: 'C\'est un scénario classique d\'attaque par appât ("baiting") : la clé peut contenir un malware qui s\'exécute automatiquement dès le branchement.'
+  },
+  {
+    id: 'ex-cyber-identitenumerique-qcm-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-identitenumerique', competence: 'cyber.identitenumerique',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Qu\'est-ce que l\'usurpation d\'identité numérique d\'une organisation ?',
+    options: [
+      { id: 'a', texte: 'Une panne de son site web' },
+      { id: 'b', texte: 'Se faire passer pour elle (faux compte, faux site...)' },
+      { id: 'c', texte: 'Une mise à jour de son logo' },
+      { id: 'd', texte: 'Un changement de nom de domaine légitime' }
+    ],
+    correctes: ['b'],
+    explication: 'L\'usurpation consiste, pour un attaquant, à se faire passer pour l\'organisation afin de tromper ses clients ou partenaires.'
+  },
+  {
+    id: 'ex-cyber-identitenumerique-vf-1',
+    matiere: 'cybersecurite', chapitre: 'cyber-identitenumerique', competence: 'cyber.identitenumerique',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une bonne réaction rapide et transparente face à un incident limite les dégâts sur la réputation numérique.',
+    correct: true,
+    explication: 'Une communication rapide et transparente limite fortement la perte de confiance, contrairement à une réaction tardive ou opaque.'
+  },
+  {
+    id: 'ex-maths-arithmetiquemodulaire-qcm-1',
+    matiere: 'maths', chapitre: 'maths-arithmetique-modulaire', competence: 'maths.arithmetiquemodulaire',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que vaut 23 % 5 ?',
+    options: [
+      { id: 'a', texte: '4' }, { id: 'b', texte: '3' },
+      { id: 'c', texte: '5' }, { id: 'd', texte: '18' }
+    ],
+    correctes: ['b'],
+    explication: '23 = 4 × 5 + 3 : le reste de la division de 23 par 5 est 3.'
+  },
+  {
+    id: 'ex-maths-arithmetiquemodulaire-completer-1',
+    matiere: 'maths', chapitre: 'maths-arithmetique-modulaire', competence: 'maths.arithmetiquemodulaire',
+    langage: 'csharp', difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cet exemple de table de hachage.',
+    template: 'int cle = 47;\nint case_ = cle {{1}} 10; // donne toujours un résultat entre 0 et 9',
+    trous: [
+      { id: 1, accepte: ['%'] }
+    ],
+    explication: 'L\'opérateur modulo (%) donne toujours un résultat entre 0 et 9 quand on divise par 10, ce qui répartit n\'importe quelle clé dans un nombre fixe de cases.'
+  },
+  {
+    id: 'ex-maths-booleensimplification-qcm-1',
+    matiere: 'maths', chapitre: 'maths-booleen-simplification', competence: 'maths.booleensimplification',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'D\'après les lois de De Morgan, NON(A ET B) est équivalent à :',
+    options: [
+      { id: 'a', texte: '(NON A) ET (NON B)' }, { id: 'b', texte: '(NON A) OU (NON B)' },
+      { id: 'c', texte: 'A OU B' }, { id: 'd', texte: 'NON A' }
+    ],
+    correctes: ['b'],
+    explication: 'La négation d\'un ET devient un OU des négations : NON(A ET B) = (NON A) OU (NON B).'
+  },
+  {
+    id: 'ex-maths-booleensimplification-completer-1',
+    matiere: 'maths', chapitre: 'maths-booleen-simplification', competence: 'maths.booleensimplification',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette application de De Morgan.',
+    template: '!(a && b)\n= !a {{1}} !b',
+    trous: [
+      { id: 1, accepte: ['||', 'OU', 'ou'] }
+    ],
+    explication: 'La négation d\'un ET (&&) se transforme en OU (||) des négations de chaque terme.'
+  },
+  {
+    id: 'ex-maths-suitessomme-qcm-1',
+    matiere: 'maths', chapitre: 'maths-suites-somme', competence: 'maths.suitessomme',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle formule donne la somme des (n+1) premiers termes d\'une suite ARITHMÉTIQUE ?',
+    options: [
+      { id: 'a', texte: '(n+1) × (u0 + un) / 2' },
+      { id: 'b', texte: 'u0 × (1 - q^(n+1)) / (1 - q)' },
+      { id: 'c', texte: 'u0 + n × r' },
+      { id: 'd', texte: 'n × u0' }
+    ],
+    correctes: ['a'],
+    explication: 'La somme d\'une suite arithmétique se calcule avec "nombre de termes × (premier + dernier) / 2".'
+  },
+  {
+    id: 'ex-maths-suitessomme-completer-1',
+    matiere: 'maths', chapitre: 'maths-suites-somme', competence: 'maths.suitessomme',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète ce calcul de somme (u0 = 3, raison r = 2, 5 termes, u4 = 11).',
+    template: 'S4 = {{1}} × (3 + 11) / {{2}}',
+    trous: [
+      { id: 1, accepte: ['5'] },
+      { id: 2, accepte: ['2'] }
+    ],
+    explication: 'Il y a 5 termes (de u0 à u4) ; la formule est nombre de termes × (premier + dernier) / 2, soit 5 × (3+11) / 2 = 35.'
+  },
+  {
+    id: 'ex-maths-graphesdijkstra-qcm-1',
+    matiere: 'maths', chapitre: 'maths-graphes-dijkstra', competence: 'maths.graphesdijkstra',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'L\'algorithme de Dijkstra fonctionne correctement uniquement si :',
+    options: [
+      { id: 'a', texte: 'Le graphe est orienté' },
+      { id: 'b', texte: 'Tous les poids sont positifs' },
+      { id: 'c', texte: 'Le graphe n\'a pas de cycle' },
+      { id: 'd', texte: 'Il y a moins de 10 sommets' }
+    ],
+    correctes: ['b'],
+    explication: 'Dijkstra ne garantit un résultat correct que si tous les poids du graphe sont positifs ou nuls.'
+  },
+  {
+    id: 'ex-maths-graphesdijkstra-vf-1',
+    matiere: 'maths', chapitre: 'maths-graphes-dijkstra', competence: 'maths.graphesdijkstra',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le plus court chemin dans un graphe pondéré est toujours celui qui traverse le moins d\'arêtes.',
+    correct: false,
+    explication: 'Le plus court chemin est celui dont la SOMME DES POIDS est minimale, pas nécessairement celui avec le moins d\'arêtes.'
+  },
+  {
+    id: 'ex-maths-matricesproduit-qcm-1',
+    matiere: 'maths', chapitre: 'maths-matrices-produit', competence: 'maths.matricesproduit',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Pour que le produit A × B soit possible, il faut que :',
+    options: [
+      { id: 'a', texte: 'A et B aient la même taille' },
+      { id: 'b', texte: 'Le nombre de colonnes de A égale le nombre de lignes de B' },
+      { id: 'c', texte: 'A et B soient carrées' },
+      { id: 'd', texte: 'Le nombre de lignes de A égale le nombre de colonnes de B' }
+    ],
+    correctes: ['b'],
+    explication: 'Le produit A × B n\'est possible que si le nombre de colonnes de A correspond au nombre de lignes de B.'
+  },
+  {
+    id: 'ex-maths-matricesproduit-vf-1',
+    matiere: 'maths', chapitre: 'maths-matrices-produit', competence: 'maths.matricesproduit',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le produit matriciel est commutatif : A × B donne toujours le même résultat que B × A.',
+    correct: false,
+    explication: 'Le produit matriciel n\'est PAS commutatif en général : A × B ≠ B × A.'
+  },
+  {
+    id: 'ex-maths-ensemblesrelations-qcm-1',
+    matiere: 'maths', chapitre: 'maths-ensembles-relations', competence: 'maths.ensemblesrelations',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Qu\'est-ce qui distingue une application d\'une simple relation ?',
+    options: [
+      { id: 'a', texte: 'Une application concerne des nombres uniquement' },
+      { id: 'b', texte: 'Chaque élément de E a exactement une image dans F' },
+      { id: 'c', texte: 'Une application est toujours bijective' },
+      { id: 'd', texte: 'Il n\'y a aucune différence' }
+    ],
+    correctes: ['b'],
+    explication: 'Une application exige que chaque élément de E ait EXACTEMENT une image dans F, contrairement à une relation quelconque.'
+  },
+  {
+    id: 'ex-maths-ensemblesrelations-vf-1',
+    matiere: 'maths', chapitre: 'maths-ensembles-relations', competence: 'maths.ensemblesrelations',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Une application bijective est à la fois injective et surjective.',
+    correct: true,
+    explication: 'C\'est exactement la définition d\'une application bijective : injective ET surjective en même temps.'
+  },
+  {
+    id: 'ex-cejm-t1-marche-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-t1-marche', competence: 'cejm.t1.marche',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Sur un marché, que se passe-t-il si le prix est fixé au-dessus du prix d\'équilibre ?',
+    options: [
+      { id: 'a', texte: 'Pénurie' }, { id: 'b', texte: 'Surplus (l\'offre dépasse la demande)' },
+      { id: 'c', texte: 'Le marché disparaît' }, { id: 'd', texte: 'Rien ne change' }
+    ],
+    correctes: ['b'],
+    explication: 'Un prix supérieur à l\'équilibre décourage la demande et encourage l\'offre : il en résulte un surplus, l\'offre dépasse la demande à ce prix.'
+  },
+  {
+    id: 'ex-cejm-t1-marche-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-t1-marche', competence: 'cejm.t1.marche',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un monopole se caractérise par un grand nombre de vendeurs sur le marché.',
+    correct: false,
+    explication: 'C\'est l\'inverse : un monopole se caractérise par un SEUL vendeur sur le marché.'
+  },
+  {
+    id: 'ex-cejm-t2-indicateurs-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-t2-indicateurs', competence: 'cejm.t2.indicateurs',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que mesure le taux de chômage ?',
+    options: [
+      { id: 'a', texte: 'La part de la population qui travaille' },
+      { id: 'b', texte: 'La part de la population active sans emploi et en recherche active' },
+      { id: 'c', texte: 'Le nombre total d\'entreprises' },
+      { id: 'd', texte: 'La croissance du PIB' }
+    ],
+    correctes: ['b'],
+    explication: 'Le taux de chômage mesure la part de la population active qui n\'a pas d\'emploi mais en recherche un activement.'
+  },
+  {
+    id: 'ex-cejm-t2-indicateurs-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-t2-indicateurs', competence: 'cejm.t2.indicateurs',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le PIB prend en compte les inégalités de répartition des richesses au sein d\'un pays.',
+    correct: false,
+    explication: 'C\'est justement une des limites connues du PIB : il mesure la richesse totale produite, sans indiquer comment elle est répartie entre les habitants.'
+  },
+  {
+    id: 'ex-cejm-t3-management-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-t3-management', competence: 'cejm.t3.management',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans une structure matricielle, un salarié :',
+    options: [
+      { id: 'a', texte: 'N\'a aucun supérieur' },
+      { id: 'b', texte: 'Dépend à la fois d\'un responsable fonctionnel et d\'un responsable de projet' },
+      { id: 'c', texte: 'Ne travaille jamais en équipe' },
+      { id: 'd', texte: 'Change de métier chaque semaine' }
+    ],
+    correctes: ['b'],
+    explication: 'La structure matricielle se caractérise par un double rattachement : un responsable fonctionnel (métier) et un responsable de projet.'
+  },
+  {
+    id: 'ex-cejm-t3-management-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-t3-management', competence: 'cejm.t3.management',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le management directif associe systématiquement les salariés à la prise de décision.',
+    correct: false,
+    explication: 'C\'est le management PARTICIPATIF qui associe les salariés à la décision. Le management directif impose les décisions sans concertation.'
+  },
+  {
+    id: 'ex-cejm-t4-numerique-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-t4-numerique', competence: 'cejm.t4.numerique',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Qu\'est-ce qui protège une invention technique, contrairement au droit d\'auteur qui protège une œuvre dès sa création ?',
+    options: [
+      { id: 'a', texte: 'Le brevet' }, { id: 'b', texte: 'Le RGPD' },
+      { id: 'c', texte: 'Le CSE' }, { id: 'd', texte: 'La signature électronique' }
+    ],
+    correctes: ['a'],
+    explication: 'Le brevet protège une invention technique et nécessite un dépôt officiel, contrairement au droit d\'auteur qui s\'applique automatiquement dès la création.'
+  },
+  {
+    id: 'ex-cejm-t4-numerique-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-t4-numerique', competence: 'cejm.t4.numerique',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un contrat accepté en ligne n\'a jamais la même valeur juridique qu\'un contrat signé sur papier.',
+    correct: false,
+    explication: 'Sous certaines conditions de preuve (comme la signature électronique), un contrat électronique a bien la même valeur juridique qu\'un contrat papier.'
+  },
+  {
+    id: 'ex-cejm-t5-dialogue-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-t5-dialogue', competence: 'cejm.t5.dialogue',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle instance représente collectivement les salariés au sein d\'une entreprise ?',
+    options: [
+      { id: 'a', texte: 'Le CSE' }, { id: 'b', texte: 'L\'Autorité de la concurrence' },
+      { id: 'c', texte: 'La CNIL' }, { id: 'd', texte: 'Le SWOT' }
+    ],
+    correctes: ['a'],
+    explication: 'Le CSE (Comité Social et Économique) est l\'instance qui représente collectivement les salariés au sein de l\'entreprise.'
+  },
+  {
+    id: 'ex-cejm-t5-dialogue-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-t5-dialogue', competence: 'cejm.t5.dialogue',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un accord d\'entreprise résultant d\'une négociation collective n\'a aucune valeur contraignante.',
+    correct: false,
+    explication: 'Une fois signé selon les règles applicables, un accord d\'entreprise s\'impose bien aux parties concernées.'
+  },
+  {
+    id: 'ex-cejm-t6-swot-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-t6-swot', competence: 'cejm.t6.swot',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans une analyse SWOT, où classe-t-on l\'arrivée d\'un nouveau concurrent sur le marché ?',
+    options: [
+      { id: 'a', texte: 'Force' }, { id: 'b', texte: 'Faiblesse' },
+      { id: 'c', texte: 'Opportunité' }, { id: 'd', texte: 'Menace' }
+    ],
+    correctes: ['d'],
+    explication: 'Un nouveau concurrent est un élément EXTERNE défavorable à l\'entreprise : il se classe donc parmi les menaces.'
+  },
+  {
+    id: 'ex-cejm-t6-swot-vf-1',
+    matiere: 'cejm', chapitre: 'cejm-t6-swot', competence: 'cejm.t6.swot',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Les forces et faiblesses d\'une analyse SWOT relèvent de l\'analyse EXTERNE de l\'entreprise.',
+    correct: false,
+    explication: 'Les forces et faiblesses relèvent de l\'analyse INTERNE (ce que l\'entreprise maîtrise) ; opportunités et menaces relèvent de l\'analyse externe.'
+  },
+  {
+    id: 'ex-cejm-methode-qcm-1',
+    matiere: 'cejm', chapitre: 'cejm-methode', competence: 'cejm.methode',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle est la première étape pour répondre à une question CEJM à partir d\'un dossier ?',
+    options: [
+      { id: 'a', texte: 'Recopier tout le dossier' },
+      { id: 'b', texte: 'Identifier le problème posé par la question' },
+      { id: 'c', texte: 'Écrire une conclusion' },
+      { id: 'd', texte: 'Ignorer le cours et se fier uniquement aux documents' }
+    ],
+    correctes: ['b'],
+    explication: 'La première étape est toujours d\'identifier précisément le problème posé, c\'est-à-dire de quelle notion du cours relève réellement la question.'
+  },
+  {
+    id: 'ex-cejm-methode-reponse-1',
+    matiere: 'cejm', chapitre: 'cejm-methode', competence: 'cejm.methode',
+    langage: null, difficulte: 'moyen', type: 'reponse-courte',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans une réponse CEJM, faut-il se contenter de réciter une définition de cours sans la relier au dossier fourni ?',
+    reponsesAcceptees: ['non', 'Non'],
+    explication: 'Une bonne réponse doit toujours relier les connaissances du cours aux éléments concrets du dossier fourni, jamais se limiter à une définition seule.'
+  },
+  {
+    id: 'ex-cg-consigneproblematique-qcm-1',
+    matiere: 'culture-generale', chapitre: 'cg-consigne-problematique', competence: 'cg.consigneproblematique',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que doit faire une bonne problématique ?',
+    options: [
+      { id: 'a', texte: 'Reformuler simplement le sujet' },
+      { id: 'b', texte: 'Souligner une tension ou un enjeu débattable' },
+      { id: 'c', texte: 'Donner directement la réponse' },
+      { id: 'd', texte: 'Être la plus large possible' }
+    ],
+    correctes: ['b'],
+    explication: 'Une problématique doit faire ressortir une tension ou un enjeu débattable, pas seulement reformuler le sujet.'
+  },
+  {
+    id: 'ex-cg-consigneproblematique-vf-1',
+    matiere: 'culture-generale', chapitre: 'cg-consigne-problematique', competence: 'cg.consigneproblematique',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le verbe de consigne (analysez, montrez, confrontez...) n\'a pas d\'importance particulière pour la réponse attendue.',
+    correct: false,
+    explication: 'Le verbe de consigne indique précisément le type de réponse attendu : le repérer est la première étape avant de rédiger.'
+  },
+  {
+    id: 'ex-cg-corpusarguments-qcm-1',
+    matiere: 'culture-generale', chapitre: 'cg-corpus-arguments', competence: 'cg.corpusarguments',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Qu\'est-ce qui distingue un argument d\'un exemple ?',
+    options: [
+      { id: 'a', texte: 'Un argument est toujours plus court' },
+      { id: 'b', texte: 'Un argument justifie une idée générale, un exemple l\'illustre concrètement' },
+      { id: 'c', texte: 'Il n\'y a aucune différence' },
+      { id: 'd', texte: 'Un exemple est toujours faux' }
+    ],
+    correctes: ['b'],
+    explication: 'Un argument est une raison générale qui justifie la thèse ; un exemple illustre concrètement cet argument, sans le remplacer comme preuve.'
+  },
+  {
+    id: 'ex-cg-corpusarguments-vf-1',
+    matiere: 'culture-generale', chapitre: 'cg-corpus-arguments', competence: 'cg.corpusarguments',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un seul exemple suffit toujours à prouver une règle générale.',
+    correct: false,
+    explication: 'Un exemple illustre un argument mais ne constitue pas à lui seul une preuve suffisante d\'une règle générale.'
+  },
+  {
+    id: 'ex-cg-essaiplan-qcm-1',
+    matiere: 'culture-generale', chapitre: 'cg-essai-plan', competence: 'cg.essaiplan',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel type de plan convient le mieux à une question fermée invitant à peser le pour et le contre ?',
+    options: [
+      { id: 'a', texte: 'Plan thématique' }, { id: 'b', texte: 'Plan dialectique' },
+      { id: 'c', texte: 'Aucun plan n\'est nécessaire' }, { id: 'd', texte: 'Un plan chronologique' }
+    ],
+    correctes: ['b'],
+    explication: 'Le plan dialectique (thèse/antithèse/synthèse) convient aux questions fermées qui invitent explicitement à peser le pour et le contre.'
+  },
+  {
+    id: 'ex-cg-essaiplan-vf-1',
+    matiere: 'culture-generale', chapitre: 'cg-essai-plan', competence: 'cg.essaiplan',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Dans un plan dialectique, la troisième partie doit simplement répéter les deux premières.',
+    correct: false,
+    explication: 'La troisième partie (synthèse) doit dépasser l\'opposition des deux premières, pas se contenter de les répéter.'
+  },
+  {
+    id: 'ex-cg-notionsvraifaux-qcm-1',
+    matiere: 'culture-generale', chapitre: 'cg-notions-vraifaux', competence: 'cg.notionsvraifaux',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Qu\'est-ce qui distingue un mensonge d\'une erreur ?',
+    options: [
+      { id: 'a', texte: 'Le mensonge est toujours plus grave' },
+      { id: 'b', texte: 'Le mensonge est volontaire, l\'erreur est involontaire' },
+      { id: 'c', texte: 'L\'erreur concerne uniquement les nombres' },
+      { id: 'd', texte: 'Il n\'y a aucune différence' }
+    ],
+    correctes: ['b'],
+    explication: 'Le mensonge est une affirmation fausse et volontaire, avec intention de tromper ; l\'erreur est fausse mais involontaire, de bonne foi.'
+  },
+  {
+    id: 'ex-cg-notionsvraifaux-vf-1',
+    matiere: 'culture-generale', chapitre: 'cg-notions-vraifaux', competence: 'cg.notionsvraifaux',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Toute croyance vraie constitue automatiquement une connaissance.',
+    correct: false,
+    explication: 'La connaissance suppose une croyance vraie ET justifiée par des preuves ; une croyance vraie par hasard, sans justification, n\'est pas une connaissance.'
+  },
+  {
+    id: 'ex-cg-expressionecrite-qcm-1',
+    matiere: 'culture-generale', chapitre: 'cg-expression-ecrite', competence: 'cg.expressionecrite',
+    langage: null, difficulte: 'facile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quel connecteur exprime une opposition ?',
+    options: [
+      { id: 'a', texte: 'Ainsi' }, { id: 'b', texte: 'Cependant' },
+      { id: 'c', texte: 'Par exemple' }, { id: 'd', texte: 'De plus' }
+    ],
+    correctes: ['b'],
+    explication: '"Cependant" exprime une opposition, contrairement à "ainsi" (conséquence), "par exemple" (illustration) ou "de plus" (addition).'
+  },
+  {
+    id: 'ex-cg-expressionecrite-completer-1',
+    matiere: 'culture-generale', chapitre: 'cg-expression-ecrite', competence: 'cg.expressionecrite',
+    langage: null, difficulte: 'facile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette phrase avec un connecteur d\'opposition.',
+    template: 'Certes, les réseaux sociaux informent vite ; {{1}}, ils peuvent aussi propager de fausses informations.',
+    trous: [
+      { id: 1, accepte: ['cependant', 'néanmoins', 'toutefois', 'Cependant', 'Néanmoins', 'Toutefois'] }
+    ],
+    explication: 'Après "certes", on attend un connecteur d\'opposition comme "cependant", "néanmoins" ou "toutefois" pour introduire la concession.'
+  },
+  {
+    id: 'ex-gp-gitbases-qcm-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-bases', competence: 'gp.gitbases',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que fait `git add` avant `git commit` ?',
+    options: [
+      { id: 'a', texte: 'Enregistre définitivement les changements' },
+      { id: 'b', texte: 'Prépare les changements dans la zone de staging' },
+      { id: 'c', texte: 'Supprime des fichiers' },
+      { id: 'd', texte: 'Envoie le projet sur GitHub' }
+    ],
+    correctes: ['b'],
+    explication: 'git add place des fichiers dans la zone de préparation (staging), avant qu\'ils soient définitivement enregistrés par git commit.'
+  },
+  {
+    id: 'ex-gp-gitbases-completer-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-bases', competence: 'gp.gitbases',
+    langage: null, difficulte: 'moyen', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète ces commandes Git de base.',
+    template: 'git {{1}}\ngit add .\ngit {{2}} -m "Premier commit"',
+    trous: [
+      { id: 1, accepte: ['init'] },
+      { id: 2, accepte: ['commit'] }
+    ],
+    explication: 'git init crée le dépôt ; git commit -m "..." enregistre définitivement les changements préparés par git add.'
+  },
+  {
+    id: 'ex-gp-gitgithub-qcm-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-github', competence: 'gp.gitgithub',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que fait `git push` ?',
+    options: [
+      { id: 'a', texte: 'Télécharge un projet distant' },
+      { id: 'b', texte: 'Envoie les commits locaux vers le dépôt distant' },
+      { id: 'c', texte: 'Crée une branche' },
+      { id: 'd', texte: 'Supprime l\'historique' }
+    ],
+    correctes: ['b'],
+    explication: 'git push envoie les commits enregistrés localement vers le dépôt distant (par exemple sur GitHub).'
+  },
+  {
+    id: 'ex-gp-gitgithub-vf-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-github', competence: 'gp.gitgithub',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Git ne peut fonctionner qu\'avec GitHub, il n\'existe pas sans ce service.',
+    correct: false,
+    explication: 'Git est un outil local indépendant ; GitHub n\'est qu\'un service d\'hébergement parmi d\'autres (GitLab, Bitbucket...) qui s\'appuie sur Git.'
+  },
+  {
+    id: 'ex-gp-gitbranches-qcm-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-branches', competence: 'gp.gitbranches',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Quelle commande crée une branche ET bascule dessus immédiatement ?',
+    options: [
+      { id: 'a', texte: 'git branch nom' }, { id: 'b', texte: 'git switch -c nom' },
+      { id: 'c', texte: 'git merge nom' }, { id: 'd', texte: 'git log nom' }
+    ],
+    correctes: ['b'],
+    explication: 'git switch -c nom crée la branche et bascule dessus en une seule commande, contrairement à git branch seul.'
+  },
+  {
+    id: 'ex-gp-gitbranches-completer-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-branches', competence: 'gp.gitbranches',
+    langage: null, difficulte: 'difficile', type: 'completer-code',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Complète cette fusion de branche.',
+    template: 'git switch main\ngit {{1}} feature-connexion',
+    trous: [
+      { id: 1, accepte: ['merge'] }
+    ],
+    explication: 'Exécutée depuis main, git merge feature-connexion fusionne les changements de cette branche dans main.'
+  },
+  {
+    id: 'ex-gp-gitconflits-qcm-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-conflits', competence: 'gp.gitconflits',
+    langage: null, difficulte: 'difficile', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Pourquoi un conflit Git apparaît-il ?',
+    options: [
+      { id: 'a', texte: 'Le réseau est trop lent' },
+      { id: 'b', texte: 'Les mêmes lignes d\'un fichier ont été modifiées différemment sur deux branches' },
+      { id: 'c', texte: 'Un fichier a été supprimé' },
+      { id: 'd', texte: 'Le dépôt est trop volumineux' }
+    ],
+    correctes: ['b'],
+    explication: 'Un conflit survient quand Git ne peut pas fusionner automatiquement deux versions différentes des mêmes lignes d\'un fichier.'
+  },
+  {
+    id: 'ex-gp-gitconflits-vf-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-conflits', competence: 'gp.gitconflits',
+    langage: null, difficulte: 'difficile', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Après avoir résolu un conflit, il faut supprimer tous les marqueurs (<<<<<<<, =======, >>>>>>>) du fichier.',
+    correct: true,
+    explication: 'Les marqueurs de conflit doivent impérativement être supprimés, sinon ils resteraient comme du texte invalide dans le fichier final.'
+  },
+  {
+    id: 'ex-gp-gitcollaboration-qcm-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-collaboration', competence: 'gp.gitcollaboration',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'À quoi sert principalement une Pull Request ?',
+    options: [
+      { id: 'a', texte: 'Supprimer une branche' },
+      { id: 'b', texte: 'Permettre une revue de code avant de fusionner des changements' },
+      { id: 'c', texte: 'Créer un nouveau dépôt' },
+      { id: 'd', texte: 'Annuler un commit' }
+    ],
+    correctes: ['b'],
+    explication: 'Une Pull Request permet à l\'équipe de consulter et relire les changements avant qu\'ils soient fusionnés dans la branche cible.'
+  },
+  {
+    id: 'ex-gp-gitcollaboration-vf-1',
+    matiere: 'gestion-projet', chapitre: 'gp-git-collaboration', competence: 'gp.gitcollaboration',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'La revue de code permet de repérer des erreurs avant qu\'elles n\'atteignent la branche principale.',
+    correct: true,
+    explication: 'C\'est précisément l\'intérêt de la revue de code : détecter les problèmes avant leur intégration dans la version principale du projet.'
+  },
+  {
+    id: 'ex-gp-agilescrum-qcm-1',
+    matiere: 'gestion-projet', chapitre: 'gp-agile-scrum', competence: 'gp.agilescrum',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que représente le Sprint Backlog ?',
+    options: [
+      { id: 'a', texte: 'Tout le travail restant sur le produit' },
+      { id: 'b', texte: 'Les tâches sélectionnées pour le sprint en cours' },
+      { id: 'c', texte: 'La liste des bugs' },
+      { id: 'd', texte: 'L\'équipe complète du projet' }
+    ],
+    correctes: ['b'],
+    explication: 'Le Sprint Backlog est le sous-ensemble de tâches sélectionnées pour le sprint EN COURS, à distinguer du Product Backlog qui contient tout le travail restant.'
+  },
+  {
+    id: 'ex-gp-agilescrum-vf-1',
+    matiere: 'gestion-projet', chapitre: 'gp-agile-scrum', competence: 'gp.agilescrum',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Le Product Owner est responsable de faciliter le bon déroulement de la méthode Scrum, pas de prioriser le backlog.',
+    correct: false,
+    explication: 'C\'est l\'inverse : le Product Owner priorise le backlog ; c\'est le Scrum Master qui facilite le bon déroulement de la méthode.'
+  },
+  {
+    id: 'ex-gp-cahiercharges-qcm-1',
+    matiere: 'gestion-projet', chapitre: 'gp-cahier-charges', competence: 'gp.cahiercharges',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Lequel de ces exemples est un besoin NON FONCTIONNEL ?',
+    options: [
+      { id: 'a', texte: 'L\'utilisateur peut filtrer les produits' },
+      { id: 'b', texte: 'Le site doit supporter 500 utilisateurs simultanés' },
+      { id: 'c', texte: 'L\'utilisateur peut créer un compte' },
+      { id: 'd', texte: 'L\'utilisateur peut ajouter un produit au panier' }
+    ],
+    correctes: ['b'],
+    explication: 'Supporter un nombre d\'utilisateurs simultanés est une QUALITÉ du système (performance), pas une fonctionnalité précise : c\'est un besoin non fonctionnel.'
+  },
+  {
+    id: 'ex-gp-cahiercharges-vf-1',
+    matiere: 'gestion-projet', chapitre: 'gp-cahier-charges', competence: 'gp.cahiercharges',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un critère d\'acceptation vague comme "le site doit être rapide" est suffisant pour un cahier des charges rigoureux.',
+    correct: false,
+    explication: 'Un bon critère d\'acceptation doit être mesurable (par exemple "temps de chargement inférieur à 2 secondes"), pas vague.'
+  },
+  {
+    id: 'ex-gp-planning-qcm-1',
+    matiere: 'gestion-projet', chapitre: 'gp-planning', competence: 'gp.planning',
+    langage: null, difficulte: 'moyen', type: 'qcm', multiple: false,
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Que se passe-t-il si une tâche du chemin critique prend du retard ?',
+    options: [
+      { id: 'a', texte: 'Rien, ça n\'a aucun impact' },
+      { id: 'b', texte: 'Tout le projet prend du retard' },
+      { id: 'c', texte: 'Seule cette tâche est concernée' },
+      { id: 'd', texte: 'Le projet se termine plus tôt' }
+    ],
+    correctes: ['b'],
+    explication: 'Le chemin critique détermine la durée minimale du projet : tout retard sur une de ses tâches retarde directement l\'ensemble du projet.'
+  },
+  {
+    id: 'ex-gp-planning-vf-1',
+    matiere: 'gestion-projet', chapitre: 'gp-planning', competence: 'gp.planning',
+    langage: null, difficulte: 'moyen', type: 'vrai-faux',
+    annees: ['2025-2026', '2026-2027'],
+    enonce: 'Un jalon (milestone) a une durée, comme une tâche classique.',
+    correct: false,
+    explication: 'Contrairement à une tâche, un jalon est un point précis dans le temps, sans durée.'
   }
 ];
 

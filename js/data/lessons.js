@@ -1989,7 +1989,7 @@ alors directement récupérés par l'attaquant.`
     id: 'cyber-securite-web',
     matiere: 'cybersecurite',
     parcoursId: 'cybersecurite',
-    niveau: 3,
+    niveau: 4,
     ordre: 1,
     titre: 'Sécuriser une application web',
     competence: 'cyber.securite-web',
@@ -3498,6 +3498,1612 @@ Réponse : 404 Not Found`
     ],
     astuce: "Retiens la double étape systématique avec fetch : d'abord await fetch(url) pour la réponse HTTP, ENSUITE await reponse.json() pour les données elles-mêmes.",
     exercicesIds: ['ex-web-fetchjson-qcm-1', 'ex-web-fetchjson-completer-1']
+  },
+  {
+    id: 'cyber-dic',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 1,
+    ordre: 2,
+    titre: 'Les principes de sécurité : Disponibilité, Intégrité, Confidentialité (DIC)',
+    competence: 'cyber.dic',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les trois grands principes qui définissent un objectif de sécurité informatique.",
+    explication: [
+      "La sécurité informatique vise à protéger un système selon trois grands principes, souvent résumés par l'acronyme DIC : la DISPONIBILITÉ, l'INTÉGRITÉ et la CONFIDENTIALITÉ des données et des services.",
+      "La DISPONIBILITÉ garantit qu'un service ou une donnée est accessible quand on en a besoin, par les personnes autorisées. Une attaque par déni de service (DoS/DDoS), qui sature un serveur, est une atteinte typique à la disponibilité.",
+      "L'INTÉGRITÉ garantit qu'une donnée n'est pas altérée ou corrompue de façon non autorisée — que ce soit par une attaque, une erreur technique ou une manipulation malveillante.",
+      "La CONFIDENTIALITÉ garantit qu'une donnée n'est accessible qu'aux personnes autorisées à la consulter. Le chiffrement (vu dans une prochaine leçon) est l'outil principal pour protéger la confidentialité."
+    ],
+    aRetenir: [
+      'DIC : Disponibilité, Intégrité, Confidentialité — les trois grands principes de la sécurité informatique',
+      'Disponibilité : le service/la donnée est accessible quand nécessaire (menacée par le déni de service)',
+      'Intégrité : la donnée n\'est pas altérée ou modifiée sans autorisation',
+      'Confidentialité : seules les personnes autorisées peuvent accéder à la donnée (protégée par le chiffrement)'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Un site e-commerce subit une attaque DDoS pendant les soldes :
+le site devient inaccessible aux clients pendant plusieurs heures.
+
+→ C'est une atteinte à la DISPONIBILITÉ, pas à la confidentialité
+  ni à l'intégrité : aucune donnée n'a été volée ni modifiée,
+  mais le service n'a pas pu être utilisé.`
+    },
+    exempleExplique: [
+      "Identifier quel principe DIC est visé par une attaque est une compétence fréquemment demandée à l'examen : ici, aucune donnée n'a fuité (confidentialité intacte) ni été modifiée (intégrité intacte), seul l'ACCÈS a été empêché.",
+      "Une même attaque peut parfois toucher plusieurs principes à la fois : un ransomware atteint à la fois la disponibilité (données inaccessibles) et potentiellement l'intégrité si les fichiers sont altérés."
+    ],
+    erreursFrequentes: [
+      "Confondre intégrité (la donnée n'est pas modifiée) et confidentialité (la donnée n'est pas divulguée) : deux notions bien distinctes.",
+      "Oublier la disponibilité en ne pensant la sécurité qu'en termes de \"vol de données\" : rendre un service indisponible est aussi une vraie atteinte à la sécurité.",
+      "Croire qu'une seule mesure de protection suffit à couvrir les trois principes à la fois : chiffrement (confidentialité), sauvegardes/redondance (disponibilité), contrôle d'intégrité répondent chacun à un principe différent."
+    ],
+    astuce: "Pour identifier rapidement le principe touché par un scénario d'examen : le service est-il resté ACCESSIBLE (disponibilité) ? Les données sont-elles restées EXACTES (intégrité) ? Sont-elles restées SECRÈTES (confidentialité) ?",
+    exercicesIds: ['ex-cyber-dic-qcm-1', 'ex-cyber-dic-vf-1']
+  },
+  {
+    id: 'cyber-authentification',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 2,
+    ordre: 1,
+    titre: 'Identification, authentification et autorisation',
+    competence: 'cyber.authentification',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Distinguer clairement identification, authentification et autorisation.",
+    explication: [
+      "Ces trois notions sont souvent confondues, mais désignent des étapes bien distinctes du contrôle d'accès. L'IDENTIFICATION consiste à DÉCLARER qui l'on est (par exemple, saisir un nom d'utilisateur) — sans encore le prouver.",
+      "L'AUTHENTIFICATION consiste à PROUVER que l'on est bien la personne déclarée, généralement via un mot de passe, une empreinte biométrique, ou un code envoyé sur un téléphone. C'est l'étape de VÉRIFICATION.",
+      "L'AUTORISATION intervient APRÈS l'authentification réussie : elle détermine CE QUE la personne a le DROIT de faire ou de consulter dans le système.",
+      "Ces trois étapes se déroulent toujours dans cet ordre logique : on ne peut pas autoriser quelqu'un dont on n'a pas d'abord vérifié l'identité."
+    ],
+    aRetenir: [
+      'Identification : DÉCLARER qui on est (ex : saisir un nom d\'utilisateur)',
+      'Authentification : PROUVER cette identité (mot de passe, biométrie, code...)',
+      'Autorisation : déterminer ce que la personne authentifiée a le DROIT de faire',
+      'Ordre logique toujours respecté : identification → authentification → autorisation'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`1. L'utilisateur saisit "paul.martin" (identification)
+2. Il saisit son mot de passe, vérifié par le système (authentification)
+3. Le système vérifie qu'il a le droit de consulter cette page
+   précise (autorisation)`
+    },
+    exempleExplique: [
+      "Ces trois étapes sont distinctes et successives : réussir l'authentification ne garantit PAS automatiquement d'être autorisé à tout faire — un employé authentifié peut ne pas avoir le droit de consulter les fiches de paie de ses collègues.",
+      "Un système peut échouer à chaque étape indépendamment : identifiant inconnu, mot de passe incorrect, ou accès refusé malgré une identité vérifiée (souvent traduit par un code HTTP 403)."
+    ],
+    erreursFrequentes: [
+      "Confondre authentification et autorisation : être authentifié ne signifie pas être autorisé à TOUT faire dans le système.",
+      "Croire que l'identification suffit à elle seule à sécuriser un accès : sans authentification, n'importe qui pourrait se déclarer être quelqu'un d'autre.",
+      "Utiliser les termes de façon interchangeable dans une réponse d'examen, alors que ce sont des notions précises et distinctes."
+    ],
+    astuce: "Retiens l'ordre avec cette phrase : \"Qui prétends-tu être ?\" (identification) → \"Prouve-le\" (authentification) → \"Qu'as-tu le droit de faire ?\" (autorisation).",
+    exercicesIds: ['ex-cyber-authentification-qcm-1', 'ex-cyber-authentification-vf-1']
+  },
+  {
+    id: 'cyber-mfa',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 2,
+    ordre: 2,
+    titre: "L'authentification multifacteur (MFA)",
+    competence: 'cyber.mfa',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le principe de l'authentification multifacteur et les différents types de facteurs.",
+    explication: [
+      "L'authentification classique repose sur UN SEUL facteur (souvent un mot de passe) : si ce facteur est compromis, l'accès est totalement compromis. L'authentification MULTIFACTEUR (MFA) exige de combiner PLUSIEURS facteurs DIFFÉRENTS.",
+      "On distingue trois catégories de facteurs : un facteur de CONNAISSANCE (ce que l'on SAIT — mot de passe, code PIN), un facteur de POSSESSION (ce que l'on POSSÈDE — téléphone, clé de sécurité), et un facteur BIOMÉTRIQUE (ce que l'on EST — empreinte digitale, reconnaissance faciale).",
+      "Pour être réellement \"multifacteur\", les facteurs combinés doivent appartenir à des CATÉGORIES DIFFÉRENTES : demander deux mots de passe différents reste un facteur de connaissance répété, pas du MFA.",
+      "L'intérêt principal : même si un attaquant vole ou devine UN facteur (par exemple le mot de passe via phishing), il lui manque encore le second facteur pour réussir à se connecter."
+    ],
+    aRetenir: [
+      'MFA : combiner PLUSIEURS facteurs de catégories DIFFÉRENTES pour s\'authentifier',
+      'Facteur de connaissance : ce que l\'on SAIT (mot de passe, code PIN)',
+      'Facteur de possession : ce que l\'on POSSÈDE (téléphone, clé de sécurité)',
+      'Facteur biométrique : ce que l\'on EST (empreinte, visage)'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Connexion à un compte bancaire :
+1. Mot de passe (facteur de connaissance)
+2. Code reçu par SMS sur le téléphone de l'utilisateur
+   (facteur de possession)
+
+→ Un attaquant ayant volé le mot de passe seul ne peut pas
+  se connecter sans avoir également accès au téléphone.`
+    },
+    exempleExplique: [
+      "Le mot de passe et le code SMS appartiennent à deux catégories différentes (connaissance et possession), c'est donc bien une authentification multifacteur valide.",
+      "Même si l'attaquant devine ou vole le mot de passe (par exemple via une fuite de données sur un autre site), il ne pourra pas se connecter sans avoir également le téléphone physique de la victime."
+    ],
+    erreursFrequentes: [
+      "Croire que demander un mot de passe ET une question secrète constitue du MFA : ce sont deux facteurs de la MÊME catégorie (connaissance), donc ce n'est pas réellement multifacteur.",
+      "Penser que le MFA rend un compte totalement inviolable : il réduit fortement le risque, sans l'éliminer complètement.",
+      "Confondre 2FA (un cas particulier de MFA avec exactement deux facteurs) et MFA en général (deux facteurs ou plus)."
+    ],
+    astuce: "Pour vérifier qu'une authentification est vraiment multifacteur, identifie la CATÉGORIE de chaque élément demandé : s'ils appartiennent tous à la même catégorie, ce n'est pas du vrai MFA.",
+    exercicesIds: ['ex-cyber-mfa-qcm-1', 'ex-cyber-mfa-vf-1']
+  },
+  {
+    id: 'cyber-droits',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 2,
+    ordre: 3,
+    titre: 'La gestion des droits et le principe du moindre privilège',
+    competence: 'cyber.droits',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre comment organiser les droits d'accès des utilisateurs selon le principe du moindre privilège.",
+    explication: [
+      "Dans un système informatique, chaque UTILISATEUR se voit attribuer des DROITS (permissions) définissant ce qu'il peut consulter, modifier ou supprimer. On regroupe souvent les utilisateurs ayant les mêmes besoins dans des GROUPES ou RÔLES, pour simplifier l'attribution des droits.",
+      "Le PRINCIPE DU MOINDRE PRIVILÈGE est une règle fondamentale de sécurité : chaque utilisateur (ou programme) ne doit disposer QUE des droits strictement nécessaires à sa fonction — ni plus, ni moins.",
+      "L'intérêt : si un compte est compromis, les dégâts possibles restent LIMITÉS aux seuls droits accordés à ce compte, plutôt que de donner un accès total à l'ensemble du système.",
+      "En pratique, ça implique de revoir régulièrement les droits accordés (un employé changeant de poste garde parfois d'anciens droits devenus inutiles), et de ne jamais utiliser un compte ADMINISTRATEUR pour des tâches courantes."
+    ],
+    aRetenir: [
+      'Droit/permission : ce qu\'un utilisateur peut faire (consulter, modifier, supprimer)',
+      'Groupe/rôle : regroupe des utilisateurs ayant les mêmes besoins, pour simplifier l\'attribution des droits',
+      'Principe du moindre privilège : donner seulement les droits STRICTEMENT nécessaires, jamais plus',
+      'Un compte compromis avec des droits limités cause moins de dégâts qu\'un compte avec tous les droits'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Un stagiaire chargé de la saisie de données reçoit un compte
+avec uniquement les droits de LECTURE et d'AJOUT sur la table
+concernée — jamais de droit de SUPPRESSION ni d'accès aux
+autres tables de la base.`
+    },
+    exempleExplique: [
+      "Même si ce compte stagiaire venait à être compromis, l'attaquant ne pourrait ni supprimer de données, ni accéder aux autres tables — les dégâts restent limités par les droits initialement accordés.",
+      "C'est l'application concrète du moindre privilège : le stagiaire a exactement ce qu'il lui faut pour sa mission, rien de plus."
+    ],
+    erreursFrequentes: [
+      "Donner par facilité des droits d'administrateur à tous les utilisateurs pour \"éviter les problèmes d'accès\" : ça annule l'intérêt du moindre privilège.",
+      "Oublier de retirer les droits d'un utilisateur qui change de poste ou quitte l'organisation.",
+      "Attribuer les droits individuellement plutôt que par groupe/rôle sur un grand nombre d'utilisateurs : ça devient vite ingérable."
+    ],
+    astuce: "Avant d'accorder un droit, pose systématiquement la question : \"cette personne en a-t-elle VRAIMENT besoin pour sa tâche actuelle ?\" Si la réponse est non ou \"peut-être un jour\", ne l'accorde pas encore.",
+    exercicesIds: ['ex-cyber-droits-qcm-1', 'ex-cyber-droits-vf-1']
+  },
+  {
+    id: 'cyber-donneespersonnelles',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 3,
+    ordre: 1,
+    titre: 'Les données personnelles',
+    competence: 'cyber.donneespersonnelles',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir distinguer les différentes catégories de données personnelles et leur niveau de sensibilité.",
+    explication: [
+      "Une DONNÉE PERSONNELLE est toute information permettant d'identifier, directement ou indirectement, une personne physique. Notion centrale du RGPD (déjà vue en CEJM sous son angle juridique), avec des conséquences techniques concrètes côté développement.",
+      "Une donnée DIRECTEMENT IDENTIFIANTE permet à elle seule d'identifier quelqu'un (nom complet, numéro de sécurité sociale, email). Une donnée INDIRECTEMENT IDENTIFIANTE ne suffit pas seule, mais permet d'identifier en la CROISANT avec d'autres informations.",
+      "Certaines données sont dites SENSIBLES : origine raciale/ethnique, opinions politiques ou religieuses, données de santé, orientation sexuelle... Le RGPD leur impose une protection RENFORCÉE.",
+      "Pour un développeur, cette classification a un impact concret : les données sensibles ou directement identifiantes doivent bénéficier d'une protection technique renforcée (chiffrement, accès restreint, journalisation) proportionnée à leur sensibilité."
+    ],
+    aRetenir: [
+      'Donnée personnelle : toute information permettant d\'identifier une personne physique, directement ou indirectement',
+      'Directement identifiante : identifie seule (nom, email, numéro de sécu)',
+      'Indirectement identifiante : identifie seulement en la croisant avec d\'autres informations',
+      'Donnée sensible (santé, origine, opinions...) : protection renforcée exigée par le RGPD'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Un formulaire de recrutement collecte : nom, email, date de
+naissance, et une case optionnelle "situation de handicap".
+
+→ Nom et email : directement identifiants
+→ Date de naissance seule : indirectement identifiante
+→ "Situation de handicap" : donnée SENSIBLE (santé)`
+    },
+    exempleExplique: [
+      "Ce formulaire mélange plusieurs niveaux de sensibilité : toutes les données ne demandent pas le même niveau de protection technique et juridique.",
+      "La case sur le handicap doit être traitée avec beaucoup plus de précaution qu'un simple email : accès restreint, justification claire de sa collecte."
+    ],
+    erreursFrequentes: [
+      "Traiter toutes les données personnelles de la même façon, sans distinguer leur niveau de sensibilité réel.",
+      "Oublier qu'une donnée en apparence anodine (code postal, date de naissance) peut devenir identifiante une fois CROISÉE avec d'autres informations.",
+      "Collecter des données sensibles \"au cas où\" sans justification claire : le RGPD impose de ne collecter que ce qui est nécessaire."
+    ],
+    astuce: "Face à une donnée, pose-toi la question en deux temps : \"peut-elle identifier quelqu'un seule, ou seulement combinée à d'autres ?\", puis \"appartient-elle à une catégorie protégée par le RGPD ?\"",
+    exercicesIds: ['ex-cyber-donneespersonnelles-qcm-1', 'ex-cyber-donneespersonnelles-vf-1']
+  },
+  {
+    id: 'cyber-chiffrement',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 3,
+    ordre: 2,
+    titre: 'Le chiffrement et le protocole HTTPS',
+    competence: 'cyber.chiffrement',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre les deux grandes familles de chiffrement et le rôle de HTTPS.",
+    explication: [
+      "CHIFFRER une donnée consiste à la transformer, à l'aide d'une CLÉ, en une version illisible sans la clé permettant de la DÉCHIFFRER. C'est l'outil principal pour garantir la CONFIDENTIALITÉ.",
+      "Le CHIFFREMENT SYMÉTRIQUE utilise la MÊME clé pour chiffrer et déchiffrer : rapide, mais exige que les deux parties partagent cette clé secrète au préalable, de façon sécurisée.",
+      "Le CHIFFREMENT ASYMÉTRIQUE utilise une PAIRE de clés : une clé PUBLIQUE (partageable, pour chiffrer) et une clé PRIVÉE (secrète, pour déchiffrer). N'importe qui peut chiffrer avec la clé publique, seul le possesseur de la clé privée peut déchiffrer.",
+      "HTTPS combine les deux : le chiffrement ASYMÉTRIQUE (via un CERTIFICAT TLS) sert à échanger une clé SYMÉTRIQUE temporaire, plus rapide, qui chiffre ensuite toute la communication. Le certificat permet aussi de vérifier l'authenticité du serveur."
+    ],
+    aRetenir: [
+      'Chiffrer : rendre une donnée illisible sans la clé ; déchiffrer : retrouver la donnée d\'origine avec la clé',
+      'Chiffrement symétrique : MÊME clé pour chiffrer et déchiffrer, rapide mais partage de clé délicat',
+      'Chiffrement asymétrique : clé PUBLIQUE (chiffrer) + clé PRIVÉE (déchiffrer), résout le problème du partage',
+      'HTTPS combine les deux : asymétrique pour échanger une clé, puis symétrique pour la suite, plus rapide'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Connexion HTTPS à un site :
+
+1. Le navigateur vérifie le certificat TLS du serveur
+   (authenticité, via chiffrement asymétrique)
+2. Navigateur et serveur échangent une clé symétrique
+   temporaire, elle-même protégée par chiffrement asymétrique
+3. Toute la communication qui suit est chiffrée avec cette
+   clé symétrique, plus rapide pour de gros volumes`
+    },
+    exempleExplique: [
+      "L'étape 1 protège contre un faux site qui se ferait passer pour le vrai (usurpation).",
+      "L'étape 2 résout le problème classique du chiffrement symétrique (comment partager la clé sans qu'elle soit interceptée) grâce à l'asymétrique.",
+      "L'étape 3 profite de la rapidité du chiffrement symétrique pour le gros du trafic, une fois la clé échangée en sécurité."
+    ],
+    erreursFrequentes: [
+      "Croire que le chiffrement asymétrique est utilisé pour TOUTE la communication HTTPS : il ne sert qu'à l'échange initial de la clé symétrique, pour des raisons de performance.",
+      "Confondre chiffrement et hachage : le chiffrement est RÉVERSIBLE avec la bonne clé, le hachage est à SENS UNIQUE, volontairement irréversible.",
+      "Penser que HTTP (sans le S) est simplement \"moins pratique\" : sans chiffrement, toute donnée transmise peut être interceptée en clair."
+    ],
+    astuce: "Retiens l'analogie de la boîte aux lettres pour l'asymétrique : n'importe qui peut déposer une lettre (chiffrer avec la clé PUBLIQUE), mais seul le propriétaire avec la clé de la boîte (la clé PRIVÉE) peut l'ouvrir.",
+    exercicesIds: ['ex-cyber-chiffrement-qcm-1', 'ex-cyber-chiffrement-vf-1']
+  },
+  {
+    id: 'cyber-sauvegardes',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 3,
+    ordre: 3,
+    titre: 'Les sauvegardes',
+    competence: 'cyber.sauvegardes',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les différents types de sauvegardes et la règle 3-2-1.",
+    explication: [
+      "Une SAUVEGARDE est une copie des données, conservée séparément, permettant de les RESTAURER en cas de perte (panne, erreur humaine, ransomware...). L'outil principal pour protéger la DISPONIBILITÉ des données.",
+      "La SAUVEGARDE COMPLÈTE copie l'INTÉGRALITÉ des données à chaque fois — simple à restaurer, mais lente et volumineuse. La SAUVEGARDE INCRÉMENTALE ne copie QUE ce qui a changé depuis la DERNIÈRE sauvegarde — rapide, mais la restauration nécessite de rejouer toute la chaîne.",
+      "La SAUVEGARDE DIFFÉRENTIELLE ne copie que ce qui a changé depuis la DERNIÈRE SAUVEGARDE COMPLÈTE — un compromis : plus rapide qu'une complète, plus simple à restaurer qu'une chaîne d'incrémentales.",
+      "La RÈGLE 3-2-1 : conserver AU MOINS 3 copies des données, sur 2 SUPPORTS différents, dont 1 copie hors site (pour survivre à un incendie ou un vol sur le site principal)."
+    ],
+    aRetenir: [
+      'Sauvegarde complète : copie tout, simple à restaurer mais lourde',
+      'Sauvegarde incrémentale : copie ce qui a changé depuis la DERNIÈRE sauvegarde (quelle qu\'elle soit)',
+      'Sauvegarde différentielle : copie ce qui a changé depuis la dernière sauvegarde COMPLÈTE',
+      'Règle 3-2-1 : 3 copies, 2 supports différents, 1 copie hors site'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Lundi   : sauvegarde complète
+Mardi   : sauvegarde incrémentale (change depuis lundi)
+Mercredi: sauvegarde incrémentale (change depuis mardi)
+
+→ Pour restaurer l'état de mercredi, il faut rejouer :
+  complète (lundi) + incrémentale (mardi) + incrémentale (mercredi)`
+    },
+    exempleExplique: [
+      "Chaque sauvegarde incrémentale ne contient que les changements depuis la précédente, pas depuis la complète du lundi.",
+      "La restauration doit rejouer TOUTE la chaîne dans l'ordre : sauter une étape rendrait la restauration incomplète — le principal inconvénient de l'incrémentale face à la différentielle."
+    ],
+    erreursFrequentes: [
+      "Confondre incrémentale (depuis la DERNIÈRE sauvegarde) et différentielle (depuis la dernière COMPLÈTE).",
+      "Stocker toutes les copies au même endroit physique que les données originales : un incendie détruirait alors les données ET leurs sauvegardes.",
+      "Faire des sauvegardes sans jamais TESTER leur restauration."
+    ],
+    astuce: "Une sauvegarde qui n'a jamais été testée en restauration n'est qu'une hypothèse, pas une vraie garantie — teste-la régulièrement, avant d'en avoir réellement besoin.",
+    exercicesIds: ['ex-cyber-sauvegardes-qcm-1', 'ex-cyber-sauvegardes-vf-1']
+  },
+  {
+    id: 'cyber-equipements',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 5,
+    ordre: 1,
+    titre: 'Sécuriser les équipements et les usages numériques',
+    competence: 'cyber.equipements',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les bonnes pratiques de sécurisation des postes de travail, appareils mobiles et réseaux Wi-Fi.",
+    explication: [
+      "Un POSTE DE TRAVAIL doit rester à jour (mises à jour de sécurité), protégé par un antivirus/EDR, un pare-feu actif, et se verrouiller automatiquement en cas d'inactivité.",
+      "Un APPAREIL MOBILE mérite la même attention : code de verrouillage, chiffrement du stockage, mises à jour régulières, vigilance sur les applications installées.",
+      "Les SUPPORTS AMOVIBLES (clés USB, disques externes) présentent un risque particulier : ils peuvent transporter un malware d'un poste à un autre, ou être perdus/volés avec des données non chiffrées.",
+      "Le WI-FI doit utiliser un chiffrement robuste (WPA2 ou WPA3, jamais l'ancien WEP) avec un mot de passe solide. Un RÉSEAU WI-FI PUBLIC est particulièrement risqué, d'où la recommandation d'éviter d'y saisir des informations sensibles sans protection supplémentaire."
+    ],
+    aRetenir: [
+      'Poste de travail : mises à jour, antivirus/EDR, pare-feu, verrouillage automatique',
+      'Mobile : code de verrouillage, chiffrement, mises à jour, vigilance sur les applications installées',
+      'Supports amovibles (clé USB...) : risque de propagation de malware et de perte de données non chiffrées',
+      'Wi-Fi : WPA2/WPA3 (jamais WEP), mot de passe solide ; réseau public = prudence renforcée'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Un employé branche une clé USB trouvée sur le parking de
+l'entreprise sur son poste de travail, par curiosité.
+
+→ Scénario classique d'attaque par appât ("baiting") : la clé
+  peut contenir un malware qui s'exécute automatiquement,
+  compromettant le poste puis potentiellement tout le réseau.`
+    },
+    exempleExplique: [
+      "Ce scénario illustre pourquoi le contrôle des supports amovibles fait partie des bonnes pratiques : la curiosité humaine est une faille exploitée sciemment par certains attaquants.",
+      "La bonne pratique : ne jamais brancher un support d'origine inconnue, et signaler la découverte plutôt que de l'utiliser."
+    ],
+    erreursFrequentes: [
+      "Négliger la sécurité des appareils mobiles en pensant que seuls les ordinateurs sont de vraies cibles.",
+      "Utiliser encore un réseau Wi-Fi en WEP (obsolète et facilement cassable) ou sans mot de passe.",
+      "Considérer un réseau Wi-Fi public comme aussi sûr qu'un réseau privé de confiance."
+    ],
+    astuce: "La sécurité des équipements repose autant sur des mesures TECHNIQUES (chiffrement, pare-feu) que sur des bonnes pratiques D'USAGE (ne pas brancher un support inconnu, verrouiller son poste) : les deux sont indispensables ensemble.",
+    exercicesIds: ['ex-cyber-equipements-qcm-1', 'ex-cyber-equipements-vf-1']
+  },
+  {
+    id: 'cyber-identitenumerique',
+    matiere: 'cybersecurite',
+    parcoursId: 'cybersecurite',
+    niveau: 6,
+    ordre: 1,
+    titre: "L'identité numérique et sa protection",
+    competence: 'cyber.identitenumerique',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre ce qu'est l'identité numérique d'une organisation et savoir comment la protéger.",
+    explication: [
+      "L'IDENTITÉ NUMÉRIQUE d'une organisation regroupe l'ensemble de sa présence en ligne : site web, nom de domaine, comptes sur les réseaux sociaux, comptes professionnels. Elle contribue directement à sa RÉPUTATION NUMÉRIQUE (e-réputation).",
+      "PRÉSERVER cette identité numérique implique de protéger l'accès à tous ces comptes (mots de passe robustes, MFA), de contrôler QUI a le droit de publier en son nom, et de surveiller régulièrement d'éventuelles usurpations.",
+      "L'USURPATION D'IDENTITÉ NUMÉRIQUE consiste, pour un attaquant, à se faire passer pour l'organisation (faux compte, faux site imitant le vrai, phishing utilisant son nom) — souvent pour tromper des clients ou partenaires.",
+      "La RÉPUTATION NUMÉRIQUE peut être endommagée rapidement par un incident mal géré (fuite rendue publique, communication maladroite) : une réaction rapide, transparente et préparée limite fortement les dégâts."
+    ],
+    aRetenir: [
+      "Identité numérique : ensemble de la présence en ligne d'une organisation (site, réseaux sociaux, comptes...)",
+      "Préserver l'identité numérique : protéger les accès (MFA), contrôler qui publie, surveiller les usurpations",
+      "Usurpation d'identité numérique : se faire passer pour l'organisation (faux compte, faux site, phishing à son nom)",
+      "Réputation numérique : peut être endommagée durablement par un incident mal géré"
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Un faux compte reprenant le logo et le nom d'une entreprise
+apparaît sur un réseau social, proposant de fausses offres
+promotionnelles pour récupérer les données bancaires des
+personnes qui y répondent.`
+    },
+    exempleExplique: [
+      "C'est un cas classique d'usurpation d'identité numérique : l'attaquant exploite la CONFIANCE que les clients ont dans la vraie marque pour les tromper plus facilement.",
+      "La réaction attendue : signaler rapidement le faux compte à la plateforme, communiquer officiellement pour alerter les vrais clients, surveiller d'autres tentatives similaires."
+    ],
+    erreursFrequentes: [
+      "Négliger la surveillance de sa propre identité numérique en pensant que \"ça n'arrive qu'aux autres\".",
+      "Réagir tardivement ou de façon opaque face à un incident, ce qui aggrave généralement la perte de confiance.",
+      "Confier les accès aux comptes officiels à un trop grand nombre de personnes sans contrôle ni traçabilité."
+    ],
+    astuce: "Traite la protection de l'identité numérique comme celle de n'importe quel actif sensible : accès restreints et tracés, authentification forte, surveillance active plutôt que réactive.",
+    exercicesIds: ['ex-cyber-identitenumerique-qcm-1', 'ex-cyber-identitenumerique-vf-1']
+  },
+
+  // -------------------------------------------------- Maths — arithmétique
+  {
+    id: 'maths-arithmetique-modulaire',
+    matiere: 'maths',
+    parcoursId: 'maths',
+    niveau: 1,
+    ordre: 2,
+    titre: "L'arithmétique modulaire et les congruences",
+    competence: 'maths.arithmetiquemodulaire',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre la notion de congruence et ses applications en informatique.",
+    explication: [
+      "Deux entiers a et b sont dits CONGRUS MODULO n (noté a ≡ b [n]) s'ils ont le même reste dans la division euclidienne par n. Par exemple, 14 ≡ 2 [12], car 14 et 2 donnent tous deux un reste de 2 dans une division par 12 (le principe de l'heure sur une horloge de 12h).",
+      "L'opérateur MODULO (noté % en programmation) calcule directement ce reste : 14 % 12 vaut 2. C'est une opération que tu utilises déjà en C# (%) sans forcément la relier à cette notion mathématique.",
+      "L'arithmétique modulaire a de nombreuses applications directes en informatique : le calcul de clés de hachage (répartir des données en utilisant un modulo), la cryptographie (le chiffrement RSA repose entièrement dessus), ou la vérification de codes (comme une clé de contrôle d'IBAN).",
+      "Propriété utile : les congruences se comportent bien avec l'addition et la multiplication, ce qui permet de simplifier des calculs sur de très grands nombres en ne travaillant qu'avec leurs restes."
+    ],
+    aRetenir: [
+      'a ≡ b [n] (a congru à b modulo n) : a et b ont le même reste dans la division par n',
+      "L'opérateur % (modulo) calcule ce reste directement : 14 % 12 = 2",
+      'Applications informatiques : tables de hachage, cryptographie (RSA), clés de contrôle (IBAN...)',
+      'Les congruences se comportent bien avec + et × : utile pour simplifier des calculs sur de grands nombres'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`14 % 12 = 2   →  14 ≡ 2 [12]
+23 % 5  = 3   →  23 ≡ 3 [5]
+
+Une table de hachage à 10 cases peut stocker une clé k
+à l'emplacement (k % 10) : la clé 47 va dans la case 7.`
+    },
+    exempleExplique: [
+      "14 % 12 = 2 : on retire autant de fois 12 que possible (une fois), il reste 2 — le principe utilisé pour convertir une heure au format 24h vers un affichage 12h.",
+      "Dans une table de hachage, calculer (k % 10) donne toujours un résultat entre 0 et 9 quel que soit k, ce qui répartit n'importe quelle clé dans un nombre FIXE de cases."
+    ],
+    erreursFrequentes: [
+      "Confondre a % n (le reste) avec a / n (le quotient de la division entière).",
+      "Oublier que deux nombres congrus modulo n ne sont pas forcément ÉGAUX, seulement leur reste dans la division par n l'est.",
+      "Mal calculer un modulo avec un nombre négatif : le comportement de % avec les négatifs peut varier selon le langage."
+    ],
+    astuce: "Pense au modulo comme à une horloge : sur une horloge de 12h, 14h et 2h \"tombent au même endroit\" — c'est exactement l'idée de la congruence modulo 12.",
+    exercicesIds: ['ex-maths-arithmetiquemodulaire-qcm-1', 'ex-maths-arithmetiquemodulaire-completer-1']
+  },
+
+  // ---------------------------------------------- Maths — calcul booléen
+  {
+    id: 'maths-booleen-simplification',
+    matiere: 'maths',
+    parcoursId: 'maths',
+    niveau: 2,
+    ordre: 2,
+    titre: 'Simplifier une expression booléenne (lois de De Morgan)',
+    competence: 'maths.booleensimplification',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir simplifier une expression booléenne à l'aide des lois de De Morgan et des propriétés de base.",
+    explication: [
+      "Une expression booléenne combinant ET, OU et NON peut souvent être SIMPLIFIÉE en une expression équivalente plus courte — utile pour une condition de programme plus lisible.",
+      "Les LOIS DE DE MORGAN permettent de faire passer une négation à travers un ET ou un OU : NON(A ET B) équivaut à (NON A) OU (NON B), et NON(A OU B) équivaut à (NON A) ET (NON B). La négation INVERSE l'opérateur en passant à l'intérieur.",
+      "D'autres propriétés utiles : la double négation s'annule (NON(NON A) = A), l'idempotence (A ET A = A), l'absorption (A ET (A OU B) = A). Combinées, elles simplifient des expressions complexes étape par étape.",
+      "En programmation, appliquer De Morgan aide à écrire une condition plus naturelle : !(a && b) se réécrit !a || !b, parfois plus facile à lire, notamment pour éviter une double négation qui complique la compréhension."
+    ],
+    aRetenir: [
+      'NON(A ET B) = (NON A) OU (NON B) — la négation inverse ET en OU',
+      'NON(A OU B) = (NON A) ET (NON B) — la négation inverse OU en ET',
+      'Double négation : NON(NON A) = A',
+      'Ces lois permettent de simplifier une condition ou de la réécrire sous une forme plus lisible'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Condition originale :  !(age >= 18 && possedePermis)
+
+Application de De Morgan :
+!(age >= 18 && possedePermis)
+= !(age >= 18) || !(possedePermis)
+= (age < 18) || !possedePermis`
+    },
+    exempleExplique: [
+      "La condition originale se lit \"ce n'est pas vrai que (majeur ET a le permis)\", peu naturelle à interpréter directement.",
+      "Après De Morgan, on obtient \"est mineur OU n'a pas le permis\" — logiquement identique, bien plus facile à comprendre.",
+      "!(age >= 18) se simplifie directement en age < 18 : la négation d'une comparaison inverse simplement le sens de l'inégalité."
+    ],
+    erreursFrequentes: [
+      "Oublier d'inverser l'opérateur (ET ↔ OU) en faisant passer la négation à travers les parenthèses.",
+      "Appliquer la négation à un seul des deux termes au lieu des deux.",
+      "Confondre la simplification booléenne avec la résolution d'une équation numérique : les règles ne sont pas les mêmes."
+    ],
+    astuce: "Retiens De Morgan ainsi : la négation \"traverse\" les parenthèses comme à travers une vitre déformante — elle touche chaque terme ET change ET en OU (ou inversement).",
+    exercicesIds: ['ex-maths-booleensimplification-qcm-1', 'ex-maths-booleensimplification-completer-1']
+  },
+
+  // -------------------------------------------------------- Maths — suites
+  {
+    id: 'maths-suites-somme',
+    matiere: 'maths',
+    parcoursId: 'maths',
+    niveau: 3,
+    ordre: 2,
+    titre: 'La somme des termes d\'une suite',
+    competence: 'maths.suitessomme',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir calculer la somme des n premiers termes d'une suite arithmétique ou géométrique.",
+    explication: [
+      "Pour une SUITE ARITHMÉTIQUE (premier terme u0, raison r), la somme des (n+1) premiers termes (de u0 à un) se calcule avec : Sn = (n+1) × (u0 + un) / 2, c'est-à-dire \"nombre de termes × (premier + dernier) / 2\".",
+      "Pour une SUITE GÉOMÉTRIQUE (premier terme u0, raison q ≠ 1), la somme se calcule avec : Sn = u0 × (1 - q^(n+1)) / (1 - q). Si q = 1, tous les termes sont identiques et la somme vaut simplement (n+1) × u0.",
+      "Ces formules évitent d'additionner terme par terme, ce qui serait long pour un grand nombre de termes — utiles pour calculer le coût cumulé d'un algorithme dont le nombre d'opérations suit une progression à chaque étape.",
+      "Exemple classique en algorithmique : un algorithme dont le nombre d'opérations DOUBLE à chaque étape (progression géométrique de raison 2) — la formule géométrique donne directement le nombre total d'opérations sur l'ensemble des étapes."
+    ],
+    aRetenir: [
+      'Suite arithmétique : Sn = (nombre de termes) × (premier terme + dernier terme) / 2',
+      'Suite géométrique (q ≠ 1) : Sn = u0 × (1 - q^(n+1)) / (1 - q)',
+      'Si q = 1 pour une suite géométrique : la somme vaut simplement (nombre de termes) × u0',
+      'Ces formules évitent d\'additionner terme par terme, utile pour de grands nombres de termes'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Suite arithmétique : u0 = 3, raison r = 2
+Termes : 3, 5, 7, 9, 11 (5 termes, de u0 à u4)
+
+S4 = 5 × (3 + 11) / 2 = 5 × 14 / 2 = 35`
+    },
+    exempleExplique: [
+      "Il y a 5 termes (de u0 à u4), le premier vaut 3 et le dernier (u4) vaut 11.",
+      "La formule donne directement 35, vérifiable par 3+5+7+9+11 = 35 — la formule évite cette addition manuelle, utile si la suite avait des centaines de termes."
+    ],
+    erreursFrequentes: [
+      "Se tromper dans le NOMBRE DE TERMES à utiliser : de u0 à un, il y a (n+1) termes, pas n.",
+      "Utiliser la formule arithmétique pour une suite géométrique, ou inversement.",
+      "Oublier le cas particulier q = 1 pour une suite géométrique, où la formule générale donnerait une division par zéro."
+    ],
+    astuce: "Pour la somme arithmétique, retiens l'astuce de Gauss : additionner le premier et le dernier terme, le deuxième et l'avant-dernier, etc. donne toujours la même somme (premier + dernier) — d'où la formule.",
+    exercicesIds: ['ex-maths-suitessomme-qcm-1', 'ex-maths-suitessomme-completer-1']
+  },
+
+  // ------------------------------------------------------- Maths — graphes
+  {
+    id: 'maths-graphes-dijkstra',
+    matiere: 'maths',
+    parcoursId: 'maths',
+    niveau: 4,
+    ordre: 2,
+    titre: 'Parcours de graphe et plus court chemin (algorithme de Dijkstra)',
+    competence: 'maths.graphesdijkstra',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le principe de l'algorithme de Dijkstra pour trouver le plus court chemin dans un graphe pondéré.",
+    explication: [
+      "Dans un GRAPHE PONDÉRÉ, chaque arête porte un POIDS (distance, coût, durée). Trouver le PLUS COURT CHEMIN entre deux sommets consiste à trouver le trajet dont la somme des poids traversés est minimale — pas nécessairement celui qui passe par le moins d'arêtes.",
+      "L'ALGORITHME DE DIJKSTRA résout ce problème (à condition que tous les poids soient POSITIFS) en construisant progressivement, depuis un sommet de départ, la distance minimale connue vers chaque autre sommet.",
+      "Principe étape par étape : on part du sommet de départ (distance 0), et à chaque étape, on choisit le sommet NON ENCORE TRAITÉ ayant la plus petite distance connue, on la valide comme définitive, puis on met à jour les distances de ses voisins si passer par ce sommet donne un chemin plus court.",
+      "Applications concrètes : le calcul d'itinéraire d'un GPS, le routage de paquets sur un réseau informatique, l'optimisation de trajets logistiques."
+    ],
+    aRetenir: [
+      'Plus court chemin : le trajet dont la SOMME DES POIDS est minimale, pas forcément le moins d\'arêtes',
+      'Dijkstra fonctionne uniquement si tous les poids sont POSITIFS',
+      'Principe : à chaque étape, valider le sommet non traité de plus petite distance connue, puis mettre à jour ses voisins',
+      'Applications concrètes : GPS, routage réseau, optimisation logistique'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Graphe : A -3- B -1- C
+         A ------4------ C (chemin direct)
+
+Plus court chemin de A à C :
+- Via B : 3 + 1 = 4
+- Direct : 4
+
+→ Les deux chemins ont le même coût total (4) : Dijkstra
+  trouverait l'un des deux, selon l'ordre de traitement.`
+    },
+    exempleExplique: [
+      "Même si le chemin via B compte DEUX arêtes contre UNE seule pour le chemin direct, son coût total (3+1=4) est identique au chemin direct (poids 4) : le nombre d'arêtes n'est pas ce qui compte, seule la somme des poids importe.",
+      "Ce genre de cas montre qu'il ne faut jamais deviner le plus court chemin à l'œil en comptant les arêtes : il faut réellement sommer les poids de chaque trajet possible."
+    ],
+    erreursFrequentes: [
+      "Confondre \"plus court chemin\" (poids minimal) et \"chemin le plus court\" en nombre d'arêtes.",
+      "Essayer d'appliquer Dijkstra sur un graphe avec des poids NÉGATIFS : l'algorithme ne garantit alors plus un résultat correct.",
+      "Oublier de mettre à jour la distance d'un voisin si un chemin PLUS COURT que celui déjà connu vient d'être découvert."
+    ],
+    astuce: "Pour dérouler Dijkstra à la main, tiens un tableau avec une colonne par sommet indiquant sa \"meilleure distance connue jusqu'ici\", et mets-le à jour à chaque étape.",
+    exercicesIds: ['ex-maths-graphesdijkstra-qcm-1', 'ex-maths-graphesdijkstra-vf-1']
+  },
+
+  // ------------------------------------------------------ Maths — matrices
+  {
+    id: 'maths-matrices-produit',
+    matiere: 'maths',
+    parcoursId: 'maths',
+    niveau: 5,
+    ordre: 2,
+    titre: 'Le produit matriciel et les systèmes d\'équations',
+    competence: 'maths.matricesproduit',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir effectuer un produit de deux matrices et représenter un système d'équations sous forme matricielle.",
+    explication: [
+      "Le PRODUIT de deux matrices A (m×n) et B (n×p) donne une matrice C (m×p) — ATTENTION : possible SEULEMENT si le nombre de COLONNES de A égale le nombre de LIGNES de B.",
+      "Chaque case du résultat C se calcule en multipliant terme à terme une LIGNE de A avec une COLONNE de B, puis en additionnant ces produits : le PRODUIT SCALAIRE de la ligne et de la colonne concernées.",
+      "IMPORTANT : le produit matriciel n'est PAS commutatif — en général, A × B ≠ B × A, contrairement à la multiplication de nombres.",
+      "Un système d'équations linéaires peut se réécrire sous forme matricielle A × X = B, où A contient les coefficients, X le vecteur des inconnues, et B les résultats — la base de nombreuses méthodes de résolution informatisées."
+    ],
+    aRetenir: [
+      'A (m×n) × B (n×p) = C (m×p) — possible seulement si colonnes de A = lignes de B',
+      'Chaque case du résultat : produit scalaire d\'une ligne de A avec une colonne de B',
+      'Le produit matriciel N\'EST PAS commutatif : A × B ≠ B × A en général',
+      'Un système d\'équations linéaires s\'écrit sous forme matricielle A × X = B'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`A = [1 2]      B = [5]
+    [3 4]          [6]
+
+A × B = [1×5 + 2×6]   = [17]
+        [3×5 + 4×6]     [39]`
+    },
+    exempleExplique: [
+      "A est 2×2 et B est 2×1 : le nombre de colonnes de A (2) correspond au nombre de lignes de B (2), le produit est possible, résultat 2×1.",
+      "Première case : ligne 1 de A (1, 2) avec la colonne de B (5, 6) → 1×5 + 2×6 = 17.",
+      "Deuxième case : ligne 2 de A (3, 4) avec la colonne de B (5, 6) → 3×5 + 4×6 = 39."
+    ],
+    erreursFrequentes: [
+      "Essayer de multiplier deux matrices sans vérifier que le nombre de colonnes de la première correspond au nombre de lignes de la seconde.",
+      "Croire que A × B donne le même résultat que B × A.",
+      "Se tromper en associant une ligne de A avec la mauvaise colonne de B lors du calcul."
+    ],
+    astuce: "Pour vérifier si un produit A × B est possible, écris les dimensions côte à côte : (m×n) × (n×p) — si les deux nombres du milieu correspondent, le produit est possible, résultat de dimensions (m×p).",
+    exercicesIds: ['ex-maths-matricesproduit-qcm-1', 'ex-maths-matricesproduit-vf-1']
+  },
+
+  // ---------------------------------------------------- Maths — ensembles
+  {
+    id: 'maths-ensembles-relations',
+    matiere: 'maths',
+    parcoursId: 'maths',
+    niveau: 6,
+    ordre: 2,
+    titre: 'Relations et applications',
+    competence: 'maths.ensemblesrelations',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre les notions de relation et d'application entre deux ensembles, utiles à la modélisation de données.",
+    explication: [
+      "Une RELATION entre deux ensembles E et F associe certains éléments de E à certains éléments de F. Formellement, c'est un sous-ensemble du PRODUIT CARTÉSIEN E × F.",
+      "Une APPLICATION (ou fonction) est un cas particulier de relation : CHAQUE élément de E est associé à EXACTEMENT UN élément de F (ni zéro, ni plusieurs).",
+      "Une application est INJECTIVE si deux éléments distincts de E ont toujours des images distinctes dans F. Elle est SURJECTIVE si tout élément de F est l'image d'au moins un élément de E. Elle est BIJECTIVE si elle est à la fois injective et surjective.",
+      "Lien direct avec les bases de données : une relation ONE-TO-ONE correspond à une application bijective, une relation ONE-TO-MANY correspond à une application qui n'est pas forcément injective de l'autre côté."
+    ],
+    aRetenir: [
+      'Relation entre E et F : un sous-ensemble du produit cartésien E × F',
+      'Application : CHAQUE élément de E a EXACTEMENT UNE image dans F',
+      'Injective : deux entrées différentes → jamais la même sortie',
+      'Surjective : chaque élément de F est atteint ; bijective : injective ET surjective'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`E = {Alice, Bob, Chloé}  (étudiants)
+F = {A, B, C, D}         (notes possibles)
+
+Application "note obtenue" :
+Alice → B
+Bob   → A
+Chloé → A
+
+→ C'est une application (chaque étudiant a UNE note),
+  mais ni injective (Bob et Chloé ont la même note A)
+  ni surjective (personne n'a eu D).`
+    },
+    exempleExplique: [
+      "C'est bien une application car chaque étudiant a exactement une note associée — aucun n'a zéro ou plusieurs notes.",
+      "Elle n'est pas injective : deux éléments différents de E (Bob et Chloé) ont la même image (A).",
+      "Elle n'est pas surjective : l'élément D de F n'est l'image d'aucun élément de E."
+    ],
+    erreursFrequentes: [
+      "Confondre relation et application : une relation peut associer un élément de E à ZÉRO, UN ou PLUSIEURS éléments de F ; une application exige EXACTEMENT un.",
+      "Confondre injective et surjective.",
+      "Croire qu'une application bijective existe toujours entre deux ensembles quelconques : pour des ensembles finis, il faut qu'ils aient le même nombre d'éléments."
+    ],
+    astuce: "Pour tester si une application est bijective, vérifie qu'elle est \"réversible\" : peux-tu, à partir de n'importe quelle sortie, retrouver SANS AMBIGUÏTÉ une seule entrée correspondante ?",
+    exercicesIds: ['ex-maths-ensemblesrelations-qcm-1', 'ex-maths-ensemblesrelations-vf-1']
+  },
+
+  // -------------------------------------------------------- CEJM — Thème 1
+  {
+    id: 'cejm-t1-marche',
+    matiere: 'cejm',
+    parcoursId: 'cejm',
+    niveau: 1,
+    ordre: 2,
+    titre: "L'offre, la demande et les structures de marché",
+    competence: 'cejm.t1.marche',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre comment se forme un prix de marché et savoir distinguer les principales structures de marché.",
+    explication: [
+      "Sur un marché, l'OFFRE représente la quantité qu'un bien ou service que les vendeurs sont prêts à proposer à un prix donné (elle augmente en général avec le prix), et la DEMANDE représente la quantité que les acheteurs sont prêts à acquérir (elle diminue en général quand le prix augmente).",
+      "Le PRIX D'ÉQUILIBRE est le prix pour lequel la quantité offerte égale la quantité demandée : à ce prix, tout ce qui est produit trouve preneur, sans pénurie ni surplus. Si le prix est plus élevé, l'offre dépasse la demande (surplus) ; s'il est plus bas, la demande dépasse l'offre (pénurie).",
+      "Toutes les structures de marché ne se ressemblent pas. La CONCURRENCE PURE ET PARFAITE suppose de nombreux vendeurs et acheteurs, un produit homogène : aucun acteur seul n'influence le prix. À l'opposé, un MONOPOLE ne compte qu'un seul vendeur, qui peut fixer le prix sans concurrent direct.",
+      "Entre ces deux extrêmes, l'OLIGOPOLE désigne un marché dominé par un petit nombre de vendeurs, et la CONCURRENCE MONOPOLISTIQUE désigne de nombreux vendeurs proposant des produits différenciés (chacun ayant un peu de pouvoir sur son propre prix)."
+    ],
+    aRetenir: [
+      'Offre : quantité proposée par les vendeurs (croît avec le prix) ; demande : quantité voulue par les acheteurs (décroît avec le prix)',
+      'Prix d\'équilibre : quantité offerte = quantité demandée, ni pénurie ni surplus',
+      'Concurrence pure et parfaite : nombreux acteurs, produit homogène, aucun n\'influence seul le prix',
+      'Monopole (un seul vendeur) et oligopole (quelques vendeurs) : à l\'opposé de la concurrence pure et parfaite'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Marché des places de concert :
+- Si le prix baisse fortement : la demande explose, mais
+  l'offre (nombre de places) reste fixe → pénurie, sold-out
+- Le prix d'équilibre est celui qui vide exactement la salle,
+  sans place vide ni demande insatisfaite au tarif affiché`
+    },
+    exempleExplique: [
+      "Ce marché illustre l'équilibre : une salle de concert a un nombre de places FIXE (offre rigide), donc le prix d'équilibre théorique égalise cette offre fixe à la demande à ce prix précis.",
+      "En pratique, beaucoup de billetteries fixent un prix légèrement inférieur à cet équilibre (d'où la revente au marché noir plus cher), ce qui illustre concrètement la pénurie face à une demande supérieure à l'offre au prix affiché."
+    ],
+    erreursFrequentes: [
+      "Confondre offre et demande : l'offre vient des VENDEURS/PRODUCTEURS, la demande vient des ACHETEURS/CONSOMMATEURS.",
+      "Croire que le prix d'équilibre est fixe dans le temps : il évolue dès que l'offre ou la demande se déplace.",
+      "Confondre oligopole (quelques vendeurs, ex : opérateurs télécoms) et monopole (un seul vendeur, ex : un ancien service public)."
+    ],
+    astuce: "Pour retenir le sens des courbes : la demande DIMINUE quand le prix augmente, l'offre AUGMENTE quand le prix augmente (un prix plus élevé encourage les vendeurs à produire davantage).",
+    exercicesIds: ['ex-cejm-t1-marche-qcm-1', 'ex-cejm-t1-marche-vf-1']
+  },
+
+  // -------------------------------------------------------- CEJM — Thème 2
+  {
+    id: 'cejm-t2-indicateurs',
+    matiere: 'cejm',
+    parcoursId: 'cejm',
+    niveau: 2,
+    ordre: 2,
+    titre: 'Les grands indicateurs économiques : PIB, chômage, inflation',
+    competence: 'cejm.t2.indicateurs',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les principaux indicateurs utilisés pour mesurer l'état de santé d'une économie.",
+    explication: [
+      "Le PIB (Produit Intérieur Brut) mesure la valeur totale des richesses produites par un pays sur une période donnée. Sa CROISSANCE est l'indicateur le plus utilisé pour évaluer la santé économique globale d'un pays.",
+      "Le PIB a des LIMITES connues : il ne mesure pas les inégalités de répartition des richesses, ignore les activités non marchandes (travail domestique, bénévolat), et ne prend pas en compte les dégâts environnementaux causés par la production.",
+      "Le TAUX DE CHÔMAGE mesure la part de la population active sans emploi mais en recherche active. L'INFLATION mesure l'augmentation générale et durable des prix — elle réduit le pouvoir d'achat si les revenus n'augmentent pas au même rythme.",
+      "Ces indicateurs sont souvent liés : une politique cherchant à réduire le chômage peut avoir pour effet secondaire d'augmenter l'inflation, illustrant les arbitrages complexes des décideurs économiques."
+    ],
+    aRetenir: [
+      'PIB : valeur totale des richesses produites par un pays sur une période — indicateur central mais limité',
+      'Limites du PIB : ignore les inégalités, le non-marchand (bénévolat...), l\'impact environnemental',
+      'Taux de chômage : part de la population active sans emploi mais en recherche active',
+      'Inflation : hausse générale et durable des prix, qui réduit le pouvoir d\'achat si les revenus ne suivent pas'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Un pays affiche une croissance du PIB de +3% sur un an, mais
+son taux de chômage reste élevé et l'inflation grimpe à 5%.
+
+→ Malgré une croissance positive, le pouvoir d'achat des
+  ménages peut reculer si les salaires n'augmentent pas
+  au même rythme que l'inflation (5%).`
+    },
+    exempleExplique: [
+      "Ce scénario illustre que la croissance du PIB seule ne suffit pas à juger du niveau de vie réel : il faut la confronter à d'autres indicateurs comme l'inflation et l'évolution des salaires.",
+      "C'est pour cette raison que le PIB est complété par d'autres indicateurs (IDH, indice de Gini...) dans une analyse économique complète."
+    ],
+    erreursFrequentes: [
+      "Confondre croissance du PIB (variation dans le temps) et niveau du PIB (valeur à un instant donné).",
+      "Penser qu'une forte croissance du PIB signifie automatiquement une amélioration du niveau de vie de TOUS les habitants.",
+      "Confondre inflation (hausse des prix) et hausse du coût de la vie perçue individuellement."
+    ],
+    astuce: "Pour une analyse économique complète en CEJM, ne te limite jamais à UN seul indicateur : croise toujours PIB, chômage et inflation pour donner une vision nuancée.",
+    exercicesIds: ['ex-cejm-t2-indicateurs-qcm-1', 'ex-cejm-t2-indicateurs-vf-1']
+  },
+
+  // -------------------------------------------------------- CEJM — Thème 3
+  {
+    id: 'cejm-t3-management',
+    matiere: 'cejm',
+    parcoursId: 'cejm',
+    niveau: 3,
+    ordre: 2,
+    titre: 'Les structures organisationnelles et les styles de management',
+    competence: 'cejm.t3.management',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les principales structures organisationnelles et styles de management d'une entreprise.",
+    explication: [
+      "La STRUCTURE ORGANISATIONNELLE décrit comment les tâches et responsabilités sont réparties. Une structure HIÉRARCHIQUE suit une chaîne de commandement claire, chaque salarié ayant un seul supérieur direct. Une structure FONCTIONNELLE regroupe les salariés par grande fonction (production, commercial, RH...).",
+      "Une structure MATRICIELLE combine les deux logiques : un salarié peut dépendre à la fois d'un responsable fonctionnel ET d'un responsable de projet — utile pour le travail en mode projet, mais plus complexe à piloter.",
+      "Le STYLE DE MANAGEMENT décrit comment un dirigeant exerce son autorité. Le management DIRECTIF impose les décisions sans concertation. Le management PARTICIPATIF associe les salariés à la décision. Le management DÉLÉGATIF laisse une large autonomie aux équipes.",
+      "Il n'existe pas de style universellement \"meilleur\" : le choix dépend du contexte (urgence, expérience de l'équipe, culture d'entreprise). Un bon manager adapte souvent son style selon la situation."
+    ],
+    aRetenir: [
+      'Structure hiérarchique : chaîne de commandement claire, un seul supérieur direct par salarié',
+      'Structure fonctionnelle : regroupement par grande fonction (production, commercial, RH...)',
+      'Structure matricielle : double rattachement (fonctionnel + projet), plus complexe mais flexible',
+      'Styles de management : directif (impose), participatif (associe), délégatif (autonomie) — à adapter au contexte'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Une agence de développement web organise ses développeurs en
+équipes projet temporaires, chaque développeur restant
+rattaché à son responsable technique ET au chef du projet
+en cours.`
+    },
+    exempleExplique: [
+      "C'est une illustration typique de structure MATRICIELLE : chaque développeur a deux lignes hiérarchiques (responsable technique pour la montée en compétence, chef de projet pour le travail quotidien).",
+      "Ce type de structure est fréquent en informatique car le travail s'organise souvent par projets tout en ayant besoin de maintenir une expertise technique centralisée par métier."
+    ],
+    erreursFrequentes: [
+      "Croire qu'un style de management participatif est toujours préférable : dans une situation d'urgence, un style plus directif peut être nécessaire.",
+      "Confondre structure fonctionnelle (organisée par métier) et structure matricielle (double rattachement).",
+      "Penser que la structure organisationnelle d'une entreprise ne change jamais : elle évolue souvent avec la taille et la stratégie."
+    ],
+    astuce: "Pour identifier une structure matricielle, cherche le signal \"un salarié qui répond à DEUX responsables différents\" — la caractéristique la plus distinctive de ce type d'organisation.",
+    exercicesIds: ['ex-cejm-t3-management-qcm-1', 'ex-cejm-t3-management-vf-1']
+  },
+
+  // -------------------------------------------------------- CEJM — Thème 4
+  {
+    id: 'cejm-t4-numerique',
+    matiere: 'cejm',
+    parcoursId: 'cejm',
+    niveau: 4,
+    ordre: 2,
+    titre: 'Les modèles économiques numériques et la propriété intellectuelle',
+    competence: 'cejm.t4.numerique',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître les principaux modèles économiques du numérique et les bases de la propriété intellectuelle.",
+    explication: [
+      "Une PLATEFORME NUMÉRIQUE met en relation plusieurs catégories d'utilisateurs sans posséder elle-même les biens échangés. Ce modèle profite d'un EFFET DE RÉSEAU : plus il y a d'utilisateurs d'un côté, plus la plateforme devient attractive pour l'autre côté.",
+      "Les DONNÉES sont devenues une véritable RESSOURCE économique pour de nombreuses entreprises numériques : elles permettent de personnaliser un service, cibler la publicité, ou améliorer un produit — d'où l'importance de leur protection (voir la leçon RGPD).",
+      "La PROPRIÉTÉ INTELLECTUELLE protège les créations : le DROIT D'AUTEUR protège une œuvre (dont un logiciel) dès sa création, sans formalité obligatoire. Un BREVET protège une invention technique, mais nécessite un dépôt officiel et une procédure d'examen.",
+      "Dans le numérique, un CONTRAT ÉLECTRONIQUE (accepté en ligne) a la même valeur juridique qu'un contrat papier signé, sous certaines conditions de preuve — la SIGNATURE ÉLECTRONIQUE authentifie ce consentement de façon fiable."
+    ],
+    aRetenir: [
+      'Plateforme numérique : met en relation des utilisateurs, profite d\'un effet de réseau',
+      'Les données comme ressource économique : personnalisation, ciblage publicitaire, amélioration produit',
+      'Droit d\'auteur : protège une œuvre (dont un logiciel) dès sa création, sans dépôt ; brevet : protège une invention technique, nécessite un dépôt',
+      'Contrat électronique : même valeur juridique qu\'un contrat papier sous conditions de preuve (signature électronique)'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Une plateforme de mise en relation entre freelances et
+entreprises ne produit elle-même aucun service : sa valeur
+vient uniquement du nombre de freelances ET d'entreprises
+déjà inscrits.`
+    },
+    exempleExplique: [
+      "C'est un exemple typique d'effet de réseau : plus la plateforme attire de freelances compétents, plus elle devient attractive pour les entreprises clientes, ce qui attire à son tour davantage de freelances.",
+      "La plateforme ne possède ni les compétences des freelances ni les besoins des entreprises : sa valeur repose entièrement sur la mise en relation et les données accumulées sur les deux communautés."
+    ],
+    erreursFrequentes: [
+      "Confondre droit d'auteur (automatique dès la création) et brevet (nécessite un dépôt officiel).",
+      "Croire qu'un contrat accepté en ligne n'a pas de valeur juridique réelle.",
+      "Sous-estimer la valeur économique des données pour une entreprise numérique."
+    ],
+    astuce: "Pour identifier un effet de réseau, cherche si la valeur du service pour UN utilisateur dépend du nombre D'AUTRES utilisateurs déjà présents.",
+    exercicesIds: ['ex-cejm-t4-numerique-qcm-1', 'ex-cejm-t4-numerique-vf-1']
+  },
+
+  // -------------------------------------------------------- CEJM — Thème 5
+  {
+    id: 'cejm-t5-dialogue',
+    matiere: 'cejm',
+    parcoursId: 'cejm',
+    niveau: 5,
+    ordre: 2,
+    titre: 'Le dialogue social et la représentation des salariés',
+    competence: 'cejm.t5.dialogue',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le rôle des instances représentatives du personnel et du dialogue social en entreprise.",
+    explication: [
+      "Le DIALOGUE SOCIAL désigne l'ensemble des échanges, consultations et négociations entre l'employeur et les représentants des salariés, pour discuter des conditions de travail et des orientations de l'entreprise.",
+      "Dans les entreprises d'une certaine taille, le CSE (Comité Social et Économique) représente collectivement les salariés : il doit être informé et consulté sur des sujets importants et peut proposer des améliorations des conditions de travail.",
+      "Les SYNDICATS jouent également un rôle de représentation, notamment lors des NÉGOCIATIONS COLLECTIVES, qui peuvent aboutir à des ACCORDS D'ENTREPRISE (salaires, temps de travail, télétravail) applicables à l'ensemble des salariés concernés.",
+      "Le dialogue social permet de PRÉVENIR ou RÉSOUDRE des conflits sociaux en donnant un cadre formel de discussion, plutôt que de laisser les tensions s'accumuler sans interlocuteur identifié côté salariés."
+    ],
+    aRetenir: [
+      'Dialogue social : échanges/négociations entre employeur et représentants des salariés',
+      'CSE (Comité Social et Économique) : représente collectivement les salariés, informé/consulté sur les sujets importants',
+      'Syndicats : rôle de représentation, notamment lors des négociations collectives',
+      'Accord d\'entreprise : résultat d\'une négociation collective, applicable à l\'ensemble des salariés concernés'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Une entreprise souhaite généraliser le télétravail à 2 jours
+par semaine pour l'ensemble de ses salariés.
+
+→ Ce changement passe généralement par une consultation du
+  CSE, voire une négociation avec les syndicats pour aboutir
+  à un accord d'entreprise formalisant les nouvelles règles.`
+    },
+    exempleExplique: [
+      "Ce cas illustre le rôle concret du dialogue social : un changement d'organisation du travail touchant l'ensemble des salariés ne se décide pas unilatéralement, il passe par les instances représentatives prévues.",
+      "L'accord d'entreprise qui en résulterait fixerait des règles précises, applicables à tous les salariés concernés, apportant une sécurité juridique aux deux parties."
+    ],
+    erreursFrequentes: [
+      "Confondre CSE (instance interne à l'entreprise) et syndicat (organisation pouvant exister au-delà d'une seule entreprise).",
+      "Croire que le dialogue social ne sert qu'à gérer des conflits : il sert aussi à anticiper et coconstruire des évolutions.",
+      "Penser qu'un accord d'entreprise n'a pas de valeur contraignante : une fois signé, il s'impose aux parties concernées."
+    ],
+    astuce: "Retiens la distinction : le CSE est une instance INTERNE à l'entreprise, tandis qu'un syndicat peut représenter des salariés dans PLUSIEURS entreprises, voire à l'échelle d'un secteur.",
+    exercicesIds: ['ex-cejm-t5-dialogue-qcm-1', 'ex-cejm-t5-dialogue-vf-1']
+  },
+
+  // -------------------------------------------------------- CEJM — Thème 6
+  {
+    id: 'cejm-t6-swot',
+    matiere: 'cejm',
+    parcoursId: 'cejm',
+    niveau: 6,
+    ordre: 2,
+    titre: "Le diagnostic stratégique : l'analyse SWOT",
+    competence: 'cejm.t6.swot',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir construire et interpréter une analyse SWOT pour poser un diagnostic stratégique.",
+    explication: [
+      "Avant de faire des choix stratégiques, une entreprise réalise généralement un DIAGNOSTIC STRATÉGIQUE, qui distingue une analyse INTERNE (propre à l'entreprise) et une analyse EXTERNE (son environnement).",
+      "L'outil le plus utilisé est la matrice SWOT (ou FFOM) : elle croise les FORCES et FAIBLESSES de l'entreprise (analyse interne, ce qu'elle MAÎTRISE) avec les OPPORTUNITÉS et MENACES de son environnement (analyse externe, ce qu'elle NE MAÎTRISE PAS).",
+      "Une FORCE est un atout interne, une FAIBLESSE un point interne à améliorer. Une OPPORTUNITÉ est un élément externe favorable, une MENACE un élément externe défavorable.",
+      "L'intérêt du SWOT n'est pas seulement de LISTER ces quatre catégories, mais de les CROISER pour orienter une stratégie : par exemple, s'appuyer sur une FORCE pour saisir une OPPORTUNITÉ."
+    ],
+    aRetenir: [
+      'SWOT (FFOM) : Forces/Faiblesses (analyse INTERNE) et Opportunités/Menaces (analyse EXTERNE)',
+      'Forces et faiblesses : ce que l\'entreprise MAÎTRISE (en interne)',
+      'Opportunités et menaces : ce qui vient de l\'environnement, que l\'entreprise NE MAÎTRISE PAS',
+      'L\'intérêt du SWOT : croiser ces éléments pour orienter une stratégie, pas seulement les lister'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Une PME informatique :
+- Force : équipe très qualifiée en cybersécurité
+- Faiblesse : peu de notoriété auprès des grands comptes
+- Opportunité : forte hausse de la demande en cybersécurité
+- Menace : arrivée de grands groupes internationaux
+
+→ Stratégie possible : s'appuyer sur la FORCE (expertise)
+  pour saisir l'OPPORTUNITÉ, en travaillant sur la notoriété
+  pour mieux résister à la MENACE des grands groupes.`
+    },
+    exempleExplique: [
+      "Ce cas illustre le croisement SWOT : identifier les quatre éléments seuls ne suffit pas, c'est la mise en relation entre une force interne et une opportunité externe qui débouche sur une orientation concrète.",
+      "La faiblesse identifiée n'est pas ignorée pour autant : elle éclaire un axe de travail pour mieux résister à la menace des concurrents plus connus."
+    ],
+    erreursFrequentes: [
+      "Classer un élément externe parmi les forces/faiblesses : le critère de classement est TOUJOURS interne vs externe, jamais positif vs négatif seul.",
+      "Se contenter de lister les quatre catégories sans jamais les croiser pour proposer une orientation stratégique.",
+      "Confondre analyse SWOT (diagnostic) et choix stratégique lui-même (la décision prise ensuite)."
+    ],
+    astuce: "Pour classer un élément dans le bon quadrant, pose une seule question : \"l'entreprise peut-elle agir directement dessus ?\" Si oui → interne. Si non → externe.",
+    exercicesIds: ['ex-cejm-t6-swot-qcm-1', 'ex-cejm-t6-swot-vf-1']
+  },
+
+  // ---------------------------------------------------- CEJM — Méthodologie
+  {
+    id: 'cejm-methode',
+    matiere: 'cejm',
+    parcoursId: 'cejm',
+    niveau: 7,
+    ordre: 1,
+    titre: 'Méthode : analyser une situation à partir de documents',
+    competence: 'cejm.methode',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître la méthode générale pour répondre à une question CEJM à partir d'un dossier de documents.",
+    explication: [
+      "Une épreuve CEJM présente généralement une SITUATION D'ENTREPRISE accompagnée d'un DOSSIER DE DOCUMENTS, et pose des questions demandant d'ANALYSER cette situation sous un angle économique, juridique OU managérial.",
+      "Première étape : IDENTIFIER LE PROBLÈME POSÉ par la question — de quelle notion du programme relève-t-elle réellement ? Une même situation peut être analysée sous plusieurs angles.",
+      "Deuxième étape : SÉLECTIONNER dans les documents fournis les informations PERTINENTES pour répondre précisément à la question posée — un dossier contient souvent des informations qui ne servent pas toutes à chaque question.",
+      "Troisième étape : CONSTRUIRE UNE RÉPONSE ARGUMENTÉE, qui mobilise à la fois tes CONNAISSANCES du cours et les ÉLÉMENTS DU DOSSIER pour illustrer et justifier concrètement, pas seulement réciter une définition sans lien avec le cas donné."
+    ],
+    aRetenir: [
+      'Étape 1 : identifier le problème posé — de quelle notion du cours relève réellement la question ?',
+      'Étape 2 : sélectionner dans le dossier les informations PERTINENTES pour cette question précise',
+      'Étape 3 : construire une réponse qui combine connaissances du cours ET éléments concrets du dossier',
+      'Une bonne réponse CEJM ne se contente jamais d\'une définition seule, ni de citer le document sans l\'analyser'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Question : "Montrez que l'entreprise X est en situation
+de position dominante sur son marché."
+
+Mauvaise réponse : "Une position dominante, c'est quand une
+entreprise domine son marché." (définition seule, sans lien
+avec le dossier)
+
+Bonne réponse : rappelle la définition, PUIS l'applique aux
+chiffres du dossier (ex : 70% de parts de marché citées dans
+le document 2) pour justifier concrètement la qualification.`
+    },
+    exempleExplique: [
+      "La mauvaise réponse se contente de réciter une définition de cours, sans jamais l'ancrer dans le cas concret proposé — ce type de réponse est presque toujours insuffisant à l'examen.",
+      "La bonne réponse mobilise la même connaissance de cours, mais l'utilise comme OUTIL pour analyser une donnée précise du dossier, ce qui démontre une vraie capacité d'analyse plutôt qu'une simple restitution."
+    ],
+    erreursFrequentes: [
+      "Réciter une définition de cours sans jamais la relier aux documents fournis dans le sujet.",
+      "Recopier de longs passages d'un document sans les analyser ni les mettre en lien avec la question posée.",
+      "Traiter une question sous un seul angle alors qu'elle appelle aussi une dimension juridique ou managériale."
+    ],
+    astuce: "Avant de rédiger, souligne dans l'énoncé le VERBE de consigne (montrez, analysez, justifiez, proposez...) : il indique précisément ce qu'on attend de toi, pas seulement le sujet dont il faut parler.",
+    exercicesIds: ['ex-cejm-methode-qcm-1', 'ex-cejm-methode-reponse-1']
+  },
+
+  // --------------------------------------------- Culture générale — méthode
+  {
+    id: 'cg-consigne-problematique',
+    matiere: 'culture-generale',
+    parcoursId: 'culture-generale',
+    niveau: 1,
+    ordre: 2,
+    titre: 'Comprendre une consigne et formuler une problématique',
+    competence: 'cg.consigneproblematique',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir décoder une consigne d'épreuve et formuler une problématique pertinente.",
+    explication: [
+      "Une consigne contient toujours un VERBE D'ACTION précis (analysez, montrez, expliquez, confrontez...) qui indique EXACTEMENT ce qui est attendu — le premier réflexe est de repérer ce verbe avant de se lancer dans la rédaction.",
+      "Une PROBLÉMATIQUE est une question qui structure toute la réflexion : elle ne doit pas être une simple reformulation du sujet, mais soulever une véritable TENSION ou un ENJEU (souvent un paradoxe ou une opposition entre deux idées).",
+      "Pour trouver une problématique, une méthode efficace consiste à reformuler le sujet en question, puis à se demander \"qu'est-ce qui rend cette question difficile ou intéressante ?\" — sans tension, ce n'est probablement pas encore une vraie problématique.",
+      "Pour l'analyse de corpus, la \"problématique\" est plutôt implicite dans les questions posées : il s'agit de bien comprendre ce que CHAQUE question demande précisément (analyse d'un seul document ? confrontation ? avis personnel ?)."
+    ],
+    aRetenir: [
+      'Repérer le verbe de consigne (analysez, montrez, confrontez...) avant de commencer à rédiger',
+      'Une problématique est une question qui souligne une TENSION ou un ENJEU, pas une simple reformulation du sujet',
+      'Méthode : reformuler le sujet en question, puis chercher ce qui la rend difficile ou débattable',
+      'En analyse de corpus, bien identifier ce que chaque question précise demande'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Sujet d'essai : "Peut-on toujours distinguer le vrai du faux ?"
+
+Mauvaise approche : reformuler en "Qu'est-ce que le vrai et
+le faux ?" (pas de tension, juste une définition à donner)
+
+Bonne approche : la problématique souligne que la question
+suppose qu'une distinction NETTE pourrait parfois être
+impossible — d'où l'enjeu réel du sujet.`
+    },
+    exempleExplique: [
+      "La mauvaise approche transforme le sujet en simple exercice de définition, sans permettre une vraie argumentation avec plusieurs points de vue.",
+      "La bonne approche garde la tension du sujet initial (\"peut-on TOUJOURS\" sous-entend qu'il existe peut-être des cas où on ne peut PAS) : cette tension nourrit tout le plan de l'essai."
+    ],
+    erreursFrequentes: [
+      "Se contenter de recopier le sujet en guise de problématique, sans en faire ressortir la tension.",
+      "Répondre à une consigne \"analysez\" comme si elle demandait \"donnez votre avis\".",
+      "Formuler une problématique trop large, à laquelle on répondrait par un simple oui ou non sans nuance."
+    ],
+    astuce: "Teste ta problématique avec cette question : \"pourrait-on défendre DEUX réponses opposées et argumentées ?\" Si oui, c'est probablement une bonne problématique.",
+    exercicesIds: ['ex-cg-consigneproblematique-qcm-1', 'ex-cg-consigneproblematique-vf-1']
+  },
+  {
+    id: 'cg-corpus-arguments',
+    matiere: 'culture-generale',
+    parcoursId: 'culture-generale',
+    niveau: 1,
+    ordre: 3,
+    titre: 'Identifier une thèse, un argument et un exemple',
+    competence: 'cg.corpusarguments',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir distinguer la thèse, les arguments et les exemples dans un texte argumentatif.",
+    explication: [
+      "La THÈSE est l'idée principale qu'un auteur défend — la position générale qu'il cherche à faire admettre. Elle se trouve souvent (pas toujours) formulée explicitement dès le début ou la fin du texte.",
+      "Un ARGUMENT est une raison avancée pour justifier la thèse — il répond à \"pourquoi devrait-on croire cela ?\". Un texte solide enchaîne souvent plusieurs arguments distincts.",
+      "Un EXEMPLE illustre concrètement un argument, sans le remplacer : il rend l'argument plus parlant, mais ne constitue pas en lui-même une preuve suffisante.",
+      "Savoir distinguer ces trois niveaux est essentiel pour reformuler correctement la position d'un auteur en analyse de corpus, sans se contenter de recopier des phrases isolées."
+    ],
+    aRetenir: [
+      'Thèse : l\'idée générale défendue par l\'auteur, sa position principale',
+      'Argument : une raison qui justifie la thèse (répond à "pourquoi ?")',
+      'Exemple : illustre concrètement un argument, ne le remplace pas comme preuve',
+      'Distinguer ces trois niveaux permet de reformuler fidèlement la position d\'un auteur'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Extrait : "Les réseaux sociaux fragilisent notre rapport à la
+vérité [THÈSE]. En effet, leurs algorithmes favorisent le
+contenu qui suscite une réaction émotionnelle forte, vraie ou
+fausse [ARGUMENT]. On a ainsi vu une fausse information sur
+un vaccin se propager plus vite qu'un article scientifique
+qui la démentait [EXEMPLE]."`
+    },
+    exempleExplique: [
+      "La thèse annonce la position générale de l'auteur, avant toute justification.",
+      "L'argument explique le MÉCANISME qui justifie cette thèse (le fonctionnement des algorithmes), une raison générale et non un cas particulier.",
+      "L'exemple rend ce mécanisme concret, mais un lecteur exigeant pourrait objecter qu'un seul exemple ne prouve pas une tendance générale — l'argument reste plus important que l'exemple seul."
+    ],
+    erreursFrequentes: [
+      "Confondre un exemple avec un argument : un exemple SEUL, sans mécanisme général, ne constitue pas une vraie justification.",
+      "Résumer un texte en ne gardant que les exemples, en oubliant la thèse et les arguments.",
+      "Croire que la thèse est toujours énoncée dès la première phrase : elle peut apparaître progressivement ou à la fin."
+    ],
+    astuce: "Pour repérer un argument, cherche les mots de liaison logique (\"en effet\", \"car\") ; pour repérer un exemple, cherche \"ainsi\", \"par exemple\", ou un cas concret et daté.",
+    exercicesIds: ['ex-cg-corpusarguments-qcm-1', 'ex-cg-corpusarguments-vf-1']
+  },
+  {
+    id: 'cg-essai-plan',
+    matiere: 'culture-generale',
+    parcoursId: 'culture-generale',
+    niveau: 2,
+    ordre: 2,
+    titre: "Construire un plan pour l'essai argumenté",
+    competence: 'cg.essaiplan',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir choisir et construire un plan dialectique ou thématique pour un essai argumenté.",
+    explication: [
+      "Le PLAN DIALECTIQUE (thèse/antithèse/synthèse) convient aux sujets qui posent une VRAIE question débattable (\"peut-on...\", \"faut-il...\") : une partie défend un point de vue, la suivante le nuance ou le contredit, la dernière dépasse l'opposition.",
+      "Le PLAN THÉMATIQUE explore plusieurs ASPECTS d'un même sujet, sans opposition frontale (par exemple : dimension individuelle / collective / numérique d'un même phénomène). Il convient aux sujets plus descriptifs.",
+      "Le choix dépend de la FORMULATION du sujet : une question fermée invitant à peser le pour et le contre appelle plutôt un plan dialectique ; explorer un phénomène sous plusieurs angles se prête mieux à un plan thématique.",
+      "Quel que soit le plan, chaque partie doit rester ÉQUILIBRÉE en longueur et en argumentation."
+    ],
+    aRetenir: [
+      'Plan dialectique (thèse/antithèse/synthèse) : pour une vraie question débattable, avec opposition entre les parties',
+      'Plan thématique : explore plusieurs aspects d\'un même sujet, sans opposition frontale',
+      'Le choix dépend de la formulation : question fermée → dialectique ; exploration d\'un phénomène → thématique',
+      'Chaque partie doit rester équilibrée en longueur et en argumentation'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Sujet : "Les réseaux sociaux nous rendent-ils plus crédules ?"
+
+Plan dialectique possible :
+I. Oui, ils favorisent la désinformation (algorithmes, bulles)
+II. Mais ils permettent aussi de vérifier vite (fact-checking)
+III. Tout dépend de l'usage qu'on en fait et de l'esprit
+     critique de chacun`
+    },
+    exempleExplique: [
+      "Ce sujet, formulé comme une vraie question fermée, se prête bien à un plan dialectique : il invite explicitement à peser le pour et le contre.",
+      "La troisième partie ne répète pas les deux premières : elle propose une vraie synthèse (l'usage et l'esprit critique comme facteur décisif), ce qui dépasse l'opposition initiale."
+    ],
+    erreursFrequentes: [
+      "Choisir un plan dialectique pour un sujet qui n'appelle aucune vraie opposition.",
+      "Faire une synthèse qui ne fait que répéter les deux premières parties.",
+      "Déséquilibrer fortement la longueur des parties."
+    ],
+    astuce: "Reformule le sujet en question fermée (oui/non) : si \"ça dépend\" te vient naturellement, un plan dialectique fonctionnera probablement bien.",
+    exercicesIds: ['ex-cg-essaiplan-qcm-1', 'ex-cg-essaiplan-vf-1']
+  },
+  {
+    id: 'cg-notions-vraifaux',
+    matiere: 'culture-generale',
+    parcoursId: 'culture-generale',
+    niveau: 3,
+    ordre: 2,
+    titre: 'Les notions fondamentales du vrai et du faux',
+    competence: 'cg.notionsvraifaux',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Connaître le vocabulaire précis pour distinguer les nuances entre vérité, mensonge, erreur et illusion.",
+    explication: [
+      "La VÉRITÉ correspond à ce qui est conforme à la réalité. Le MENSONGE est une affirmation FAUSSE, formulée VOLONTAIREMENT avec l'intention de tromper — l'intention le distingue de l'ERREUR, une affirmation fausse mais involontaire, de bonne foi.",
+      "L'ILLUSION désigne une perception ou croyance erronée, souvent sans intention de tromper (une illusion d'optique, par exemple) — contrairement au mensonge, elle n'implique pas nécessairement un menteur.",
+      "La MANIPULATION va plus loin que le simple mensonge : elle cherche à influencer par des procédés détournés (émotion, désinformation ciblée, répétition), pas seulement en affirmant une chose fausse.",
+      "On distingue aussi CROYANCE (tenir pour vrai, sans preuve nécessairement solide) et CONNAISSANCE (une croyance vraie, justifiée par des preuves) — toute croyance n'est pas une connaissance, même vraie par hasard."
+    ],
+    aRetenir: [
+      'Vérité : conforme à la réalité ; mensonge : affirmation fausse et VOLONTAIRE, avec intention de tromper',
+      'Erreur : affirmation fausse mais INVOLONTAIRE, de bonne foi — contrairement au mensonge',
+      'Illusion : perception ou croyance erronée, sans nécessairement d\'intention de tromper',
+      'Croyance (tenir pour vrai) ≠ connaissance (croyance vraie ET justifiée par des preuves)'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Trois situations :
+1. Un élève affirme une date historique fausse, en la
+   croyant sincèrement exacte → ERREUR
+2. Un élève invente une excuse pour ne pas avoir fait ses
+   devoirs → MENSONGE
+3. Un bâton plongé dans l'eau semble plié → ILLUSION
+   (d'optique)`
+    },
+    exempleExplique: [
+      "Ces trois cas produisent une affirmation ou perception fausse, mais pour des raisons différentes : l'intention de tromper n'existe que dans le cas 2.",
+      "Distinguer ces nuances est précisément attendu dans une argumentation sur \"Le vrai du faux\" : confondre erreur et mensonge affaiblirait une analyse rigoureuse."
+    ],
+    erreursFrequentes: [
+      "Utiliser \"mensonge\" pour toute affirmation fausse, sans vérifier l'intention de tromper.",
+      "Confondre illusion (souvent sans acteur intentionnel) et manipulation (démarche intentionnelle).",
+      "Traiter croyance et connaissance comme des synonymes, alors que la connaissance suppose une justification."
+    ],
+    astuce: "Pose-toi systématiquement la question de l'INTENTION face à une affirmation fausse : volonté de tromper ? → mensonge/manipulation ; sinon → erreur/illusion.",
+    exercicesIds: ['ex-cg-notionsvraifaux-qcm-1', 'ex-cg-notionsvraifaux-vf-1']
+  },
+  {
+    id: 'cg-expression-ecrite',
+    matiere: 'culture-generale',
+    parcoursId: 'culture-generale',
+    niveau: 4,
+    ordre: 1,
+    titre: 'Expression écrite : connecteurs logiques et nuancer son propos',
+    competence: 'cg.expressionecrite',
+    difficulte: 'facile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir utiliser des connecteurs logiques variés et nuancer une affirmation à l'écrit.",
+    explication: [
+      "Les CONNECTEURS LOGIQUES structurent un texte : addition (\"de plus\"), opposition (\"cependant\", \"néanmoins\"), cause (\"car\", \"en effet\"), conséquence (\"ainsi\"), illustration (\"par exemple\").",
+      "Varier ces connecteurs (plutôt que répéter \"et\"/\"donc\") rend un texte plus lisible et montre une vraie maîtrise de l'articulation logique des idées.",
+      "NUANCER son propos consiste à éviter les affirmations trop tranchées au profit de formulations mesurées (\"on peut considérer que...\", \"dans une certaine mesure...\") — une pensée nuancée est généralement mieux valorisée.",
+      "La CONCESSION est une figure utile pour nuancer : reconnaître la validité partielle d'un point de vue opposé avant de le contrebalancer (\"certes... mais...\")."
+    ],
+    aRetenir: [
+      'Connecteurs logiques : addition, opposition (cependant, néanmoins), cause (car), conséquence (ainsi), illustration (par exemple)',
+      'Varier les connecteurs plutôt que répéter "et"/"donc" systématiquement',
+      'Nuancer : préférer "on peut considérer que" à des affirmations trop tranchées',
+      'La concession ("certes... mais...") reconnaît un point de vue opposé avant de le contrebalancer'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Version sans nuance : "Les réseaux sociaux sont mauvais pour
+la démocratie."
+
+Version nuancée : "Certes, les réseaux sociaux permettent une
+plus grande circulation de l'information ; cependant, ils
+peuvent aussi favoriser la désinformation, notamment via
+leurs algorithmes de recommandation."`
+    },
+    exempleExplique: [
+      "La version sans nuance affirme une position tranchée et unilatérale, sans reconnaître la complexité réelle du sujet.",
+      "La version nuancée utilise une concession (\"certes... cependant...\") pour reconnaître un aspect positif avant d'introduire la limite, ce qui donne une argumentation plus crédible."
+    ],
+    erreursFrequentes: [
+      "Répéter systématiquement les mêmes connecteurs (\"et\", \"donc\") tout au long d'un texte.",
+      "Formuler des généralisations excessives (\"tout le monde\", \"jamais\", \"toujours\") difficiles à défendre.",
+      "Utiliser un connecteur qui ne correspond pas à la relation logique réelle entre deux idées."
+    ],
+    astuce: "Avant d'utiliser un connecteur, vérifie mentalement la relation logique réelle : opposition, cause, conséquence ? Le bon connecteur en découle naturellement.",
+    exercicesIds: ['ex-cg-expressionecrite-qcm-1', 'ex-cg-expressionecrite-completer-1']
+  },
+
+  // ================================================ Gestion de projet / Git
+  {
+    id: 'gp-git-bases',
+    matiere: 'gestion-projet',
+    parcoursId: 'gestion-projet',
+    niveau: 1,
+    ordre: 1,
+    titre: 'Git : les commandes de base (init, add, commit, log)',
+    competence: 'gp.gitbases',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le rôle de Git et savoir utiliser les commandes de base pour suivre l'évolution d'un projet.",
+    explication: [
+      "Git est un SYSTÈME DE GESTION DE VERSIONS : il enregistre l'HISTORIQUE des modifications d'un projet au fil du temps, permettant de revenir en arrière et de travailler à plusieurs sans écraser le travail des autres.",
+      "git init transforme un dossier en DÉPÔT Git (un dossier caché .git y stocke tout l'historique). git status affiche l'état actuel : fichiers modifiés, ajoutés, ou non suivis.",
+      "git add <fichier> (ou git add . pour tout) place des fichiers dans la ZONE DE PRÉPARATION (staging) : ça les \"prépare\" pour le prochain enregistrement. git commit -m \"message\" enregistre DÉFINITIVEMENT ces changements dans l'historique.",
+      "git log affiche l'historique des commits (qui, quand, quel message) — la mémoire complète du projet, consultable à tout moment."
+    ],
+    aRetenir: [
+      'git init : transforme un dossier en dépôt Git',
+      'git status : affiche l\'état actuel (fichiers modifiés, ajoutés, non suivis)',
+      'git add : prépare des changements (staging) ; git commit -m "message" : les enregistre définitivement',
+      'git log : affiche l\'historique complet des commits'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`git init
+git add index.html
+git commit -m "Ajout de la page d'accueil"
+git log`
+    },
+    exempleExplique: [
+      "git init crée le dépôt Git dans le dossier courant.",
+      "git add index.html prépare ce fichier précis pour le prochain commit.",
+      "git commit -m \"...\" enregistre définitivement ce changement ; git log permet de le retrouver dans l'historique."
+    ],
+    erreursFrequentes: [
+      "Oublier git add avant git commit : sans staging, Git n'a rien de nouveau à enregistrer.",
+      "Écrire un message de commit vague (\"modif\", \"update\") qui n'explique rien.",
+      "Confondre git add (prépare, réversible) et git commit (enregistre définitivement)."
+    ],
+    astuce: "Écris des messages de commit clairs et au présent (\"ajoute la page de connexion\" plutôt que \"ajouté\") : une convention largement répandue qui facilite la lecture de l'historique.",
+    exercicesIds: ['ex-gp-gitbases-qcm-1', 'ex-gp-gitbases-completer-1']
+  },
+  {
+    id: 'gp-git-github',
+    matiere: 'gestion-projet',
+    parcoursId: 'gestion-projet',
+    niveau: 2,
+    ordre: 1,
+    titre: 'Git et GitHub : dépôts distants (remote, push, pull, clone)',
+    competence: 'gp.gitgithub',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre la différence entre Git et GitHub, et savoir synchroniser un dépôt local avec un dépôt distant.",
+    explication: [
+      "Git est un LOGICIEL local qui gère les versions. GitHub est un SERVICE EN LIGNE qui héberge des dépôts Git sur Internet, facilitant le partage et la sauvegarde à distance.",
+      "Un dépôt DISTANT (remote) est la version d'un projet hébergée en ligne, par opposition au dépôt LOCAL. git remote add origin <url> relie ton dépôt local à un dépôt distant, nommé origin par convention.",
+      "git push envoie tes commits locaux vers le dépôt distant. git clone <url> télécharge une copie complète d'un dépôt distant existant, avec tout son historique.",
+      "git pull récupère les modifications distantes et les intègre dans ton dépôt local — en réalité un git fetch suivi d'un git merge fait en une seule commande."
+    ],
+    aRetenir: [
+      'Git = logiciel local ; GitHub = service en ligne qui héberge des dépôts Git',
+      'git remote add origin <url> : relie le dépôt local à un dépôt distant nommé "origin"',
+      'git push : envoie tes commits locaux vers le dépôt distant',
+      'git clone <url> : télécharge une copie complète ; git pull : récupère et fusionne les nouveautés distantes'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`git remote add origin https://github.com/moi/projet.git
+git push origin main`
+    },
+    exempleExplique: [
+      "La première commande relie le dépôt local existant à un dépôt GitHub vide, sous le nom \"origin\".",
+      "git push origin main envoie les commits de la branche locale main vers ce dépôt distant."
+    ],
+    erreursFrequentes: [
+      "Confondre GitHub (service en ligne) et Git (outil local) : GitHub n'est qu'UN hébergeur parmi d'autres (GitLab, Bitbucket...).",
+      "Oublier de faire git pull avant de commencer à travailler, risquant de baser son travail sur une version obsolète.",
+      "Confondre git clone (première récupération complète) et git pull (mise à jour d'un dépôt déjà cloné)."
+    ],
+    astuce: "Retiens le sens des flèches : push \"pousse\" ton travail VERS l'extérieur (local → distant), pull \"tire\" les nouveautés VERS toi (distant → local).",
+    exercicesIds: ['ex-gp-gitgithub-qcm-1', 'ex-gp-gitgithub-vf-1']
+  },
+  {
+    id: 'gp-git-branches',
+    matiere: 'gestion-projet',
+    parcoursId: 'gestion-projet',
+    niveau: 3,
+    ordre: 1,
+    titre: 'Les branches : créer, changer, fusionner',
+    competence: 'gp.gitbranches',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre l'intérêt des branches Git et savoir en créer, en changer et les fusionner.",
+    explication: [
+      "Une BRANCHE Git est une ligne de développement indépendante : elle permet de travailler sur une fonctionnalité ou une correction SANS modifier la branche principale (souvent main), tant que le travail n'est pas terminé.",
+      "git branch <nom> crée une branche (sans y basculer). git switch <nom> change de branche active. git switch -c <nom> fait les deux en une commande.",
+      "Une fois le travail terminé, git merge <nom-branche> (depuis la branche de destination) FUSIONNE les changements de cette branche dans la branche courante.",
+      "Travailler par branches permet à plusieurs personnes d'avancer en parallèle sans se marcher dessus, en gardant une branche principale toujours stable."
+    ],
+    aRetenir: [
+      'Une branche : une ligne de développement indépendante, sans toucher à la branche principale',
+      'git branch <nom> : crée une branche ; git switch <nom> : change de branche active',
+      'git switch -c <nom> : crée ET bascule sur la nouvelle branche en une commande',
+      'git merge <nom-branche> (depuis la branche de destination) : fusionne les changements de la branche indiquée'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`git switch -c feature-connexion
+# ... travail et commits sur cette branche ...
+git switch main
+git merge feature-connexion`
+    },
+    exempleExplique: [
+      "git switch -c feature-connexion crée une branche dédiée et bascule dessus immédiatement — main reste intacte pendant ce travail.",
+      "Une fois terminé, on revient sur main puis git merge feature-connexion intègre tous les commits de la branche dans main."
+    ],
+    erreursFrequentes: [
+      "Travailler directement sur main pour une nouvelle fonctionnalité, sans créer de branche dédiée.",
+      "Oublier sur quelle branche on se trouve avant de commiter (vérifiable avec git status ou git branch).",
+      "Faire le merge depuis la MAUVAISE branche : git merge intègre la branche indiquée DANS la branche active."
+    ],
+    astuce: "Avant tout git merge, vérifie toujours sur quelle branche tu te trouves (git status l'affiche en première ligne) : c'est CETTE branche qui recevra les changements.",
+    exercicesIds: ['ex-gp-gitbranches-qcm-1', 'ex-gp-gitbranches-completer-1']
+  },
+  {
+    id: 'gp-git-conflits',
+    matiere: 'gestion-projet',
+    parcoursId: 'gestion-projet',
+    niveau: 3,
+    ordre: 2,
+    titre: 'Résoudre un conflit Git',
+    competence: 'gp.gitconflits',
+    difficulte: 'difficile',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre pourquoi un conflit Git apparaît et savoir le résoudre.",
+    explication: [
+      "Un CONFLIT apparaît quand Git ne peut pas fusionner automatiquement deux versions d'un même fichier, car les MÊMES lignes ont été modifiées différemment sur les deux branches concernées.",
+      "Quand un conflit survient, Git insère des MARQUEURS DE CONFLIT dans le fichier : <<<<<<< HEAD (début de TA version), ======= (séparateur), >>>>>>> nom-branche (fin de l'autre version).",
+      "Pour résoudre, il faut ÉDITER MANUELLEMENT le fichier : choisir quelle version garder (ou combiner), puis SUPPRIMER les marqueurs de conflit, qui ne doivent jamais rester dans le fichier final.",
+      "Une fois corrigé, git add <fichier> marque le conflit comme résolu, puis git commit valide cette résolution et termine la fusion."
+    ],
+    aRetenir: [
+      'Un conflit apparaît quand les MÊMES lignes d\'un fichier ont été modifiées différemment sur deux branches',
+      'Marqueurs de conflit : <<<<<<< HEAD (ta version), ======= (séparateur), >>>>>>> branche (l\'autre version)',
+      'Résolution : éditer manuellement le fichier, choisir la bonne version, SUPPRIMER tous les marqueurs',
+      'Puis : git add <fichier> pour marquer comme résolu, git commit pour finaliser la fusion'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`<<<<<<< HEAD
+const TVA = 0.20;
+=======
+const TVA = 0.196;
+>>>>>>> feature-tva-historique`
+    },
+    exempleExplique: [
+      "Ce conflit montre deux valeurs différentes pour TVA sur deux branches : HEAD propose 0.20, l'autre branche propose 0.196.",
+      "Pour résoudre : choisir la bonne valeur, supprimer TOUTES les lignes de marqueurs, ne garder que la ligne finale correcte."
+    ],
+    erreursFrequentes: [
+      "Oublier de supprimer les marqueurs de conflit après résolution : le fichier contiendrait du texte invalide.",
+      "Résoudre un conflit sans comprendre les deux versions en jeu, en gardant \"au hasard\" l'une des deux.",
+      "Paniquer face à un conflit : c'est un événement normal et fréquent du travail collaboratif avec Git."
+    ],
+    astuce: "Avant de résoudre un conflit dans l'urgence, comprends POURQUOI chaque version a été écrite ainsi (relis les commits concernés avec git log).",
+    exercicesIds: ['ex-gp-gitconflits-qcm-1', 'ex-gp-gitconflits-vf-1']
+  },
+  {
+    id: 'gp-git-collaboration',
+    matiere: 'gestion-projet',
+    parcoursId: 'gestion-projet',
+    niveau: 4,
+    ordre: 1,
+    titre: 'Travailler à plusieurs : Pull Request et revue de code',
+    competence: 'gp.gitcollaboration',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le rôle d'une Pull Request et de la revue de code dans un travail d'équipe.",
+    explication: [
+      "Une PULL REQUEST (PR) est une demande explicite, faite sur GitHub, de fusionner les changements d'une branche dans une autre. Elle ne se limite pas à un simple git merge en ligne de commande : c'est un vrai moment d'échange en équipe.",
+      "Une Pull Request affiche clairement TOUTES les modifications proposées, ce qui permet à d'autres développeurs de les CONSULTER avant intégration définitive.",
+      "La REVUE DE CODE consiste, pour des collègues, à examiner ces changements : vérifier qu'ils fonctionnent, respectent les conventions, repérer erreurs ou améliorations, souvent via des COMMENTAIRES sur les lignes concernées.",
+      "Une fois VALIDÉE, la Pull Request peut être FUSIONNÉE. Ce processus évite qu'une seule personne intègre du code non vérifié, et favorise le partage de connaissances."
+    ],
+    aRetenir: [
+      'Pull Request (PR) : demande explicite de fusionner une branche, avec revue possible avant intégration',
+      'Une PR affiche toutes les modifications proposées, consultables par l\'équipe avant fusion',
+      'Revue de code : des collègues examinent les changements, commentent, repèrent erreurs et améliorations',
+      'Une fois validée, la PR peut être fusionnée dans la branche cible'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`1. Un développeur termine sa branche "feature-panier"
+2. Il ouvre une Pull Request vers "main" sur GitHub
+3. Un collègue relit le code, laisse un commentaire :
+   "Attention, cette boucle peut planter si le panier est vide"
+4. Le développeur corrige, le collègue approuve
+5. La Pull Request est fusionnée dans main`
+    },
+    exempleExplique: [
+      "Ce processus illustre l'intérêt de la revue de code : le commentaire a permis de repérer un bug AVANT qu'il n'atteigne la version principale, utilisée par tous.",
+      "La Pull Request sert de point de passage obligé et de trace écrite de cet échange, ce qui n'existerait pas avec un simple merge fait directement en local."
+    ],
+    erreursFrequentes: [
+      "Fusionner directement ses changements dans main sans passer par une Pull Request dans une équipe qui a adopté ce processus.",
+      "Considérer un commentaire de revue comme une critique personnelle plutôt qu'une amélioration collective.",
+      "Ouvrir une Pull Request avec un titre et une description vagues, rendant la relecture plus difficile."
+    ],
+    astuce: "Rédige toujours une description claire dans ta Pull Request (ce qui a été fait, pourquoi, comment le tester) : ça facilite énormément la relecture.",
+    exercicesIds: ['ex-gp-gitcollaboration-qcm-1', 'ex-gp-gitcollaboration-vf-1']
+  },
+  {
+    id: 'gp-agile-scrum',
+    matiere: 'gestion-projet',
+    parcoursId: 'gestion-projet',
+    niveau: 5,
+    ordre: 1,
+    titre: 'Les méthodes agiles : Scrum',
+    competence: 'gp.agilescrum',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre les principes de l'Agile et le vocabulaire de base de la méthode Scrum.",
+    explication: [
+      "Les méthodes AGILES s'opposent à une gestion TRADITIONNELLE (tout planifier à l'avance, livrer une seule fois à la fin) : elles avancent par ITÉRATIONS courtes, avec des livraisons régulières et une adaptation constante.",
+      "SCRUM organise le travail en SPRINTS : des périodes courtes et fixes (souvent 2 à 4 semaines) à l'issue desquelles une version fonctionnelle du produit doit être livrée.",
+      "Le PRODUCT BACKLOG est la liste complète et priorisée de tout ce qui reste à faire. Le SPRINT BACKLOG est le sous-ensemble sélectionné pour LE sprint en cours. Trois rôles : PRODUCT OWNER (priorise le backlog), SCRUM MASTER (facilite la méthode), équipe de développement (réalise le travail).",
+      "Une USER STORY décrit un besoin utilisateur centré sur la VALEUR : \"En tant que [rôle], je veux [besoin] afin de [objectif]\"."
+    ],
+    aRetenir: [
+      'Agile : avance par itérations courtes avec livraisons régulières, contrairement à une planification totale à l\'avance',
+      'Sprint : période courte et fixe (2-4 semaines) débouchant sur une version livrable',
+      'Product Backlog (tout le travail à faire) vs Sprint Backlog (le sous-ensemble du sprint en cours)',
+      'Product Owner (priorise), Scrum Master (facilite), équipe de développement (réalise) ; User Story : "En tant que... je veux... afin de..."'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`User Story :
+"En tant qu'utilisateur, je veux pouvoir réinitialiser mon
+mot de passe afin de retrouver l'accès à mon compte si je
+l'oublie."`
+    },
+    exempleExplique: [
+      "Cette formulation précise le RÔLE (utilisateur), le BESOIN (réinitialiser son mot de passe), et l'OBJECTIF (retrouver l'accès en cas d'oubli) — utile pour comprendre POURQUOI la fonctionnalité compte, pas seulement CE QU'il faut coder.",
+      "Une spécification technique classique se serait contentée de \"ajouter un bouton mot de passe oublié\", sans expliciter la valeur utilisateur."
+    ],
+    erreursFrequentes: [
+      "Confondre Product Backlog (TOUT le travail restant) et Sprint Backlog (seulement le sprint EN COURS).",
+      "Croire que l'Agile signifie \"sans aucune planification\" : la planification existe, mais courte et réajustée régulièrement.",
+      "Rédiger une User Story uniquement technique, sans exprimer le besoin ni la valeur utilisateur."
+    ],
+    astuce: "Pour repérer une bonne User Story, vérifie qu'elle répond à QUI (le rôle), QUOI (le besoin), POURQUOI (l'objectif) — si le \"pourquoi\" manque, elle est probablement incomplète.",
+    exercicesIds: ['ex-gp-agilescrum-qcm-1', 'ex-gp-agilescrum-vf-1']
+  },
+  {
+    id: 'gp-cahier-charges',
+    matiere: 'gestion-projet',
+    parcoursId: 'gestion-projet',
+    niveau: 6,
+    ordre: 1,
+    titre: "Le cahier des charges et l'analyse du besoin",
+    competence: 'gp.cahiercharges',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Comprendre le rôle d'un cahier des charges et savoir distinguer besoin fonctionnel et besoin non fonctionnel.",
+    explication: [
+      "Un CAHIER DES CHARGES décrit, avant le développement, ce qu'un projet doit accomplir : OBJECTIFS, FONCTIONNALITÉS attendues, CONTRAINTES (budget, délais...), et CRITÈRES D'ACCEPTATION.",
+      "Un BESOIN FONCTIONNEL décrit CE QUE le système doit FAIRE (\"réinitialiser son mot de passe\"). Un BESOIN NON FONCTIONNEL décrit une QUALITÉ attendue (temps de réponse, sécurité, ergonomie, montée en charge...).",
+      "L'ANALYSE DU BESOIN consiste à recueillir, clarifier et PRIORISER ces besoins avec le client, souvent AVANT même de rédiger le cahier des charges définitif.",
+      "Des CRITÈRES D'ACCEPTATION clairs et mesurables (\"moins de 2 secondes\" plutôt que \"rapide\") évitent les désaccords en fin de projet."
+    ],
+    aRetenir: [
+      'Cahier des charges : objectifs, fonctionnalités, contraintes (budget, délais...), critères d\'acceptation',
+      'Besoin fonctionnel : CE QUE le système doit FAIRE ; besoin non fonctionnel : une QUALITÉ attendue',
+      'Analyse du besoin : recueillir, clarifier et prioriser les besoins, souvent avant le cahier des charges',
+      'Critères d\'acceptation clairs et mesurables évitent les désaccords en fin de projet'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Besoin fonctionnel : "L'utilisateur doit pouvoir filtrer les
+produits par catégorie."
+
+Besoin non fonctionnel : "Le site doit rester utilisable même
+avec 500 visiteurs simultanés."`
+    },
+    exempleExplique: [
+      "Le premier décrit une action précise que le système doit permettre : c'est fonctionnel, ça se traduit directement en fonctionnalité à développer.",
+      "Le second décrit une qualité globale (capacité à monter en charge), sans être lié à une fonctionnalité particulière : c'est non fonctionnel, mais tout aussi important."
+    ],
+    erreursFrequentes: [
+      "Confondre besoin fonctionnel et non fonctionnel : performance, sécurité, ergonomie ne sont pas des \"fonctionnalités\" au sens strict.",
+      "Rédiger des critères d'acceptation trop vagues (\"le site doit être beau\"), impossibles à vérifier objectivement.",
+      "Sauter l'analyse du besoin en pensant directement solution technique, sans clarifier le VRAI besoin du client."
+    ],
+    astuce: "Pour transformer un critère vague en critère mesurable, ajoute un CHIFFRE ou une CONDITION VÉRIFIABLE : \"rapide\" devient \"moins de 2 secondes\".",
+    exercicesIds: ['ex-gp-cahiercharges-qcm-1', 'ex-gp-cahiercharges-vf-1']
+  },
+  {
+    id: 'gp-planning',
+    matiere: 'gestion-projet',
+    parcoursId: 'gestion-projet',
+    niveau: 6,
+    ordre: 2,
+    titre: 'Le planning de projet : diagramme de Gantt et jalons',
+    competence: 'gp.planning',
+    difficulte: 'moyen',
+    annees: ['2025-2026', '2026-2027'],
+    objectif: "Savoir lire un diagramme de Gantt et comprendre la notion de jalon et de chemin critique.",
+    explication: [
+      "Un DIAGRAMME DE GANTT représente visuellement le PLANNING d'un projet : chaque tâche apparaît en barre horizontale, positionnée dans le temps, pour voir d'un coup d'œil l'organisation temporelle globale.",
+      "Certaines tâches ont des DÉPENDANCES : une tâche ne peut démarrer qu'après qu'une autre soit terminée. Un diagramme de Gantt représente souvent ces dépendances par des flèches.",
+      "Un JALON (milestone) marque un moment clé du projet, généralement la fin d'une étape importante — contrairement à une tâche, un jalon n'a pas de durée, c'est un point précis dans le temps.",
+      "Le CHEMIN CRITIQUE est la succession de tâches dépendantes qui détermine la durée MINIMALE totale du projet : un retard sur une tâche du chemin critique retarde automatiquement TOUT le projet."
+    ],
+    aRetenir: [
+      'Diagramme de Gantt : représente visuellement le planning, chaque tâche en barre horizontale dans le temps',
+      'Dépendance : une tâche ne peut démarrer qu\'après la fin d\'une autre',
+      'Jalon (milestone) : un point clé du projet, sans durée, contrairement à une tâche',
+      'Chemin critique : succession de tâches qui détermine la durée minimale du projet ; un retard dessus retarde tout le projet'
+    ],
+    exemple: {
+      langage: null,
+      code:
+`Tâche A (conception, 5 jours) → Tâche B (développement, 10 jours)
+                                       ↓
+                              Tâche C (tests, 3 jours)
+
+Chemin critique : A → B → C (5 + 10 + 3 = 18 jours minimum)`
+    },
+    exempleExplique: [
+      "Les tâches B et C dépendent chacune de la précédente : ces trois tâches forment donc le chemin critique.",
+      "Si la tâche A prend 2 jours de retard, tout le projet prend 2 jours de retard, puisqu'elle appartient au chemin critique : aucune marge n'existe sur cette chaîne."
+    ],
+    erreursFrequentes: [
+      "Confondre jalon (un point précis, sans durée) et tâche (une action qui dure dans le temps).",
+      "Croire qu'un retard sur N'IMPORTE QUELLE tâche retarde tout le projet : seul un retard sur le CHEMIN CRITIQUE a cet effet direct.",
+      "Oublier de représenter les dépendances entre tâches, ce qui rend le planning irréaliste."
+    ],
+    astuce: "Pour repérer le chemin critique, cherche la succession de tâches dépendantes dont la somme des durées est la PLUS LONGUE parmi tous les chemins possibles.",
+    exercicesIds: ['ex-gp-planning-qcm-1', 'ex-gp-planning-vf-1']
   }
 ];
 

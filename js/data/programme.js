@@ -119,6 +119,13 @@ export const MATIERES = [
     type: 'professionnelle',
     blocId: 'bloc2-slam',
     couleur: '#D97706'
+  },
+  {
+    id: 'gestion-projet',
+    nom: 'Gestion de projet et Git',
+    type: 'professionnelle',
+    blocId: 'bloc2-slam',
+    couleur: '#6B5CA5'
   }
 ];
 
@@ -175,7 +182,8 @@ export const PARCOURS = [
       { n: 3, nom: "Thème 3 — L'organisation de l'entreprise" },
       { n: 4, nom: "Thème 4 — L'impact du numérique" },
       { n: 5, nom: "Thème 5 — Les mutations du travail" },
-      { n: 6, nom: "Thème 6 — Les choix stratégiques" }
+      { n: 6, nom: "Thème 6 — Les choix stratégiques" },
+      { n: 7, nom: 'Méthodologie CEJM' }
     ]
   },
   {
@@ -211,7 +219,22 @@ export const PARCOURS = [
     niveaux: [
       { n: 1, nom: "L'analyse de corpus" },
       { n: 2, nom: "L'essai argumenté" },
-      { n: 3, nom: 'Thème 2026-2027 — Le vrai du faux' }
+      { n: 3, nom: 'Thème 2026-2027 — Le vrai du faux' },
+      { n: 4, nom: 'Expression écrite' }
+    ]
+  },
+  {
+    id: 'gestion-projet',
+    nom: '🛠️ Gestion de projet et Git',
+    matiereId: 'gestion-projet',
+    description: "De Git aux méthodes agiles, pour organiser et versionner un projet SLAM comme en entreprise.",
+    niveaux: [
+      { n: 1, nom: 'Git : les bases' },
+      { n: 2, nom: 'Git et GitHub' },
+      { n: 3, nom: 'Branches et conflits' },
+      { n: 4, nom: 'Travail collaboratif' },
+      { n: 5, nom: 'Méthodes agiles' },
+      { n: 6, nom: 'Cahier des charges et planning' }
     ]
   },
   {
@@ -220,10 +243,12 @@ export const PARCOURS = [
     matiereId: 'cybersecurite',
     description: "Bloc 3 du référentiel : protéger les données, sécuriser les usages et les applications développées.",
     niveaux: [
-      { n: 1, nom: 'Menaces et vulnérabilités' },
-      { n: 2, nom: 'Sécurité des données et des échanges' },
-      { n: 3, nom: 'Sécurité des applications web' },
-      { n: 4, nom: 'Identité numérique et authentification' }
+      { n: 1, nom: 'Menaces et principes de sécurité (DIC)' },
+      { n: 2, nom: 'Identification, authentification et droits' },
+      { n: 3, nom: 'Sécurité des données et des échanges' },
+      { n: 4, nom: 'Sécurité des applications web' },
+      { n: 5, nom: 'Sécurisation des équipements et des usages' },
+      { n: 6, nom: 'Identité numérique' }
     ]
   },
   {

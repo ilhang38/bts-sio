@@ -63,7 +63,39 @@ sous-ensemble représentatif :
   HTML et formulaires, sélecteurs/modèle de boîte/Flexbox/responsive en
   CSS, variables/fonctions/DOM/événements en JavaScript, HTTP et Fetch/JSON
   pour la communication client-serveur.
-- **177 exercices** couvrant les 8 types demandés (QCM simple/multiple,
+- **Cybersécurité étoffée** (6 niveaux) : les principes DIC (Disponibilité,
+  Intégrité, Confidentialité), identification/authentification/autorisation,
+  authentification multifacteur (MFA), gestion des droits (moindre
+  privilège), données personnelles, chiffrement symétrique/asymétrique et
+  HTTPS, sauvegardes (règle 3-2-1), et deux points explicitement prioritaires
+  du bloc 3 qui manquaient entièrement : la **sécurisation des équipements
+  et des usages** (postes, mobiles, Wi-Fi) et l'**identité numérique** d'une
+  organisation.
+- **Maths approfondies dans les 6 vrais modules du programme** (vérifié :
+  le programme officiel U21 du BTS SIO se limite à arithmétique, suites,
+  calcul matriciel, calcul booléen/ensembles et graphes — ni analyse,
+  ni probabilités, ni statistiques) : arithmétique modulaire et
+  congruences, simplification booléenne (lois de De Morgan), somme des
+  termes d'une suite, plus court chemin (Dijkstra), produit matriciel et
+  systèmes d'équations, relations et applications entre ensembles.
+- **CEJM approfondi** (7 niveaux, 6 thèmes officiels + méthodologie) :
+  offre/demande/structures de marché, grands indicateurs économiques
+  (PIB, chômage, inflation), structures organisationnelles et styles de
+  management, modèles économiques numériques et propriété intellectuelle,
+  dialogue social, diagnostic stratégique (analyse SWOT), et une leçon de
+  **méthodologie** — comment analyser une situation à partir d'un dossier
+  de documents, la vraie compétence évaluée à l'épreuve.
+- **Culture générale approfondie** : méthodologie (comprendre une consigne,
+  formuler une problématique, identifier thèse/argument/exemple, plan
+  dialectique ou thématique), notions fondamentales du vrai et du faux
+  (vérité, mensonge, erreur, illusion, manipulation), et une leçon
+  d'expression écrite (connecteurs logiques, nuancer son propos).
+- **Nouvelle matière : Gestion de projet et Git** (6 niveaux) — jusque-là
+  totalement absente du site : les commandes Git de base, Git/GitHub
+  (remote, push, pull, clone), branches et fusion, résolution de conflits,
+  Pull Request et revue de code, méthodes agiles (Scrum, User Stories),
+  cahier des charges et planning (diagramme de Gantt, chemin critique).
+- **247 exercices** couvrant les 8 types demandés (QCM simple/multiple,
   vrai/faux, réponse courte, trouver l'erreur, corriger le code, compléter le
   code, lire le code, programmation), à plusieurs niveaux de difficulté.
   Pour les matières générales, seuls QCM / vrai-faux / réponse-courte /
